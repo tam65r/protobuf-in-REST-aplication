@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+autoactivate on
+
+!theme hacker
+
+skinparam defaultFontColor Grey
+skinparam participantFontColor Black
+participant "P1:Plan" as P1
+participant "P2:Plan" as P2
+
+
+[o-> P1: POST/create(plan)
+
+P1 -> P1: findByName(name)
+P1 --> P1: null
+P1 -> P2: GET/internal/name/{name}
+
+
+
+alt plan not found
+P2 --> P1: 404
+
+P1 -> P1: save(plan)
+P1 --> P1: plan
+
+[o<-- P1: 201/plan
+else plan found
+P2 --> P1: 200/plan
+[o<-- P1: 4XX
+end
+
+
+
+
+
+@enduml
+
