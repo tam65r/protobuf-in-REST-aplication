@@ -1,0 +1,750 @@
+{
+	"info": {
+		"_postman_id": "f1e1fd8a-c367-4611-9567-93a918d7ca75",
+		"name": "sisdi-project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24922234",
+		"_collection_link": "https://gold-satellite-843443.postman.co/workspace/SISDI~d3118a6e-abfc-4171-b725-4dc0616ae2bd/collection/24922234-f1e1fd8a-c367-4611-9567-93a918d7ca75?action=share&source=collection_link&creator=24922234"
+	},
+	"item": [
+		{
+			"name": "Plans",
+			"item": [
+				{
+					"name": "Get All Plans",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{plans2Port}}/plans/all",
+							"host": [
+								"{{plans2Port}}"
+							],
+							"path": [
+								"plans",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Plan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Obsidian\",\r\n    \"description\": \"Obsidian Plan\",\r\n    \"numberOfMinutes\": 15,\r\n    \"musicSuggestions\": \"Automatic\",\r\n    \"musicCollections\": 1000,\r\n    \"monthlyFee\": 8.49,\r\n    \"annualFee\": 84.90\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{plansPort}}/plans/create",
+							"host": [
+								"{{plansPort}}"
+							],
+							"path": [
+								"plans",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Plan 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Magma\",\r\n    \"description\": \"Magma Plan\",\r\n    \"numberOfMinutes\": 150,\r\n    \"musicSuggestions\": \"Automatic\",\r\n    \"musicCollections\": 1000,\r\n    \"monthlyFee\": 10.49,\r\n    \"annualFee\": 104.90\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{plans2Port}}/plans/create",
+							"host": [
+								"{{plans2Port}}"
+							],
+							"path": [
+								"plans",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Plan",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{plansPort}}/plans/deactivate/Magma",
+							"host": [
+								"{{plansPort}}"
+							],
+							"path": [
+								"plans",
+								"deactivate",
+								"Magma"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Plan 2",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{plans2Port}}/plans/deactivate/Obsidian",
+							"host": [
+								"{{plans2Port}}"
+							],
+							"path": [
+								"plans",
+								"deactivate",
+								"Obsidian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Plan Request",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Nova descrição\",\r\n    \"numberOfMinutes\": null,\r\n    \"musicSuggestions\": null,\r\n    \"musicCollections\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{plansPort}}/plans/Gold",
+							"host": [
+								"{{plansPort}}"
+							],
+							"path": [
+								"plans",
+								"Gold"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Plan Request 2",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Nova descrição\",\r\n    \"numberOfMinutes\": null,\r\n    \"musicSuggestions\": null,\r\n    \"musicCollections\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{plans2Port}}/plans/Magma",
+							"host": [
+								"{{plans2Port}}"
+							],
+							"path": [
+								"plans",
+								"Magma"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A Specific Plan",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{plansPort}}/plans/name/Gold",
+							"host": [
+								"{{plansPort}}"
+							],
+							"path": [
+								"plans",
+								"name",
+								"Gold"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMSxyaXZlckBtYWlsLmNvbSIsImV4cCI6MTY5ODUzMzAwMiwiaWF0IjoxNjk4NDk3MDAyLCJyb2xlcyI6Ik1BUktFVElOR19ESVJFQ1RPUiJ9.LQ7QsaV9s3cd89F9tOkZDwo4i3exiQUkUVfV7zxTDMQ8Mfu3gOHPqdUUefGCHOqp3MINxgmXyB9qZVozreQnl-sm91fx5zxpreIXyIbcqd6nHKfA4rmlX6OUEMaJycK-btzOMO4D2V9FGDSZFsFUb9mE2d0e8gmfckDYxBYyrnvPZWmmyWcykNBY6_5smTOhpMO3luG0HMcpSjxL3llg1JyqQHKG-wRYCsGCnV-2SqdH0RLVV8XbbyDI_PPRvxsTiXdoY0g2laxa7oAierkQMDM3iIRH2FDy0oB2YCTnth0HNFKgjpjMX6-uBLBaIn0pB9KCoclhKZGkKvk4Mz7RWbvI2JdnsRaoo-wIAsAxN3xc5Se8obWrErD_r-2tOBjlnbPJD04-th5LiCMJ6YszFb9ZAeuyTj7YTSriXmGMm3YhdBatlt7Gg3w02pAGa-wRJoQErOVisXHVyfe8yC28q67CtcJzmYQ7pyOTqKfAIPlzTEOLgU3pTfpbhLxWmfiTchPZr-w88GwW7TfB8kTT6WJyADSAxfh92s14FYR5btiaQQzSwG5zpZCoq9BtQnVN3qkTbkH3QYqfyefRkp417moKh5rLNshx9DNNGhb09D68XBHYJjQFYvEQZq36Xdg40W98Nsa266ygtGzsAL5ElUwxORhNOn7FVu3D94NCI9I",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jota@mail.com\",\r\n    \"password\": \"kappaJota\",\r\n    \"name\": \"Kappa\",\r\n    \"citizenCardNumber\": \"123456789\",\r\n    \"birthday\": \"2000-03-02\",\r\n    \"phoneNumber\": \"912345678\",\r\n    \"sex\": \"Male\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{usersPort}}/public/register",
+							"host": [
+								"{{usersPort}}"
+							],
+							"path": [
+								"public",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Marketing Director",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"kurtKobain@mail.com\",\r\n    \"password\": \"kurtKobain12\",\r\n    \"name\": \"Kurt\",\r\n    \"citizenCardNumber\": \"123456789\",\r\n    \"birthday\": \"2000-03-02\",\r\n    \"phoneNumber\": \"912345678\",\r\n    \"sex\": \"Male\",\r\n    \"role\": \"MARKETING DIRECTOR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{usersPort}}/public/register",
+							"host": [
+								"{{usersPort}}"
+							],
+							"path": [
+								"public",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New Subscriber",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"papillon@mail.com\",\r\n    \"password\": \"papi55\",\r\n    \"name\": \"Rui\",\r\n    \"citizenCardNumber\": \"123456789\",\r\n    \"birthday\": \"2000-03-02\",\r\n    \"phoneNumber\": \"912345678\",\r\n    \"sex\": \"Male\",\r\n    \"role\": \"SUBSCRIBER\",\r\n    \"plan\": \"Gold\",\r\n    \"feeType\": \"Annual\",\r\n    \"paymentMethod\": \"Card\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{usersPort}}/public/register",
+							"host": [
+								"{{usersPort}}"
+							],
+							"path": [
+								"public",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New Subscriber Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"zallid@mail.com\",\r\n    \"password\": \"zallid75\",\r\n    \"name\": \"Andre Vandeira\",\r\n    \"citizenCardNumber\": \"123456789\",\r\n    \"birthday\": \"1944-03-02\",\r\n    \"phoneNumber\": \"912345678\",\r\n    \"sex\": \"Male\",\r\n    \"role\": \"SUBSCRIBER\",\r\n    \"plan\": \"Gold\",\r\n    \"feeType\": \"Annual\",\r\n    \"paymentMethod\": \"Card\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{users2Port}}/public/register",
+							"host": [
+								"{{users2Port}}"
+							],
+							"path": [
+								"public",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Subscriber",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"papillon@mail.com\",\r\n    \"password\": \"papi55\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{usersPort}}/public/login",
+							"host": [
+								"{{usersPort}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Marketing Director",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"river@mail.com\",\r\n    \"password\": \"myPass13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{usersPort}}/public/login",
+							"host": [
+								"{{usersPort}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Marketing Director 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"kurtKobain@mail.com\",\r\n    \"password\": \"kurtKobain12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{usersPort}}/public/login",
+							"host": [
+								"{{usersPort}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jota@mail.com\",\r\n    \"password\": \"kappaJota\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{usersPort}}/public/login",
+							"host": [
+								"{{usersPort}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login New Registered User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jota@mail.com\",\r\n    \"password\": \"kappaJota\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{usersPort}}/public/login",
+							"host": [
+								"{{usersPort}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "a7ec46af-bc09-4f44-9256-a21e6a0964dc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{usersPort}}/users",
+							"host": [
+								"{{usersPort}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{usersPort}}/users/internal/river@mail.com",
+							"host": [
+								"{{usersPort}}"
+							],
+							"path": [
+								"users",
+								"internal",
+								"river@mail.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subscriptions",
+			"item": [
+				{
+					"name": "Switch Plan Request",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{subscriptionsPort}}/subscriptions/switch/Silver",
+							"host": [
+								"{{subscriptionsPort}}"
+							],
+							"path": [
+								"subscriptions",
+								"switch",
+								"Silver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Renew Subscription",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{subscriptionsPort}}/subscriptions/renew",
+							"host": [
+								"{{subscriptionsPort}}"
+							],
+							"path": [
+								"subscriptions",
+								"renew"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Subscription",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"papillon@mail.com\",\r\n    \"initialDate\": null,\r\n    \"plan\": \"Gold\",\r\n    \"feeType\": \"Annual\",\r\n    \"paymentMethod\": \"Card\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{subscriptionsPort}}/subscriptions/newSub",
+							"host": [
+								"{{subscriptionsPort}}"
+							],
+							"path": [
+								"subscriptions",
+								"newSub"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IsPlanUsed",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{subscriptionsPort}}/subscriptions/isPlanUsed/Free",
+							"host": [
+								"{{subscriptionsPort}}"
+							],
+							"path": [
+								"subscriptions",
+								"isPlanUsed",
+								"Free"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Subscription",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"finalDate\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{subscriptionsPort}}/subscriptions/cancel",
+							"host": [
+								"{{subscriptionsPort}}"
+							],
+							"path": [
+								"subscriptions",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Plan Details By Subscriber ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{subscriptionsPort}}/subscriptions/userPlanDetails",
+							"host": [
+								"{{subscriptionsPort}}"
+							],
+							"path": [
+								"subscriptions",
+								"userPlanDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMyxwYXBpbGxvbkBtYWlsLmNvbSIsImV4cCI6MTY5ODU1OTQ1NywiaWF0IjoxNjk4NTIzNDU3LCJyb2xlcyI6IlNVQlNDUklCRVIifQ.LMvtA7MGZLlIz63bMV7wCqYVeofn9i6P46PnmgyJodgdzzasSpYXV3nIvsWsY6B6cEKj5MHwoJnoU-O1yAMI_1R8zcvsld6Jo0RR_PD_Qvdg3HhAATW7cQzmiPyYt4owAbH4sYzVIzJrigLEAp6MVJ91lIp2oBu6Qxa77QRFVspWRkKUsH0uU_Egwb23Cp-u8SYJ3zcoqQsdR6bWjZKuvkgEuabHshCgfcA_v7FOWSrMqUPKt7CEzbAyzgNipbiWJbc_mLEOVN93UgRayXYgS_Cod6aqf5aB_cDFVnI3FlUC25QG2N6conk4T2Fz2whXAmlk1tJxOSgyVA72MQMmv-5INqS3F8p-gWdLFXa-PYqcDh0BG16s-H42fIZu33S6hLRGvG-P6AcA3G5m8Ej9A_ZMUdN27tgKt5LREp_ycdbNjSsiQG3Hh35VcUomHzB6fqMHqIHaHBrHZdYVjHBo7TZ4x5-UIT4-s5K29vAN0f44-9rdY9UypSOJdBw6-ngUCDzOUO2W54-Akk2HDxSnRzQIYj9VA70Zimk8QFtodeYd7EHleX5FIUskQCVcU08BbD8Pc4hQKtzz2kUP-K-T9WVPv5zIkGnEFUNV5k6eg8XhRTPsFHR_gyjbDhTK7fC1TF7VcDwwexZWmHDUNG1fUIVViTrHejQzFxFlUjrIi1A",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "plansPort",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		},
+		{
+			"key": "subscriptionsPort",
+			"value": "http://localhost:8081/api",
+			"type": "string"
+		},
+		{
+			"key": "usersPort",
+			"value": "http://localhost:8083/api",
+			"type": "string"
+		},
+		{
+			"key": "plans2Port",
+			"value": "http://localhost:8085/api",
+			"type": "string"
+		},
+		{
+			"key": "subscriptions2Port",
+			"value": "http://localhost:8086/api",
+			"type": "string"
+		},
+		{
+			"key": "users2Port",
+			"value": "http://localhost:8087/api",
+			"type": "string"
+		}
+	]
+}

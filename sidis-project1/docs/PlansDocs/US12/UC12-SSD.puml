@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+autoactivate on
+
+!theme toy
+
+ClientHTTP -> Plans: Get/all
+box
+participant Plans
+participant Plans2
+
+
+Plans -> Plans: checkLocalRules()
+
+Plans -> Plans2: Get plans/{all}
+
+alt
+Plans2 --> Plans: 200
+Plans -> Plans: add
+Plans --> ClientHTTP: 200
+end alt
+
+alt
+Plans2 --> Plans: 404
+
+Plans --> ClientHTTP: 404
+end alt
+@enduml
