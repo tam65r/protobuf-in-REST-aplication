@@ -5,36 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4843af55-48bd-4704-a298-23669195d3bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Plans/src/main/resources/proto/PlanEntity.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/bootstrapping/PlansBootstrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/bootstrapping/PlansBootstrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanDTOMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanDTOMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanDTOMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanDTOMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/model/Plan.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/model/PlanJPA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanDBRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanDBRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanHTTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanHTTPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/service/PlanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/service/PlanRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/service/PlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/service/PlanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/test/java/com/example/sisdi_plans/planmanagementapi/PlansTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/test/java/com/example/sisdi_plans/planmanagementapi/PlansTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CD-N2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CD-N2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CD-N2v2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CD-N2v2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/DD.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/DD.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PlansDocs/US02/US02.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PlansDocs/US02/US02.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PlansDocs/US10/UC10-SD.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PlansDocs/US10/UC10-SD.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PlansDocs/US10/UC10-SDN2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PlansDocs/US10/UC10-SDN2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PlansDocs/US10/UC10-SSD.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PlansDocs/US10/UC10-SSD.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PlansDocs/US10/US10.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PlansDocs/US10/US10.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PlansDocs/US12/UC12-SD.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PlansDocs/US12/UC12-SD.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PlansDocs/US12/UC12-SDN2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PlansDocs/US12/UC12-SDN2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PlansDocs/US12/UC12-SSD.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PlansDocs/US12/UC12-SSD.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/SubscriptionsDocs/UC7/UC7-SDN2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/SubscriptionsDocs/UC7/UC7-SDN2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/UCD.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/UCD.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +101,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1716287739894</updated>
-      <workItem from="1716287742271" duration="1683000" />
+      <workItem from="1716287742271" duration="4294000" />
     </task>
     <servers />
   </component>
