@@ -1,7 +1,7 @@
 package com.example.sisdi_plans.planmanagement.api;
 
 import com.example.sisdi_plans.planmanagement.model.AuthorityRole;
-import com.example.sisdi_plans.planmanagement.model.Plan;
+import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 import com.example.sisdi_plans.planmanagement.service.PlanService;
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -112,8 +112,8 @@ class PlanController {
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<PlanDTO> findSpecificPlan(
 			@PathVariable("name") String name) throws Exception {
-		Plan plan = service.findByName(name,false);
-		return ResponseEntity.ok().body(planMapper.toPlanView(plan));
+		PlanJPA planJPA = service.findByName(name,false);
+		return ResponseEntity.ok().body(planMapper.toPlanView(planJPA));
 
 	}
 
@@ -122,7 +122,7 @@ class PlanController {
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<PlanDTO> findSpecificPlanInternal(
 			@PathVariable("name") String name) throws Exception {
-		Plan plan = service.findByName(name,true);
-		return ResponseEntity.ok().body(planMapper.toPlanView(plan));
+		PlanJPA planJPA = service.findByName(name,true);
+		return ResponseEntity.ok().body(planMapper.toPlanView(planJPA));
 	}
 }

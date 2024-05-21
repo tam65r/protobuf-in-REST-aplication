@@ -2,7 +2,7 @@ package com.example.sisdi_plans.planmanagement.api;
 
 
 import com.example.sisdi_plans.planmanagement.model.MusicSuggestions;
-import com.example.sisdi_plans.planmanagement.model.Plan;
+import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.processing.Generated;
@@ -15,41 +15,41 @@ import java.util.ArrayList;
 public class PlanDTOMapperImpl extends PlanDTOMapper {
 
 	@Override
-	public PlanDTO toPlanView(Plan plan) {
-		if (plan == null) {
+	public PlanDTO toPlanView(PlanJPA planJPA) {
+		if (planJPA == null) {
 			return null;
 		}
 
 		PlanDTO planDTO = new PlanDTO();
 
-		planDTO.setName(plan.getName());
-		planDTO.setDescription(plan.getDescription());
-		planDTO.setNumberOfMinutes(plan.getNumberOfMinutes());
-		planDTO.setMusicCollections(plan.getMusicCollections());
-		planDTO.setMusicSuggestions(plan.getMusicSuggestions().toString());
-		planDTO.setAnnualFee(plan.getAnnualFee());
-		planDTO.setMonthlyFee(plan.getMonthlyFee());
-		planDTO.setActive(plan.getIsActive());
+		planDTO.setName(planJPA.getName());
+		planDTO.setDescription(planJPA.getDescription());
+		planDTO.setNumberOfMinutes(planJPA.getNumberOfMinutes());
+		planDTO.setMusicCollections(planJPA.getMusicCollections());
+		planDTO.setMusicSuggestions(planJPA.getMusicSuggestions().toString());
+		planDTO.setAnnualFee(planJPA.getAnnualFee());
+		planDTO.setMonthlyFee(planJPA.getMonthlyFee());
+		planDTO.setActive(planJPA.getIsActive());
 
 		return planDTO;
 	}
 
 	@Override
-	public Iterable<PlanDTO> toPlanView(Iterable<Plan> plans) {
+	public Iterable<PlanDTO> toPlanView(Iterable<PlanJPA> plans) {
 		if ( plans == null ) {
 			return null;
 		}
 
 		ArrayList<PlanDTO> iterable = new ArrayList<PlanDTO>();
-		for ( Plan plan : plans ) {
-			iterable.add( toPlanView( plan ) );
+		for ( PlanJPA planJPA : plans ) {
+			iterable.add( toPlanView(planJPA) );
 		}
 
 		return iterable;
 	}
 
 	@Override
-	public Plan create(CreatePlanRequest resource) {
+	public PlanJPA create(CreatePlanRequest resource) {
 		if (resource == null) {
 			return null;
 		}
@@ -62,8 +62,8 @@ public class PlanDTOMapperImpl extends PlanDTOMapper {
 		float monthlyFee = resource.getMonthlyFee();
 		int numberOfMinutes = resource.getNumberOfMinutes();
 
-		Plan plan = new Plan(name,description,numberOfMinutes, MusicSuggestions.fromString(musicSuggestions),musicCollections,monthlyFee,anualFee);
+		PlanJPA planJPA = new PlanJPA(name,description,numberOfMinutes, MusicSuggestions.fromString(musicSuggestions),musicCollections,monthlyFee,anualFee);
 
-		return plan;
+		return planJPA;
 	}
 }

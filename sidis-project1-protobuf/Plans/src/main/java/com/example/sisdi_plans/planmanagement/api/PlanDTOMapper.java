@@ -1,12 +1,12 @@
 package com.example.sisdi_plans.planmanagement.api;
 
-import com.example.sisdi_plans.planmanagement.model.Plan;
+import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 
 
 public abstract class PlanDTOMapper {
-	public abstract PlanDTO toPlanView (Plan plan);
+	public abstract PlanDTO toPlanView (PlanJPA planJPA);
 
-	public abstract Iterable<PlanDTO> toPlanView(Iterable<Plan> plans);
+	public abstract Iterable<PlanDTO> toPlanView(Iterable<PlanJPA> plans);
 
-	public abstract Plan create(CreatePlanRequest resource);
+	public abstract PlanJPA create(CreatePlanRequest resource);
 }

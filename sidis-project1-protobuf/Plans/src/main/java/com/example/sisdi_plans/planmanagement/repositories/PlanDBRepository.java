@@ -1,23 +1,23 @@
 package com.example.sisdi_plans.planmanagement.repositories;
 
-import com.example.sisdi_plans.planmanagement.model.Plan;
+import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface PlanDBRepository extends CrudRepository<Plan, Long> {
-	@Query("SELECT p FROM Plan p WHERE p.name = :name")
-	Optional<Plan> findByName(String name);
+public interface PlanDBRepository extends CrudRepository<PlanJPA, Long> {
+	@Query("SELECT p FROM PlanJPA p WHERE p.name = :name")
+	Optional<PlanJPA> findByName(String name);
 
-	@Query("SELECT p FROM Plan p WHERE p.id = :id")
-	Optional<Plan> findByName(long id);
+	@Query("SELECT p FROM PlanJPA p WHERE p.id = :id")
+	Optional<PlanJPA> findByName(long id);
 
-	@Query("SELECT p.name FROM Plan p WHERE p.id = :id")
+	@Query("SELECT p.name FROM PlanJPA p WHERE p.id = :id")
 	Optional<String> findNameById(long id);
 
-	@Query("SELECT p FROM Plan p WHERE p.isActive = true ")
-	Iterable<Plan> findAllByStatus();
+	@Query("SELECT p FROM PlanJPA p WHERE p.isActive = true ")
+	Iterable<PlanJPA> findAllByStatus();
 
 }

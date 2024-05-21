@@ -1,8 +1,7 @@
 package com.example.sisdi_plans.planmanagement.repositories;
 
 import com.example.sisdi_plans.planmanagement.api.EditPlanRequest;
-import com.example.sisdi_plans.planmanagement.api.PlanDTO;
-import com.example.sisdi_plans.planmanagement.model.Plan;
+import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
@@ -13,13 +12,10 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import com.example.sisdi_plans.utils.ServerPortListener;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +31,7 @@ public class PlanHTTPRepository {
         return "http://localhost:"+ this.port + "/api/plans";
     }
 
-    public Plan getPlanByName(String name) throws Exception {
+    public PlanJPA getPlanByName(String name) throws Exception {
         String url = this.getBaseUrl() + "/internal/name/" + name;
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
@@ -44,24 +40,24 @@ public class PlanHTTPRepository {
             try (CloseableHttpResponse response = httpClient.execute(httpRequest)) {
                 Gson gson = new Gson();
                 if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                    return gson.fromJson(EntityUtils.toString(response.getEntity()), Plan.class);
+                    return gson.fromJson(EntityUtils.toString(response.getEntity()), PlanJPA.class);
                 }
             }
         }
         return null;
     }
 
-    public ArrayList<Plan> getAllPlans() throws Exception {
+    public ArrayList<PlanJPA> getAllPlans() throws Exception {
         String url = this.getBaseUrl() + "/internal/all";
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            ArrayList<Plan> array = new ArrayList<>();
+            ArrayList<PlanJPA> array = new ArrayList<>();
             HttpGet httpRequest = new HttpGet(url);
             try (CloseableHttpResponse response = httpClient.execute(httpRequest)) {
                 Gson gson = new Gson();
                 if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                    Plan[] plans = gson.fromJson(EntityUtils.toString(response.getEntity()), Plan[].class);
-                    array.addAll(List.of(plans));
+                    PlanJPA[] plansJPA = gson.fromJson(EntityUtils.toString(response.getEntity()), PlanJPA[].class);
+                    array.addAll(List.of(plansJPA));
                     return array;
                 }
             }
@@ -69,7 +65,7 @@ public class PlanHTTPRepository {
         return null;
     }
 
-    public Plan editPlanInternal(String name,EditPlanRequest request, String authorization) throws Exception {
+    public PlanJPA editPlanInternal(String name, EditPlanRequest request, String authorization) throws Exception {
         String url = this.getBaseUrl() + "/internal/" + name;
 
         HttpPatch httpPatch = new HttpPatch(url);
@@ -83,13 +79,13 @@ public class PlanHTTPRepository {
             Gson gson = new Gson();
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return gson.fromJson(EntityUtils.toString(response.getEntity()), Plan.class);
+                return gson.fromJson(EntityUtils.toString(response.getEntity()), PlanJPA.class);
             }
         }
         return null;
     }
 
-    public Plan deactivePlan(String name, String authorization) throws Exception{
+    public PlanJPA deactivePlan(String name, String authorization) throws Exception{
         String url = this.getBaseUrl() + "/internal/deactivate/" + name;
 
         HttpPatch httpPatch = new HttpPatch(url);
@@ -102,7 +98,7 @@ public class PlanHTTPRepository {
             Gson gson = new Gson();
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return gson.fromJson(EntityUtils.toString(response.getEntity()), Plan.class);
+                return gson.fromJson(EntityUtils.toString(response.getEntity()), PlanJPA.class);
             }
         }
         return null;
