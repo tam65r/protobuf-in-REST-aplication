@@ -2,15 +2,15 @@ package com.example.sisdi_plans.planmanagement.repositories;
 
 import com.example.sisdi_plans.exceptions.DuplicatedDataException;
 import com.example.sisdi_plans.exceptions.NotFoundException;
-import com.example.sisdi_plans.planmanagement.api.EditPlanRequest;
-import com.example.sisdi_plans.planmanagement.model.Plan;
-import com.example.sisdi_plans.planmanagement.repositories.PlanHTTPRepository;
-import com.example.sisdi_plans.planmanagement.repositories.PlanDBRepository;
+import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 import com.example.sisdi_plans.planmanagement.service.PlanRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+
+import com.example.sisdi_plans.planmanagement.api.proto.PlanRequests.EditPlanRequest;
+
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -21,100 +21,100 @@ public class PlanRepositoryImpl implements PlanRepository {
     private final PlanHTTPRepository httpRepository;
 
     @Override
-    public Plan create(Plan plan) throws Exception{
+    public PlanJPA create(PlanJPA planJPA) throws Exception{
 
-        Optional<Plan> planDB = dbRepository.findByName(plan.getName());
+        Optional<PlanJPA> planDB = dbRepository.findByName(planJPA.getName());
 
         if (planDB.isEmpty()) {
-            Plan planHTTP = httpRepository.getPlanByName(plan.getName());
-            if (planHTTP == null) {
-                return dbRepository.save(plan);
+            PlanJPA jpa = httpRepository.getPlanByName(planJPA.getName());
+            if (jpa == null) {
+                return dbRepository.save(planJPA);
             }
         }
 
-        throw new DuplicatedDataException(Plan.class,plan.getName());
+        throw new DuplicatedDataException(PlanJPA.class, planJPA.getName());
     }
 
     @Override
-    public Plan findByName(String name, boolean internal) throws Exception {
+    public PlanJPA findByName(String name, boolean internal) throws Exception {
 
-        Optional<Plan> planDB = dbRepository.findByName(name);
+        Optional<PlanJPA> planDB = dbRepository.findByName(name);
 
         if (planDB.isPresent()) {
             return planDB.get();
         }
 
         if (!internal) {
-            Plan plan = httpRepository.getPlanByName(name);
+            PlanJPA jpa = httpRepository.getPlanByName(name);
 
-            if (plan != null) {
-                return plan;
+            if (jpa != null) {
+                return jpa;
             }
         }
 
-        throw new NotFoundException(Plan.class,name);
+        throw new NotFoundException(PlanJPA.class,name);
     }
 
     @Override
-    public Plan changeActivityStatus(String name, boolean internal, String authorization) throws Exception {
-        Optional<Plan> planDB = dbRepository.findByName(name);
+    public PlanJPA changeActivityStatus(String name, boolean internal, String authorization) throws Exception {
+        Optional<PlanJPA> planDB = dbRepository.findByName(name);
 
         if (planDB.isPresent()) {
-            Plan plDB = planDB.get();
+            PlanJPA plDB = planDB.get();
             plDB.changeActivityStatus();
             return dbRepository.save(plDB);
         }
 
         if (!internal) {
-            Plan planHTTP = httpRepository.deactivePlan(name, authorization);
+            PlanJPA planJPAHTTP = httpRepository.deactivePlan(name, authorization);
 
-            if (planHTTP != null) {
-                return planHTTP;
+            if (planJPAHTTP != null) {
+                return planJPAHTTP;
             }
         }
 
-        throw new NotFoundException(Plan.class, "Name: " + name + " Not valid\n Please provide a valid plan");
+        throw new NotFoundException(PlanJPA.class, "Name: " + name + " Not valid\n Please provide a valid plan");
     }
 
     @Override
-    public Iterable<Plan> getAll (boolean internal) throws Exception{
-        Iterable<Plan> plansDB = dbRepository.findAllByStatus();
+    public Iterable<PlanJPA> getAll (boolean internal) throws Exception{
+        Iterable<PlanJPA> plansDB = dbRepository.findAllByStatus();
 
         if (internal) {
             return plansDB;
         }
 
-        ArrayList<Plan> plansHTTP = httpRepository.getAllPlans();
+        List<PlanJPA> plansHTTP = httpRepository.getAllPlans();
 
         for (int i = 0; i< plansHTTP.toArray().length; i++) {
             plansHTTP.get(i).setActive(true);
         }
 
-        for (Plan planToAdd : plansDB) {
-            plansHTTP.add(planToAdd);
+        for (PlanJPA planJPAToAdd : plansDB) {
+            plansHTTP.add(planJPAToAdd);
         }
 
         return plansHTTP;
     }
 
     @Override
-    public Plan editPlan(String name, EditPlanRequest request, String authorization, boolean internal) throws Exception {
+    public PlanJPA editPlan(String name, EditPlanRequest request, String authorization, boolean internal) throws Exception {
 
         final var planDB = dbRepository.findByName(name);
 
         if (planDB.isPresent()) {
-            Plan temp = planDB.get();
+            PlanJPA temp = planDB.get();
             temp.applyPatch(request.getDescription(),request.getNumberOfMinutes(),request.getMusicCollections(),request.getMusicSuggestions());
             return dbRepository.save(temp);
         }
 
         if (!internal) {
-            Plan planHTTP = httpRepository.editPlanInternal(name, request, authorization);
-            if (planHTTP != null) {
-                return planHTTP;
+            PlanJPA planJPAHTTP = httpRepository.editPlanInternal(name, request, authorization);
+            if (planJPAHTTP != null) {
+                return planJPAHTTP;
             }
         }
-        throw  new NotFoundException(Plan.class, "Name: " + name + " Not valid\n Please provide a valid plan");
+        throw  new NotFoundException(PlanJPA.class, "Name: " + name + " Not valid\n Please provide a valid plan");
 
     }
 }

@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "plans")
-public class Plan {
+public class PlanJPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -50,9 +50,9 @@ public class Plan {
 	@Column(nullable = false)
 	private boolean isActive;
 
-	public Plan(){}
+	public PlanJPA(){}
 
-	public Plan(String name, String description, int numberOfMinutes, MusicSuggestions musicSuggestions, int musicCollections, float monthlyFee,float annualFee){
+	public PlanJPA(String name, String description, int numberOfMinutes, MusicSuggestions musicSuggestions, int musicCollections, float monthlyFee, float annualFee){
 		setName(name);
 		this.description = description;
 		this.musicCollections = musicCollections;
@@ -144,7 +144,7 @@ public class Plan {
 
 	public void changeActivityStatus() {
 		if (!this.isActive) {
-			throw new InconsistencyDataException(Plan.class, this.name,"Plan is already inactive");
+			throw new InconsistencyDataException(PlanJPA.class, this.name,"Plan is already inactive");
 		}
 		this.isActive = false;
 	}
@@ -155,23 +155,23 @@ public class Plan {
 			setDescription(description);
 		}
 
-		if (musicSuggestions != null) {
+		if (musicSuggestions != null && !musicSuggestions.isEmpty()) {
 			setMusicSuggestions(MusicSuggestions.fromString(musicSuggestions));
 		}
 
-		if (musicCollections != null) {
+		if (musicCollections != null && !musicCollections.isEmpty()) {
 			try {
 				setMusicCollections(Integer.parseInt(musicCollections));
 			}catch (NumberFormatException e) {
-				throw new InconsistencyDataException(Plan.class, this.name, "Invalid number of minutes");
+				throw new InconsistencyDataException(PlanJPA.class, this.name, "Invalid number of minutes");
 			}
 		}
 
-		if (numberOfMinutes != null) {
+		if (numberOfMinutes != null && !numberOfMinutes.isEmpty()) {
 			try {
 				setNumberOfMinutes(Integer.parseInt(numberOfMinutes));
 			} catch (NumberFormatException e) {
-				throw new InconsistencyDataException(Plan.class, this.name, "Invalid number of minutes");
+				throw new InconsistencyDataException(PlanJPA.class, this.name, "Invalid number of minutes");
 			}
 
 		}

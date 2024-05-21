@@ -25,6 +25,28 @@ public enum MusicSuggestions {
 		throw new IllegalArgumentException("Invalid Music Suggestions: " + text);
 	}
 
+	public static MusicSuggestions fromInt(int value) {
+		switch (value){
+			case 0:
+				return MusicSuggestions.AUTOMATIC;
+			case 1:
+				return MusicSuggestions.PERSONALIZED;
+			default:
+				return null;
+		}
+	}
+
+	public static int toInt(MusicSuggestions musicSuggestions) {
+		switch (musicSuggestions){
+			case AUTOMATIC:
+				return 0;
+			case PERSONALIZED:
+				return 1;
+			default:
+				return -12;
+		}
+	}
+
 	@Override
 	public String toString() {
 		return getDescription();

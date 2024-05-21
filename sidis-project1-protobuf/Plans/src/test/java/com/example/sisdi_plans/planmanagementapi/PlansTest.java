@@ -2,7 +2,7 @@ package com.example.sisdi_plans.planmanagementapi;
 
 import com.example.sisdi_plans.exceptions.InconsistencyDataException;
 import com.example.sisdi_plans.planmanagement.model.MusicSuggestions;
-import com.example.sisdi_plans.planmanagement.model.Plan;
+import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 
 
 import static org.mockito.Mockito.mock;
@@ -18,43 +18,43 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class PlansTest {
 
-    private Plan plan;
+    private PlanJPA planJPA;
 
     private PlansTest(){
-        plan = new Plan("TestPlan", "Description", 100, MusicSuggestions.AUTOMATIC, 10, 10.0f, 100.0f);
+        planJPA = new PlanJPA("TestPlan", "Description", 100, MusicSuggestions.AUTOMATIC, 10, 10.0f, 100.0f);
     }
 
     @Test
     public void testPlanConstructor() {
-        Plan testPlan = new Plan("TestPlan", "Description", 100, MusicSuggestions.AUTOMATIC, 10, 10.0f, 100.0f);
-        assertEquals("TestPlan", testPlan.getName());
-        assertEquals("Description", testPlan.getDescription());
-        assertEquals(100, testPlan.getNumberOfMinutes());
-        assertEquals(MusicSuggestions.AUTOMATIC, testPlan.getMusicSuggestions());
-        assertEquals(10, testPlan.getMusicCollections());
-        assertEquals(10.0f, testPlan.getMonthlyFee(), 0.01f);
-        assertEquals(100.0f, testPlan.getAnnualFee(), 0.01f);
-        assertEquals(1, testPlan.getMaxNumberDevices());
-        assertTrue(testPlan.getIsActive());
+        PlanJPA testPlanJPA = new PlanJPA("TestPlan", "Description", 100, MusicSuggestions.AUTOMATIC, 10, 10.0f, 100.0f);
+        assertEquals("TestPlan", testPlanJPA.getName());
+        assertEquals("Description", testPlanJPA.getDescription());
+        assertEquals(100, testPlanJPA.getNumberOfMinutes());
+        assertEquals(MusicSuggestions.AUTOMATIC, testPlanJPA.getMusicSuggestions());
+        assertEquals(10, testPlanJPA.getMusicCollections());
+        assertEquals(10.0f, testPlanJPA.getMonthlyFee(), 0.01f);
+        assertEquals(100.0f, testPlanJPA.getAnnualFee(), 0.01f);
+        assertEquals(1, testPlanJPA.getMaxNumberDevices());
+        assertTrue(testPlanJPA.getIsActive());
     }
 
     @Test
     public void testChangeActivityStatus() {
-        plan.setActive(true);
-        plan.changeActivityStatus();
-        assertFalse(plan.getIsActive());
+        planJPA.setActive(true);
+        planJPA.changeActivityStatus();
+        assertFalse(planJPA.getIsActive());
     }
 
     @Test
     public void testChangeActivityStatusWhenAlreadyInactive() {
-        Plan plan = mock(Plan.class);
-        when(plan.getName()).thenReturn("TestPlan");
-        when(plan.getIsActive()).thenReturn(false);
+        PlanJPA planJPA = mock(PlanJPA.class);
+        when(planJPA.getName()).thenReturn("TestPlan");
+        when(planJPA.getIsActive()).thenReturn(false);
 
-        doThrow(new InconsistencyDataException(Plan.class, "TestPlan", "Plan is already inactive")).when(plan).changeActivityStatus();
+        doThrow(new InconsistencyDataException(PlanJPA.class, "TestPlan", "Plan is already inactive")).when(planJPA).changeActivityStatus();
 
         try {
-            plan.changeActivityStatus();
+            planJPA.changeActivityStatus();
         } catch (InconsistencyDataException e) {
             assertEquals("Data from Plan with id TestPlan is inconsistent: Plan is already inactive", e.getMessage());
         }
@@ -62,21 +62,21 @@ public class PlansTest {
 
     @Test
     public void testApplyPatch() {
-        plan.applyPatch("New Description", "50", "5", "PERSONALIZED");
-        assertEquals("New Description", plan.getDescription());
-        assertEquals(50, plan.getNumberOfMinutes());
-        assertEquals(5, plan.getMusicCollections());
-        assertEquals(MusicSuggestions.PERSONALIZED, plan.getMusicSuggestions());
+        planJPA.applyPatch("New Description", "50", "5", "PERSONALIZED");
+        assertEquals("New Description", planJPA.getDescription());
+        assertEquals(50, planJPA.getNumberOfMinutes());
+        assertEquals(5, planJPA.getMusicCollections());
+        assertEquals(MusicSuggestions.PERSONALIZED, planJPA.getMusicSuggestions());
     }
 
     @Test
     public void testApplyPatchWithInvalidNumberOfMinutes() {
-        Plan plan = mock(Plan.class);
+        PlanJPA planJPA = mock(PlanJPA.class);
 
-        doThrow(new InconsistencyDataException(Plan.class, "TestPlan", "Invalid number of minutes")).when(plan).applyPatch("New Description", "Invalid", "5", "PERSONALIZED");
+        doThrow(new InconsistencyDataException(PlanJPA.class, "TestPlan", "Invalid number of minutes")).when(planJPA).applyPatch("New Description", "Invalid", "5", "PERSONALIZED");
 
         try {
-            plan.applyPatch("New Description", "Invalid", "5", "PERSONALIZED");
+            planJPA.applyPatch("New Description", "Invalid", "5", "PERSONALIZED");
         } catch (InconsistencyDataException e) {
             assertEquals("Data from Plan with id TestPlan is inconsistent: Invalid number of minutes", e.getMessage());
         }

@@ -1,14 +1,11 @@
 package com.example.sisdi_plans.planmanagement.service;
 
-import com.example.sisdi_plans.planmanagement.api.CreatePlanRequest;
-import com.example.sisdi_plans.planmanagement.api.EditPlanRequest;
 import com.example.sisdi_plans.planmanagement.api.PlanDTOMapper;
-import com.example.sisdi_plans.planmanagement.model.Plan;
+import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 import lombok.RequiredArgsConstructor;
-
+import com.example.sisdi_plans.planmanagement.api.proto.PlanRequests.CreatePlanRequest;
+import com.example.sisdi_plans.planmanagement.api.proto.PlanRequests.EditPlanRequest;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 @Service
@@ -16,10 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 public class PlanService {
 
 	private final PlanDTOMapper mapper;
-
 	private final PlanRepository planRepository;
 
-	public Iterable<Plan> getAll(boolean internal) throws Exception {
+	public Iterable<PlanJPA> getAll(boolean internal) throws Exception {
 		if (!internal) {
 			return planRepository.getAll(false);
 		} else {
@@ -28,7 +24,7 @@ public class PlanService {
 	}
 
 
-	public Plan findByName(String name, boolean internal) throws Exception {
+	public PlanJPA findByName(String name, boolean internal) throws Exception {
 		if (!internal) {
 			return planRepository.findByName(name,false);
 		} else {
@@ -36,14 +32,14 @@ public class PlanService {
 		}
 	}
 
-	public Plan create(final CreatePlanRequest resource) throws Exception{
+	public PlanJPA create(final CreatePlanRequest resource) throws Exception{
 
-		final Plan plan = mapper.create(resource);
+		final PlanJPA planJPA = mapper.createJPA(resource);
 
-		return planRepository.create(plan);
+		return planRepository.create(planJPA);
 	}
 
-	public Plan changeActivityStatus(String name, String authorization, boolean internal) throws Exception {
+	public PlanJPA changeActivityStatus(String name, String authorization, boolean internal) throws Exception {
 		if (!internal) {
 			return planRepository.changeActivityStatus(name, false,authorization);
 		} else {
@@ -51,7 +47,7 @@ public class PlanService {
 		}
 	}
 
-	public Plan editPlan(String name, EditPlanRequest request, String authorization, boolean internal) throws Exception {
+	public PlanJPA editPlan(String name, EditPlanRequest request, String authorization, boolean internal) throws Exception {
 		if (!internal) {
 			return planRepository.editPlan(name,request,authorization,false);
 		} else {

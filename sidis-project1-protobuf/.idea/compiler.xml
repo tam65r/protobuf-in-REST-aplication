@@ -3,7 +3,7 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for plan-protobuf-service" enabled="true">
+      <profile name="Annotation profile for planJPA-protobuf-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -13,27 +13,17 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
-        <module name="psoft-g2 (3)" />
-        <module name="psoft-g2 (2)" />
-        <module name="psoft-g2 (1)" />
-        <module name="sidis-subscriptions-pj1" />
-        <module name="sidis-users-pj1" />
-        <module name="sidis-plans-pj1" />
+        <module name="user-protobuf-service" />
+        <module name="subscription-protobuf-service" />
+        <module name="plan-protobuf-service" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="psoft-g2" target="11" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="psoft-g2" options="-parameters" />
-      <module name="psoft-g2 (1)" options="-parameters" />
-      <module name="psoft-g2 (2)" options="-parameters" />
-      <module name="psoft-g2 (3)" options="-parameters" />
-      <module name="sidis-plans-pj1" options="-parameters" />
-      <module name="sidis-subscriptions-pj1" options="-parameters" />
-      <module name="sidis-users-pj1" options="-parameters" />
+      <module name="plan-protobuf-service" options="-parameters" />
+      <module name="subscription-protobuf-service" options="-parameters" />
+      <module name="user-protobuf-service" options="-parameters" />
     </option>
   </component>
 </project>

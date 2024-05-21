@@ -1,0 +1,25 @@
+syntax = "proto3";
+package example;
+option java_package = "com.example.sisdi_plans.planmanagement.model.proto";
+
+message Plan {
+  string name = 1;
+  string description = 2;
+  int32 numberOfMinutes = 3;
+
+  enum MusicSuggestions {
+    AUTOMATIC = 0;
+    PERSONALIZED = 1;
+  }
+
+  MusicSuggestions musicSuggestions = 8;
+
+  int32 musicCollections = 4;
+  float monthlyFee = 5;
+  float annualFee = 6;
+  bool isActive = 7;
+}
+
+message PlanList {
+  repeated Plan plan = 1;
+}

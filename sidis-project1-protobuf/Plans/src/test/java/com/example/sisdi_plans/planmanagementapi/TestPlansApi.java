@@ -1,9 +1,6 @@
 package com.example.sisdi_plans.planmanagementapi;
 
-import com.example.sisdi_plans.planmanagement.api.CreatePlanRequest;
-import com.example.sisdi_plans.planmanagement.api.EditPlanRequest;
 import com.example.sisdi_plans.planmanagement.api.PlanDTO;
-import com.example.sisdi_plans.planmanagement.service.PlanService;
 import com.example.sisdi_plans.testutils.JsonHelper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -81,15 +77,15 @@ public class TestPlansApi {
 
     @Test
     void testDefinePlanSucess() throws Exception{
-        final CreatePlanRequest goodRequest = new CreatePlanRequest(
-                "TestPlan3",
-                "This Plan is designed for tests",
-                15,
-                "Automatic",
-                1000,
-                (float) 8.49,
-                (float) 84.90
-        );
+        final CreatePlanRequest goodRequest = CreatePlanRequest.newBuilder()
+                .setName("TestPlan3")
+                .setDescription("This Plan is designed for tests")
+                .setAnnualFee((float) 84.90)
+                .setMonthlyFee((float) 8.49)
+                .setMusicCollections(15)
+                .setMusicSuggestions("Automatic")
+                .setNumberOfMinutes(1000)
+                .build();
 
         final MvcResult createResult = this.mockMvc.perform(post("/api/plans/create")
                         .header("Authorization", "Bearer " + jwtToken)
@@ -118,15 +114,16 @@ public class TestPlansApi {
 
     @Test
     void testChangeDescription() throws Exception{
-        final CreatePlanRequest goodRequest = new CreatePlanRequest(
-                "TestPlan6",
-                "This Plan is designed for tests",
-                15,
-                "Automatic",
-                1000,
-                (float) 8.49,
-                (float) 84.90
-        );
+        final CreatePlanRequest goodRequest = CreatePlanRequest.newBuilder()
+                .setName("TestPlan6")
+                .setDescription("This Plan is designed for tests")
+                .setAnnualFee((float) 84.90)
+                .setMonthlyFee((float) 8.49)
+                .setMusicCollections(15)
+                .setMusicSuggestions("Automatic")
+                .setNumberOfMinutes(1000)
+                .build();
+
 
         final MvcResult createResult = this.mockMvc.perform(post("/api/plans/create")
                         .header("Authorization", "Bearer " + jwtToken)
@@ -138,12 +135,9 @@ public class TestPlansApi {
 
 
 
-        final EditPlanRequest request = new EditPlanRequest(
-                "O plano foi alterado corretamente!",
-                null,
-                null,
-                null
-        );
+        final EditPlanRequest request = EditPlanRequest.newBuilder()
+                .setDescription("O plano foi alterado corretamente!")
+                .build();
 
 
         final MvcResult patchResult = this.mockMvc.perform(patch("/api/plans/" + dto.getName())
