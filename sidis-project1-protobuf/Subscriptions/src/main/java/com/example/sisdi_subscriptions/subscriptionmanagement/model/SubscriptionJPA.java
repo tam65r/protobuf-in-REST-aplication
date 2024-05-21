@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "subscription")
-public class Subscription {
+public class SubscriptionJPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -42,12 +42,12 @@ public class Subscription {
 	@Nullable
 	private LocalDateTime endSubscriptionDate; // esta é minha ass Hugo
 
-	public Subscription(){
+	public SubscriptionJPA(){
 		this.isActive = true;
 		this.subscriberID = null;
 	}
 
-	public Subscription(String subscriberID, String plan, LocalDateTime initialDate, FeeType feeType, PaymentMethod paymentMethod, LocalDateTime endSubscriptionDate) {
+	public SubscriptionJPA(String subscriberID, String plan, LocalDateTime initialDate, FeeType feeType, PaymentMethod paymentMethod, LocalDateTime endSubscriptionDate) {
 		this.subscriberID = subscriberID;
 		this.plan = plan;
 		this.initialDate = initialDate;

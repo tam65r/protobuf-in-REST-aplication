@@ -6,5 +6,5 @@ import org.apache.http.HttpStatus;
 public interface PlanRepository {
     int checkIfPlanExists(String name) throws Exception;
 
-    String checkIfPlanExistsResponse(String name) throws Exception;
+    byte [] checkIfPlanExistsResponse(String name) throws Exception;
 }

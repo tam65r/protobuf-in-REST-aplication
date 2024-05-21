@@ -19,7 +19,7 @@ public class PlanRepositoryImpl implements PlanRepository {
         return HttpStatus.SC_OK;
     }
 
-    public String checkIfPlanExistsResponse(String name) throws Exception {
+    public byte [] checkIfPlanExistsResponse(String name) throws Exception {
         return httpRepository.checkIfPlanExistsResponse(name);
 
     }
