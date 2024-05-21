@@ -1,0 +1,20 @@
+syntax = "proto3";
+package example;
+option java_package = "com.example.sisdi_plans.planmanagement.api.proto";
+
+message EditPlanRequest {
+  string description = 1;
+  string numberOfMinutes = 2;
+  string musicSuggestions = 3;
+  string musicCollections = 4;
+}
+
+message CreatePlanRequest {
+  string name = 1;
+  string description = 2;
+  int32 numberOfMinutes = 3;
+  string musicSuggestions = 4;
+  int32 musicCollections = 5;
+  float monthlyFee = 6;
+  float annualFee = 7;
+}

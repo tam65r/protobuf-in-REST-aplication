@@ -49,22 +49,33 @@ public final class PlanEntity {
     int getNumberOfMinutes();
 
     /**
+     * <code>.example.Plan.MusicSuggestions musicSuggestions = 8;</code>
+     * @return The enum numeric value on the wire for musicSuggestions.
+     */
+    int getMusicSuggestionsValue();
+    /**
+     * <code>.example.Plan.MusicSuggestions musicSuggestions = 8;</code>
+     * @return The musicSuggestions.
+     */
+    com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions getMusicSuggestions();
+
+    /**
      * <code>int32 musicCollections = 4;</code>
      * @return The musicCollections.
      */
     int getMusicCollections();
 
     /**
-     * <code>int64 monthlyFee = 5;</code>
+     * <code>float monthlyFee = 5;</code>
      * @return The monthlyFee.
      */
-    long getMonthlyFee();
+    float getMonthlyFee();
 
     /**
-     * <code>int64 annualFee = 6;</code>
+     * <code>float annualFee = 6;</code>
      * @return The annualFee.
      */
-    long getAnnualFee();
+    float getAnnualFee();
 
     /**
      * <code>bool isActive = 7;</code>
@@ -87,6 +98,7 @@ public final class PlanEntity {
     private Plan() {
       name_ = "";
       description_ = "";
+      musicSuggestions_ = 0;
     }
 
     @java.lang.Override
@@ -309,6 +321,25 @@ public final class PlanEntity {
       return numberOfMinutes_;
     }
 
+    public static final int MUSICSUGGESTIONS_FIELD_NUMBER = 8;
+    private int musicSuggestions_;
+    /**
+     * <code>.example.Plan.MusicSuggestions musicSuggestions = 8;</code>
+     * @return The enum numeric value on the wire for musicSuggestions.
+     */
+    @java.lang.Override public int getMusicSuggestionsValue() {
+      return musicSuggestions_;
+    }
+    /**
+     * <code>.example.Plan.MusicSuggestions musicSuggestions = 8;</code>
+     * @return The musicSuggestions.
+     */
+    @java.lang.Override public com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions getMusicSuggestions() {
+      @SuppressWarnings("deprecation")
+      com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions result = com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions.valueOf(musicSuggestions_);
+      return result == null ? com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions.UNRECOGNIZED : result;
+    }
+
     public static final int MUSICCOLLECTIONS_FIELD_NUMBER = 4;
     private int musicCollections_;
     /**
@@ -321,24 +352,24 @@ public final class PlanEntity {
     }
 
     public static final int MONTHLYFEE_FIELD_NUMBER = 5;
-    private long monthlyFee_;
+    private float monthlyFee_;
     /**
-     * <code>int64 monthlyFee = 5;</code>
+     * <code>float monthlyFee = 5;</code>
      * @return The monthlyFee.
      */
     @java.lang.Override
-    public long getMonthlyFee() {
+    public float getMonthlyFee() {
       return monthlyFee_;
     }
 
     public static final int ANNUALFEE_FIELD_NUMBER = 6;
-    private long annualFee_;
+    private float annualFee_;
     /**
-     * <code>int64 annualFee = 6;</code>
+     * <code>float annualFee = 6;</code>
      * @return The annualFee.
      */
     @java.lang.Override
-    public long getAnnualFee() {
+    public float getAnnualFee() {
       return annualFee_;
     }
 
@@ -379,14 +410,17 @@ public final class PlanEntity {
       if (musicCollections_ != 0) {
         output.writeInt32(4, musicCollections_);
       }
-      if (monthlyFee_ != 0L) {
-        output.writeInt64(5, monthlyFee_);
+      if (java.lang.Float.floatToRawIntBits(monthlyFee_) != 0) {
+        output.writeFloat(5, monthlyFee_);
       }
-      if (annualFee_ != 0L) {
-        output.writeInt64(6, annualFee_);
+      if (java.lang.Float.floatToRawIntBits(annualFee_) != 0) {
+        output.writeFloat(6, annualFee_);
       }
       if (isActive_ != false) {
         output.writeBool(7, isActive_);
+      }
+      if (musicSuggestions_ != com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions.AUTOMATIC.getNumber()) {
+        output.writeEnum(8, musicSuggestions_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -411,17 +445,21 @@ public final class PlanEntity {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, musicCollections_);
       }
-      if (monthlyFee_ != 0L) {
+      if (java.lang.Float.floatToRawIntBits(monthlyFee_) != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, monthlyFee_);
+          .computeFloatSize(5, monthlyFee_);
       }
-      if (annualFee_ != 0L) {
+      if (java.lang.Float.floatToRawIntBits(annualFee_) != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, annualFee_);
+          .computeFloatSize(6, annualFee_);
       }
       if (isActive_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(7, isActive_);
+      }
+      if (musicSuggestions_ != com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions.AUTOMATIC.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(8, musicSuggestions_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -444,12 +482,15 @@ public final class PlanEntity {
           .equals(other.getDescription())) return false;
       if (getNumberOfMinutes()
           != other.getNumberOfMinutes()) return false;
+      if (musicSuggestions_ != other.musicSuggestions_) return false;
       if (getMusicCollections()
           != other.getMusicCollections()) return false;
-      if (getMonthlyFee()
-          != other.getMonthlyFee()) return false;
-      if (getAnnualFee()
-          != other.getAnnualFee()) return false;
+      if (java.lang.Float.floatToIntBits(getMonthlyFee())
+          != java.lang.Float.floatToIntBits(
+              other.getMonthlyFee())) return false;
+      if (java.lang.Float.floatToIntBits(getAnnualFee())
+          != java.lang.Float.floatToIntBits(
+              other.getAnnualFee())) return false;
       if (getIsActive()
           != other.getIsActive()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -469,13 +510,15 @@ public final class PlanEntity {
       hash = (53 * hash) + getDescription().hashCode();
       hash = (37 * hash) + NUMBEROFMINUTES_FIELD_NUMBER;
       hash = (53 * hash) + getNumberOfMinutes();
+      hash = (37 * hash) + MUSICSUGGESTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + musicSuggestions_;
       hash = (37 * hash) + MUSICCOLLECTIONS_FIELD_NUMBER;
       hash = (53 * hash) + getMusicCollections();
       hash = (37 * hash) + MONTHLYFEE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getMonthlyFee());
       hash = (37 * hash) + ANNUALFEE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getAnnualFee());
       hash = (37 * hash) + ISACTIVE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
@@ -614,11 +657,13 @@ public final class PlanEntity {
 
         numberOfMinutes_ = 0;
 
+        musicSuggestions_ = 0;
+
         musicCollections_ = 0;
 
-        monthlyFee_ = 0L;
+        monthlyFee_ = 0F;
 
-        annualFee_ = 0L;
+        annualFee_ = 0F;
 
         isActive_ = false;
 
@@ -651,6 +696,7 @@ public final class PlanEntity {
         result.name_ = name_;
         result.description_ = description_;
         result.numberOfMinutes_ = numberOfMinutes_;
+        result.musicSuggestions_ = musicSuggestions_;
         result.musicCollections_ = musicCollections_;
         result.monthlyFee_ = monthlyFee_;
         result.annualFee_ = annualFee_;
@@ -714,13 +760,16 @@ public final class PlanEntity {
         if (other.getNumberOfMinutes() != 0) {
           setNumberOfMinutes(other.getNumberOfMinutes());
         }
+        if (other.musicSuggestions_ != 0) {
+          setMusicSuggestionsValue(other.getMusicSuggestionsValue());
+        }
         if (other.getMusicCollections() != 0) {
           setMusicCollections(other.getMusicCollections());
         }
-        if (other.getMonthlyFee() != 0L) {
+        if (other.getMonthlyFee() != 0F) {
           setMonthlyFee(other.getMonthlyFee());
         }
-        if (other.getAnnualFee() != 0L) {
+        if (other.getAnnualFee() != 0F) {
           setAnnualFee(other.getAnnualFee());
         }
         if (other.getIsActive() != false) {
@@ -772,21 +821,26 @@ public final class PlanEntity {
 
                 break;
               } // case 32
-              case 40: {
-                monthlyFee_ = input.readInt64();
+              case 45: {
+                monthlyFee_ = input.readFloat();
 
                 break;
-              } // case 40
-              case 48: {
-                annualFee_ = input.readInt64();
+              } // case 45
+              case 53: {
+                annualFee_ = input.readFloat();
 
                 break;
-              } // case 48
+              } // case 53
               case 56: {
                 isActive_ = input.readBool();
 
                 break;
               } // case 56
+              case 64: {
+                musicSuggestions_ = input.readEnum();
+
+                break;
+              } // case 64
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -986,6 +1040,60 @@ public final class PlanEntity {
         return this;
       }
 
+      private int musicSuggestions_ = 0;
+      /**
+       * <code>.example.Plan.MusicSuggestions musicSuggestions = 8;</code>
+       * @return The enum numeric value on the wire for musicSuggestions.
+       */
+      @java.lang.Override public int getMusicSuggestionsValue() {
+        return musicSuggestions_;
+      }
+      /**
+       * <code>.example.Plan.MusicSuggestions musicSuggestions = 8;</code>
+       * @param value The enum numeric value on the wire for musicSuggestions to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMusicSuggestionsValue(int value) {
+        
+        musicSuggestions_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.example.Plan.MusicSuggestions musicSuggestions = 8;</code>
+       * @return The musicSuggestions.
+       */
+      @java.lang.Override
+      public com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions getMusicSuggestions() {
+        @SuppressWarnings("deprecation")
+        com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions result = com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions.valueOf(musicSuggestions_);
+        return result == null ? com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.example.Plan.MusicSuggestions musicSuggestions = 8;</code>
+       * @param value The musicSuggestions to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMusicSuggestions(com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan.MusicSuggestions value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        musicSuggestions_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.example.Plan.MusicSuggestions musicSuggestions = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMusicSuggestions() {
+        
+        musicSuggestions_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int musicCollections_ ;
       /**
        * <code>int32 musicCollections = 4;</code>
@@ -1017,64 +1125,64 @@ public final class PlanEntity {
         return this;
       }
 
-      private long monthlyFee_ ;
+      private float monthlyFee_ ;
       /**
-       * <code>int64 monthlyFee = 5;</code>
+       * <code>float monthlyFee = 5;</code>
        * @return The monthlyFee.
        */
       @java.lang.Override
-      public long getMonthlyFee() {
+      public float getMonthlyFee() {
         return monthlyFee_;
       }
       /**
-       * <code>int64 monthlyFee = 5;</code>
+       * <code>float monthlyFee = 5;</code>
        * @param value The monthlyFee to set.
        * @return This builder for chaining.
        */
-      public Builder setMonthlyFee(long value) {
+      public Builder setMonthlyFee(float value) {
         
         monthlyFee_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int64 monthlyFee = 5;</code>
+       * <code>float monthlyFee = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearMonthlyFee() {
         
-        monthlyFee_ = 0L;
+        monthlyFee_ = 0F;
         onChanged();
         return this;
       }
 
-      private long annualFee_ ;
+      private float annualFee_ ;
       /**
-       * <code>int64 annualFee = 6;</code>
+       * <code>float annualFee = 6;</code>
        * @return The annualFee.
        */
       @java.lang.Override
-      public long getAnnualFee() {
+      public float getAnnualFee() {
         return annualFee_;
       }
       /**
-       * <code>int64 annualFee = 6;</code>
+       * <code>float annualFee = 6;</code>
        * @param value The annualFee to set.
        * @return This builder for chaining.
        */
-      public Builder setAnnualFee(long value) {
+      public Builder setAnnualFee(float value) {
         
         annualFee_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int64 annualFee = 6;</code>
+       * <code>float annualFee = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearAnnualFee() {
         
-        annualFee_ = 0L;
+        annualFee_ = 0F;
         onChanged();
         return this;
       }
@@ -1967,15 +2075,16 @@ public final class PlanEntity {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PlanEntity.proto\022\007example\"\312\001\n\004Plan\022\014\n\004" +
+      "\n\020PlanEntity.proto\022\007example\"\204\002\n\004Plan\022\014\n\004" +
       "name\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022\027\n\017numbe" +
-      "rOfMinutes\030\003 \001(\005\022\030\n\020musicCollections\030\004 \001" +
-      "(\005\022\022\n\nmonthlyFee\030\005 \001(\003\022\021\n\tannualFee\030\006 \001(" +
-      "\003\022\020\n\010isActive\030\007 \001(\010\"3\n\020MusicSuggestions\022" +
-      "\r\n\tAUTOMATIC\020\000\022\020\n\014PERSONALIZED\020\001\"\'\n\010Plan" +
-      "List\022\033\n\004plan\030\001 \003(\0132\r.example.PlanB4\n2com" +
-      ".example.sisdi_plans.planmanagement.mode" +
-      "l.protob\006proto3"
+      "rOfMinutes\030\003 \001(\005\0228\n\020musicSuggestions\030\010 \001" +
+      "(\0162\036.example.Plan.MusicSuggestions\022\030\n\020mu" +
+      "sicCollections\030\004 \001(\005\022\022\n\nmonthlyFee\030\005 \001(\002" +
+      "\022\021\n\tannualFee\030\006 \001(\002\022\020\n\010isActive\030\007 \001(\010\"3\n" +
+      "\020MusicSuggestions\022\r\n\tAUTOMATIC\020\000\022\020\n\014PERS" +
+      "ONALIZED\020\001\"\'\n\010PlanList\022\033\n\004plan\030\001 \003(\0132\r.e" +
+      "xample.PlanB4\n2com.example.sisdi_plans.p" +
+      "lanmanagement.model.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1986,7 +2095,7 @@ public final class PlanEntity {
     internal_static_example_Plan_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_example_Plan_descriptor,
-        new java.lang.String[] { "Name", "Description", "NumberOfMinutes", "MusicCollections", "MonthlyFee", "AnnualFee", "IsActive", });
+        new java.lang.String[] { "Name", "Description", "NumberOfMinutes", "MusicSuggestions", "MusicCollections", "MonthlyFee", "AnnualFee", "IsActive", });
     internal_static_example_PlanList_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_example_PlanList_fieldAccessorTable = new

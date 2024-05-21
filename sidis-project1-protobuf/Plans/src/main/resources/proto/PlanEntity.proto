@@ -12,9 +12,11 @@ message Plan {
     PERSONALIZED = 1;
   }
 
+  MusicSuggestions musicSuggestions = 8;
+
   int32 musicCollections = 4;
-  int64 monthlyFee = 5;
-  int64 annualFee = 6;
+  float monthlyFee = 5;
+  float annualFee = 6;
   bool isActive = 7;
 }
 

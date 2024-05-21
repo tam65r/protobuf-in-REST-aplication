@@ -2,13 +2,15 @@ package com.example.sisdi_plans.planmanagement.repositories;
 
 import com.example.sisdi_plans.exceptions.DuplicatedDataException;
 import com.example.sisdi_plans.exceptions.NotFoundException;
-import com.example.sisdi_plans.planmanagement.api.EditPlanRequest;
 import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 import com.example.sisdi_plans.planmanagement.service.PlanRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+
+import com.example.sisdi_plans.planmanagement.api.proto.PlanRequests.EditPlanRequest;
+
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -24,8 +26,8 @@ public class PlanRepositoryImpl implements PlanRepository {
         Optional<PlanJPA> planDB = dbRepository.findByName(planJPA.getName());
 
         if (planDB.isEmpty()) {
-            PlanJPA planJPAHTTP = httpRepository.getPlanByName(planJPA.getName());
-            if (planJPAHTTP == null) {
+            PlanJPA jpa = httpRepository.getPlanByName(planJPA.getName());
+            if (jpa == null) {
                 return dbRepository.save(planJPA);
             }
         }
@@ -43,10 +45,10 @@ public class PlanRepositoryImpl implements PlanRepository {
         }
 
         if (!internal) {
-            PlanJPA planJPA = httpRepository.getPlanByName(name);
+            PlanJPA jpa = httpRepository.getPlanByName(name);
 
-            if (planJPA != null) {
-                return planJPA;
+            if (jpa != null) {
+                return jpa;
             }
         }
 
@@ -82,7 +84,7 @@ public class PlanRepositoryImpl implements PlanRepository {
             return plansDB;
         }
 
-        ArrayList<PlanJPA> plansHTTP = httpRepository.getAllPlans();
+        List<PlanJPA> plansHTTP = httpRepository.getAllPlans();
 
         for (int i = 0; i< plansHTTP.toArray().length; i++) {
             plansHTTP.get(i).setActive(true);

@@ -1,11 +1,10 @@
 package com.example.sisdi_plans.planmanagement.service;
 
-import com.example.sisdi_plans.planmanagement.api.CreatePlanRequest;
-import com.example.sisdi_plans.planmanagement.api.EditPlanRequest;
 import com.example.sisdi_plans.planmanagement.api.PlanDTOMapper;
 import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 import lombok.RequiredArgsConstructor;
-
+import com.example.sisdi_plans.planmanagement.api.proto.PlanRequests.CreatePlanRequest;
+import com.example.sisdi_plans.planmanagement.api.proto.PlanRequests.EditPlanRequest;
 import org.springframework.stereotype.Service;
 
 
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 public class PlanService {
 
 	private final PlanDTOMapper mapper;
-
 	private final PlanRepository planRepository;
 
 	public Iterable<PlanJPA> getAll(boolean internal) throws Exception {
@@ -36,7 +34,7 @@ public class PlanService {
 
 	public PlanJPA create(final CreatePlanRequest resource) throws Exception{
 
-		final PlanJPA planJPA = mapper.create(resource);
+		final PlanJPA planJPA = mapper.createJPA(resource);
 
 		return planRepository.create(planJPA);
 	}

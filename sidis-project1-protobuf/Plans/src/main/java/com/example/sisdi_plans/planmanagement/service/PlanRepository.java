@@ -1,9 +1,8 @@
 package com.example.sisdi_plans.planmanagement.service;
 
 
-import com.example.sisdi_plans.planmanagement.api.EditPlanRequest;
+import com.example.sisdi_plans.planmanagement.api.proto.PlanRequests.EditPlanRequest;
 import com.example.sisdi_plans.planmanagement.model.PlanJPA;
-
 
 public interface PlanRepository {
     PlanJPA create(PlanJPA planJPA) throws Exception;

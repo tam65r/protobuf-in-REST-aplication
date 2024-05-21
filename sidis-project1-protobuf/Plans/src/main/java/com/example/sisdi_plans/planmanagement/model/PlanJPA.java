@@ -155,11 +155,11 @@ public class PlanJPA {
 			setDescription(description);
 		}
 
-		if (musicSuggestions != null) {
+		if (musicSuggestions != null && !musicSuggestions.isEmpty()) {
 			setMusicSuggestions(MusicSuggestions.fromString(musicSuggestions));
 		}
 
-		if (musicCollections != null) {
+		if (musicCollections != null && !musicCollections.isEmpty()) {
 			try {
 				setMusicCollections(Integer.parseInt(musicCollections));
 			}catch (NumberFormatException e) {
@@ -167,7 +167,7 @@ public class PlanJPA {
 			}
 		}
 
-		if (numberOfMinutes != null) {
+		if (numberOfMinutes != null && !numberOfMinutes.isEmpty()) {
 			try {
 				setNumberOfMinutes(Integer.parseInt(numberOfMinutes));
 			} catch (NumberFormatException e) {

@@ -1,6 +1,8 @@
 package com.example.sisdi_plans.planmanagement.repositories;
-
-import com.example.sisdi_plans.planmanagement.api.EditPlanRequest;
+import com.example.sisdi_plans.planmanagement.api.PlanDTOMapper;
+import com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.Plan;
+import com.example.sisdi_plans.planmanagement.model.proto.PlanEntity.PlanList;
+import com.example.sisdi_plans.planmanagement.api.proto.PlanRequests.EditPlanRequest;
 import com.example.sisdi_plans.planmanagement.model.PlanJPA;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +10,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPatch;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -26,6 +29,7 @@ public class PlanHTTPRepository {
     @Value("${replica.port}")
     private String port;
 
+    private final PlanDTOMapper mapper;
 
     private String getBaseUrl(){
         return "http://localhost:"+ this.port + "/api/plans";
@@ -40,25 +44,22 @@ public class PlanHTTPRepository {
             try (CloseableHttpResponse response = httpClient.execute(httpRequest)) {
                 Gson gson = new Gson();
                 if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                    return gson.fromJson(EntityUtils.toString(response.getEntity()), PlanJPA.class);
+                    return mapper.toJPAEntity( Plan.parseFrom(EntityUtils.toByteArray(response.getEntity())));
                 }
             }
         }
         return null;
     }
 
-    public ArrayList<PlanJPA> getAllPlans() throws Exception {
+    public List<PlanJPA> getAllPlans() throws Exception {
         String url = this.getBaseUrl() + "/internal/all";
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            ArrayList<PlanJPA> array = new ArrayList<>();
             HttpGet httpRequest = new HttpGet(url);
             try (CloseableHttpResponse response = httpClient.execute(httpRequest)) {
                 Gson gson = new Gson();
                 if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                    PlanJPA[] plansJPA = gson.fromJson(EntityUtils.toString(response.getEntity()), PlanJPA[].class);
-                    array.addAll(List.of(plansJPA));
-                    return array;
+                    return mapper.toJPAEntityList(mapper.toDTOEntityList(PlanList.parseFrom(EntityUtils.toByteArray(response.getEntity()))));
                 }
             }
         }
@@ -70,16 +71,16 @@ public class PlanHTTPRepository {
 
         HttpPatch httpPatch = new HttpPatch(url);
 
-        httpPatch.setHeader("Content-Type", "application/json");
-        httpPatch.setEntity(new StringEntity(request.toString()));
+        httpPatch.setHeader("Content-Type", "application/x-protobuf");
+        httpPatch.setEntity(new ByteArrayEntity(request.toByteArray()));
         httpPatch.setHeader("Authorization", authorization);
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(httpPatch)) {
-            Gson gson = new Gson();
+
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return gson.fromJson(EntityUtils.toString(response.getEntity()), PlanJPA.class);
+                return mapper.toJPAEntity( Plan.parseFrom(EntityUtils.toByteArray(response.getEntity())));
             }
         }
         return null;
@@ -90,15 +91,14 @@ public class PlanHTTPRepository {
 
         HttpPatch httpPatch = new HttpPatch(url);
 
-        httpPatch.setHeader("Content-Type", "application/json");
+        httpPatch.setHeader("Content-Type", "application/x-protobuf");
         httpPatch.setHeader("Authorization", authorization);
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(httpPatch)) {
-            Gson gson = new Gson();
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return gson.fromJson(EntityUtils.toString(response.getEntity()), PlanJPA.class);
+                return mapper.toJPAEntity( Plan.parseFrom(EntityUtils.toByteArray(response.getEntity())));
             }
         }
         return null;
