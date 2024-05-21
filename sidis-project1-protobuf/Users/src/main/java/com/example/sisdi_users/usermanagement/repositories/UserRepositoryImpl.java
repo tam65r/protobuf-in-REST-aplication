@@ -5,13 +5,11 @@ import com.example.sisdi_users.exceptions.DuplicatedDataException;
 import com.example.sisdi_users.exceptions.InconsistencyDataException;
 import com.example.sisdi_users.exceptions.NotFoundException;
 import com.example.sisdi_users.usermanagement.api.CreateSubscriberRequest;
-import com.example.sisdi_users.usermanagement.model.User;
+import com.example.sisdi_users.usermanagement.model.UserJPA;
 
 import com.example.sisdi_users.usermanagement.service.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,44 +36,44 @@ public class UserRepositoryImpl implements UserRepository {
     private final JwtEncoder jwtEncoder;
 
     @Override
-    public User create(User user, CreateSubscriberRequest request) throws Exception {
-        final var userOpt = dbRepository.findByUsername(user.getUsername());
+    public UserJPA create(UserJPA userJPA, CreateSubscriberRequest request) throws Exception {
+        final var userOpt = dbRepository.findByUsername(userJPA.getUsername());
         if(userOpt.isEmpty()){ //nao existe "neste"
-            if(httpRepository.getByUsername(user.getUsername()) == null){ //nao existe "no outro"
+            if(httpRepository.getByUsername(userJPA.getUsername()) == null){ //nao existe "no outro"
                 if (request != null) {
                     if (subscriptionRepository.postSubscription(request) == HttpStatus.SC_CREATED) {
-                        return dbRepository.save(user);
+                        return dbRepository.save(userJPA);
                     }
                 }
-                return dbRepository.save(user);
+                return dbRepository.save(userJPA);
             }
         }
-        throw new DuplicatedDataException(User.class,user.getUsername());
+        throw new DuplicatedDataException(UserJPA.class, userJPA.getUsername());
     }
 
     @Override
-    public User findByUsername (String username, boolean internal) throws Exception{
-        Optional<User> userBD = dbRepository.findByUsername(username);
+    public UserJPA findByUsername (String username, boolean internal) throws Exception{
+        Optional<UserJPA> userBD = dbRepository.findByUsername(username);
 
         if (userBD.isPresent()) {
             return userBD.get();
         }
 
         if(!internal) {
-            User userHttp = httpRepository.getByUsername(username);
-            if (userHttp != null) {
-                return userHttp;
+            UserJPA userJPAHttp = httpRepository.getByUsername(username);
+            if (userJPAHttp != null) {
+                return userJPAHttp;
             }
         }
 
 
-        throw new NotFoundException(User.class,username);
+        throw new NotFoundException(UserJPA.class,username);
     }
 
     @Override
     public String login(AuthRequest request, boolean internal) throws Exception {
 
-        Optional<User> userDB = dbRepository.findByUsername(request.getUsername());
+        Optional<UserJPA> userDB = dbRepository.findByUsername(request.getUsername());
         if (userDB.isEmpty()) {
             if (httpRepository.getByUsername(request.getUsername()) == null) {
                 throw new NotFoundException(request.getUsername());
@@ -88,7 +86,7 @@ public class UserRepositoryImpl implements UserRepository {
             final Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 
-            final User user = (User) authentication.getPrincipal();
+            final UserJPA userJPA = (UserJPA) authentication.getPrincipal();
 
             final Instant now = Instant.now();
             final long expiry = 36000L;
@@ -97,7 +95,7 @@ public class UserRepositoryImpl implements UserRepository {
                     .collect(joining(" "));
 
             final JwtClaimsSet claims = JwtClaimsSet.builder().issuer("example.io").issuedAt(now)
-                    .expiresAt(now.plusSeconds(expiry)).subject(format("%s,%s", user.getId(), user.getUsername()))
+                    .expiresAt(now.plusSeconds(expiry)).subject(format("%s,%s", userJPA.getId(), userJPA.getUsername()))
                     .claim("roles", scope).build();
 
             final String token = this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

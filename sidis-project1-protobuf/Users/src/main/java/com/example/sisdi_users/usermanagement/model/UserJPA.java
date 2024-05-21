@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 @Entity
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
-public class User  implements UserDetails  {
+public class UserJPA implements UserDetails  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -64,21 +64,21 @@ public class User  implements UserDetails  {
     private final Set<AuthorityRole> authorities = new HashSet<>();
 
     // Constructors
-    protected User() {
+    protected UserJPA() {
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public User(final String username, final String password) {
+    public UserJPA(final String username, final String password) {
         this.username = username;
         setPassword(password);
     }
 
-    public static User newUser(String password, String username, LocalDateTime birthday, String name, String citizenCardNumber, String phoneNumber,
-                               Gender sex, String role) {
-        User u = new User(username,password);
+    public static UserJPA newUser(String password, String username, LocalDateTime birthday, String name, String citizenCardNumber, String phoneNumber,
+                                  Gender sex, String role) {
+        UserJPA u = new UserJPA(username,password);
         u.setName(name);
         u.setPhoneNumber(phoneNumber);
         u.setCitizenCardNumber(citizenCardNumber);

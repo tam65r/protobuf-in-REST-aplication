@@ -2,7 +2,7 @@ package com.example.sisdi_users.usermanagement.api;
 
 
 import com.example.sisdi_users.usermanagement.model.Gender;
-import com.example.sisdi_users.usermanagement.model.User;
+import com.example.sisdi_users.usermanagement.model.UserJPA;
 import com.example.sisdi_users.utils.Utils;
 import org.springframework.stereotype.Component;
 
@@ -16,30 +16,30 @@ import java.util.ArrayList;
 @Component
 public class UserDTOMapperImpl extends UserDTOMapper {
 	@Override
-	public UserDTO toUserView(User user) {
-		if (user == null) {
+	public UserDTO toUserView(UserJPA userJPA) {
+		if (userJPA == null) {
 			return null;
 		}
 
 		UserDTO subDTO = new UserDTO();
-		subDTO.setUsername(user.getUsername());
-		subDTO.setName(user.getName());
-		subDTO.setBirthday(user.getBirthday().toString());
-		subDTO.setSex(user.getSex().toString());
-		subDTO.setPhoneNumber(user.getPhoneNumber());
-		subDTO.setCitizenCardNumber(user.getCitizenCardNumber());
+		subDTO.setUsername(userJPA.getUsername());
+		subDTO.setName(userJPA.getName());
+		subDTO.setBirthday(userJPA.getBirthday().toString());
+		subDTO.setSex(userJPA.getSex().toString());
+		subDTO.setPhoneNumber(userJPA.getPhoneNumber());
+		subDTO.setCitizenCardNumber(userJPA.getCitizenCardNumber());
 
 		return subDTO;
 	}
 
 	@Override
-	public Iterable<UserDTO> toUserView(Iterable<User> subscribers) {
+	public Iterable<UserDTO> toUserView(Iterable<UserJPA> subscribers) {
 		if ( subscribers == null ) {
 			return null;
 		}
 
 		ArrayList<UserDTO> iterable = new ArrayList<UserDTO>();
-		for ( User sub : subscribers ) {
+		for ( UserJPA sub : subscribers ) {
 			iterable.add(toUserView(sub));
 		}
 
@@ -47,7 +47,7 @@ public class UserDTOMapperImpl extends UserDTOMapper {
 	}
 
 	@Override
-	public User create(CreateUserRequest resource) {
+	public UserJPA create(CreateUserRequest resource) {
 		if (resource == null) {
 			return null;
 		}
@@ -64,8 +64,8 @@ public class UserDTOMapperImpl extends UserDTOMapper {
 		LocalDateTime date = Utils.parseString(resource.getBirthday());
 
 
-		User user = User.newUser(password,username,date,name,citizerCardNumber,phoneNumber,Gender.fromString(sex), role);
+		UserJPA userJPA = UserJPA.newUser(password,username,date,name,citizerCardNumber,phoneNumber,Gender.fromString(sex), role);
 
-		return user;
+		return userJPA;
 	}
 }

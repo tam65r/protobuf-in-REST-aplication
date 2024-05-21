@@ -5,7 +5,7 @@
 # Use Cases / User Stories
 | UC/US | Description                                                      |                   
 |:------|:-----------------------------------------------------------------|
-| US01  | [As an Admin I want to “bootstrap” user credential data]()       |
+| US01  | [As an Admin I want to “bootstrap” userJPA credential data]()       |
 | US02  | [As an Admin I want to “bootstrap” plansJPA data]()                 |
 | US03  | [As a User, I want to register my account]()                     |
 | US04  | [As a User, I want to login]()                                   |

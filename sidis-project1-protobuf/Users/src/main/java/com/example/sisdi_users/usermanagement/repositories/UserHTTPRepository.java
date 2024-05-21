@@ -1,13 +1,11 @@
 package com.example.sisdi_users.usermanagement.repositories;
 
 import com.example.sisdi_users.auth.api.AuthRequest;
-import com.example.sisdi_users.usermanagement.model.User;
+import com.example.sisdi_users.usermanagement.model.UserJPA;
 import com.example.sisdi_users.utils.LocalDateTimeTypeAdapter;
-import com.example.sisdi_users.utils.ServerPortListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
-import org.apache.http.Header;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -18,7 +16,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
@@ -34,7 +31,7 @@ public class UserHTTPRepository {
     private String getBaseUrl(){
         return "http://localhost:"+ this.port + "/api/users";
     }
-    public User getByUsername(String username) throws Exception {
+    public UserJPA getByUsername(String username) throws Exception {
         String url = this.getBaseUrl() + "/internal/" + username;
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
@@ -45,7 +42,7 @@ public class UserHTTPRepository {
                         .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
                         .create();
                 if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                    return gson.fromJson(EntityUtils.toString(response.getEntity()), User.class);
+                    return gson.fromJson(EntityUtils.toString(response.getEntity()), UserJPA.class);
                 }
             }
         }

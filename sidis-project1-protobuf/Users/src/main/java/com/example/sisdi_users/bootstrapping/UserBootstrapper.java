@@ -3,7 +3,7 @@ package com.example.sisdi_users.bootstrapping;
 
 import com.example.sisdi_users.usermanagement.model.AuthorityRole;
 import com.example.sisdi_users.usermanagement.model.Gender;
-import com.example.sisdi_users.usermanagement.model.User;
+import com.example.sisdi_users.usermanagement.model.UserJPA;
 import com.example.sisdi_users.usermanagement.repositories.UserDBRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,12 +31,12 @@ public class UserBootstrapper implements CommandLineRunner {
 		if (this.serverPort == 8083) {
 			if (userDBRepository.findByUsername("river@mail.com").isEmpty()) {
 				//marketing director
-				User u2 = User.newUser(encoder.encode("myPass13"),"river@mail.com",LocalDateTime.of(2000,3,20,13,23),"River","123456789","912345678",Gender.MALE,AuthorityRole.MARKETING_DIRECTOR);
+				UserJPA u2 = UserJPA.newUser(encoder.encode("myPass13"),"river@mail.com",LocalDateTime.of(2000,3,20,13,23),"River","123456789","912345678",Gender.MALE,AuthorityRole.MARKETING_DIRECTOR);
 				userDBRepository.save(u2);
 			}
 			if (userDBRepository.findByUsername("mariana@mail.com").isEmpty()) {
 				//admin
-				User u1 = User.newUser(encoder.encode("myPass14"),"mariana@mail.com",LocalDateTime.of(2000,3,20,13,23),"Mariana","123456789","912345678",Gender.FEMALE,AuthorityRole.ADMIN);
+				UserJPA u1 = UserJPA.newUser(encoder.encode("myPass14"),"mariana@mail.com",LocalDateTime.of(2000,3,20,13,23),"Mariana","123456789","912345678",Gender.FEMALE,AuthorityRole.ADMIN);
 				userDBRepository.save(u1);
 			}
 		}
