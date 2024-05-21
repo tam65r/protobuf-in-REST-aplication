@@ -5,23 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4843af55-48bd-4704-a298-23669195d3bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Plans/src/main/resources/proto/PlanRequests.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Subscriptions/src/main/resources/proto/SubscriptionEntity.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Subscriptions/src/main/resources/proto/SubscriptionRequests.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/PlansApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/PlansApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/CreatePlanRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/EditPlanRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanDTOMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanDTOMapperImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/model/MusicSuggestions.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/model/MusicSuggestions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/model/PlanJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/model/PlanJPA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/model/proto/PlanEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanHTTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanHTTPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/service/PlanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/service/PlanRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/service/PlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/service/PlanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/resources/proto/PlanEntity.proto" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/resources/proto/PlanEntity.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/test/java/com/example/sisdi_plans/planmanagementapi/TestPlansApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/test/java/com/example/sisdi_plans/planmanagementapi/TestPlansApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/SubscriptionsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/SubscriptionsApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionDTOMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionDTOMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionDTOMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionDTOMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/model/FeeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/model/FeeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/model/PaymentMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/model/PaymentMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/model/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/model/SubscriptionJPA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/SubscriberRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/SubscriberRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/SubscriptionDBRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/SubscriptionDBRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/SubscriptionHTTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/SubscriptionHTTPRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/service/SubscriptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/service/SubscriptionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/service/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/service/SubscriptionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/test/java/com/example/sisdi_subscriptions/subscriptionsmanagementapi/SubscriptionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/test/java/com/example/sisdi_subscriptions/subscriptionsmanagementapi/SubscriptionJPATest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions/src/test/java/com/example/sisdi_subscriptions/subscriptionsmanagementapi/TestSubscriptionsApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/test/java/com/example/sisdi_subscriptions/subscriptionsmanagementapi/TestSubscriptionsApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/DD.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/DD.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/SubscriptionsDocs/UC7/UC7-SDN2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/SubscriptionsDocs/UC7/UC7-SDN2.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/UCD.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/UCD.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,9 +48,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2gm13SJD0ffleti1AWfnrQn5GO1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -61,8 +66,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.PlansApplication 2.executor": "Run",
     "Spring Boot.PlansApplication.executor": "Debug",
+    "Spring Boot.SubscriptionsApplication.executor": "Run",
     "Spring Boot.UsersApplication.executor": "Run",
-    "git-widget-placeholder": "protobuf-definitions-plans",
+    "git-widget-placeholder": "protobuf-definitions-subscriptions",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -87,7 +93,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.PlansApplication 2">
+  <component name="RunManager" selected="Spring Boot.SubscriptionsApplication">
     <configuration name="PlansApplication 2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="plan-protobuf-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sisdi_plans.PlansApplication" />
@@ -145,6 +151,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

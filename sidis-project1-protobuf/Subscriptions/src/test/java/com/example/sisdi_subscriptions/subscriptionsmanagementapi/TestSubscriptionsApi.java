@@ -2,7 +2,6 @@ package com.example.sisdi_subscriptions.subscriptionsmanagementapi;
 
 import com.example.sisdi_subscriptions.subscriptionmanagement.api.CreateSubscriptionRequest;
 import com.example.sisdi_subscriptions.subscriptionmanagement.api.SubscriptionDTO;
-import com.example.sisdi_subscriptions.subscriptionmanagement.model.Subscription;
 import com.example.sisdi_subscriptions.testutils.JsonHelper;
 import com.example.sisdi_subscriptions.utils.Utils;
 import com.fasterxml.jackson.databind.ObjectMapper;

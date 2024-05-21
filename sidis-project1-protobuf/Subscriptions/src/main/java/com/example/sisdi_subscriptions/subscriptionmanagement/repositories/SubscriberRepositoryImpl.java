@@ -7,7 +7,7 @@ import com.example.sisdi_subscriptions.exceptions.NotFoundException;
 import com.example.sisdi_subscriptions.subscriptionmanagement.api.CreateSubscriptionRequest;
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.FeeType;
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.PaymentMethod;
-import com.example.sisdi_subscriptions.subscriptionmanagement.model.Subscription;
+import com.example.sisdi_subscriptions.subscriptionmanagement.model.SubscriptionJPA;
 import com.example.sisdi_subscriptions.subscriptionmanagement.service.SubscriptionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -24,81 +24,81 @@ public class SubscriberRepositoryImpl implements SubscriptionRepository {
     final PlanRepositoryImpl driver;
 
     @Override
-    public Subscription create(CreateSubscriptionRequest resource) throws Exception {
+    public SubscriptionJPA create(CreateSubscriptionRequest resource) throws Exception {
         String plan = resource.getPlan();
-        Subscription subscription = new Subscription();
+        SubscriptionJPA subscriptionJPA = new SubscriptionJPA();
 
         if (dbRepository.findBySubscriberID(resource.getUsername()).isPresent()) {
-            throw new DuplicatedDataException(Subscription.class,resource.getUsername());
+            throw new DuplicatedDataException(SubscriptionJPA.class,resource.getUsername());
         }
 
         if (plan.equals("Free")) {
-            subscription.setPlan("Free");
-            subscription.setFeeType(FeeType.NA);
-            subscription.setPaymentMethod(PaymentMethod.NA);
+            subscriptionJPA.setPlan("Free");
+            subscriptionJPA.setFeeType(FeeType.NA);
+            subscriptionJPA.setPaymentMethod(PaymentMethod.NA);
         } else {
-            subscription.setPlan(plan);
+            subscriptionJPA.setPlan(plan);
             if (resource.getFeeType() == null || resource.getPaymentMethod() == null) {
-                throw new InconsistencyDataException(Subscription.class,"Null not a valid value");
+                throw new InconsistencyDataException(SubscriptionJPA.class,"Null not a valid value");
             }
             if (resource.getFeeType().equals(FeeType.NA.toString()) || resource.getPaymentMethod().equals(PaymentMethod.NA.toString())) {
-                throw new InconsistencyDataException(Subscription.class,"Null not a valid value");
+                throw new InconsistencyDataException(SubscriptionJPA.class,"Null not a valid value");
             }
 
-            subscription.setFeeType(FeeType.fromString(resource.getFeeType()));
-            subscription.setPaymentMethod(PaymentMethod.fromString(resource.getPaymentMethod()));
+            subscriptionJPA.setFeeType(FeeType.fromString(resource.getFeeType()));
+            subscriptionJPA.setPaymentMethod(PaymentMethod.fromString(resource.getPaymentMethod()));
         }
 
         LocalDateTime initialDateTime = LocalDateTime.now();
 
         LocalDateTime endDateTime = null;
 
-        if (subscription.getFeeType() == FeeType.MONTHLY) {
+        if (subscriptionJPA.getFeeType() == FeeType.MONTHLY) {
             endDateTime = initialDateTime.plusMonths(1);
-        } else if (subscription.getFeeType() == FeeType.ANNUAL) {
+        } else if (subscriptionJPA.getFeeType() == FeeType.ANNUAL) {
             endDateTime = initialDateTime.plusYears(1);
         }
 
 
-        subscription.setInitialDate(initialDateTime);
-        subscription.setEndSubscriptionDate(endDateTime);
-        subscription.setRenewed(false);
-        subscription.setActive(true);
-        subscription.setSubscriberID(resource.getUsername());
-        return dbRepository.save(subscription);
+        subscriptionJPA.setInitialDate(initialDateTime);
+        subscriptionJPA.setEndSubscriptionDate(endDateTime);
+        subscriptionJPA.setRenewed(false);
+        subscriptionJPA.setActive(true);
+        subscriptionJPA.setSubscriberID(resource.getUsername());
+        return dbRepository.save(subscriptionJPA);
     }
     @Override
-    public Subscription switchPlan(String username, String plan, String authorization,boolean internal) throws Exception {
-        Optional<Subscription> subscriptionDB = dbRepository.findBySubscriberID(username);
+    public SubscriptionJPA switchPlan(String username, String plan, String authorization, boolean internal) throws Exception {
+        Optional<SubscriptionJPA> subscriptionDB = dbRepository.findBySubscriberID(username);
 
         if (subscriptionDB.isPresent()) {
-            Subscription subscription = subscriptionDB.get();
+            SubscriptionJPA subscriptionJPA = subscriptionDB.get();
 
-            subscription.setPlan(plan);
-            return dbRepository.save(subscription);
+            subscriptionJPA.setPlan(plan);
+            return dbRepository.save(subscriptionJPA);
         }
 
 
         if (!internal) {
-            Subscription sub = httpRepository.swichtPlan(plan, authorization);
+            SubscriptionJPA sub = httpRepository.swichtPlan(plan, authorization);
 
             if (sub != null) {
                 return sub;
             }
         }
 
-        throw new NotFoundException(Subscription.class, username);
+        throw new NotFoundException(SubscriptionJPA.class, username);
     }
     @Override
-    public Subscription cancel(String username, String authorization, boolean internal) throws Exception {
+    public SubscriptionJPA cancel(String username, String authorization, boolean internal) throws Exception {
 
-        Optional<Subscription> subscriptionDB = dbRepository.findBySubscriberID(username);
+        Optional<SubscriptionJPA> subscriptionDB = dbRepository.findBySubscriberID(username);
 
         if (subscriptionDB.isPresent()) {
-            Subscription sub = subscriptionDB.get();
+            SubscriptionJPA sub = subscriptionDB.get();
 
             if (!sub.getStatus()) {
-                throw new InconsistencyDataException(Subscription.class,username,"Can't cancel something that was already cancel");
+                throw new InconsistencyDataException(SubscriptionJPA.class,username,"Can't cancel something that was already cancel");
             }
 
             LocalDateTime date = LocalDateTime.now();
@@ -116,30 +116,30 @@ public class SubscriberRepositoryImpl implements SubscriptionRepository {
                 return sub;
             }
         }
-        throw new NotFoundException(Subscription.class,username);
+        throw new NotFoundException(SubscriptionJPA.class,username);
     }
     @Override
-    public Subscription renewSubscription(String username, String authorization, boolean internal) throws Exception{
+    public SubscriptionJPA renewSubscription(String username, String authorization, boolean internal) throws Exception{
 
-        Optional<Subscription> subscriptionDB = dbRepository.findBySubscriberID(username);
+        Optional<SubscriptionJPA> subscriptionDB = dbRepository.findBySubscriberID(username);
 
         if (subscriptionDB.isPresent()) {
-            Subscription subscription = subscriptionDB.get();
-            if (subscription.getFeeType() == FeeType.NA) {
+            SubscriptionJPA subscriptionJPA = subscriptionDB.get();
+            if (subscriptionJPA.getFeeType() == FeeType.NA) {
                 return null;
             }
-            LocalDateTime currentEndDate = subscription.getEndSubscriptionDate();
+            LocalDateTime currentEndDate = subscriptionJPA.getEndSubscriptionDate();
             LocalDateTime newEndDate = null;
-            if (subscription.getFeeType() == FeeType.MONTHLY) {
+            if (subscriptionJPA.getFeeType() == FeeType.MONTHLY) {
                 newEndDate = currentEndDate.plusMonths(1);
-            } else if (subscription.getFeeType() == FeeType.ANNUAL) {
+            } else if (subscriptionJPA.getFeeType() == FeeType.ANNUAL) {
                 newEndDate = currentEndDate.plusYears(1);
             }
-            subscription.setEndSubscriptionDate(newEndDate);
+            subscriptionJPA.setEndSubscriptionDate(newEndDate);
 
-            subscription.setRenewed(true);
+            subscriptionJPA.setRenewed(true);
 
-            return dbRepository.save(subscription);
+            return dbRepository.save(subscriptionJPA);
         }
 
         if (!internal) {
@@ -150,12 +150,12 @@ public class SubscriberRepositoryImpl implements SubscriptionRepository {
             }
         }
 
-        throw new NotFoundException(Subscription.class, username);
+        throw new NotFoundException(SubscriptionJPA.class, username);
     }
     @Override
     public String getDetailsByUsername(String username, String authorization, boolean internal) throws Exception {
 
-        Optional<Subscription> subscriptionDB = dbRepository.findBySubscriberID(username);
+        Optional<SubscriptionJPA> subscriptionDB = dbRepository.findBySubscriberID(username);
         String response;
 
         if (subscriptionDB.isPresent()) {

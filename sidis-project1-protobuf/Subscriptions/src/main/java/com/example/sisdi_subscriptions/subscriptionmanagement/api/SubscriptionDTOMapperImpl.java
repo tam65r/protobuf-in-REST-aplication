@@ -1,6 +1,6 @@
 package com.example.sisdi_subscriptions.subscriptionmanagement.api;
 
-import com.example.sisdi_subscriptions.subscriptionmanagement.model.Subscription;
+import com.example.sisdi_subscriptions.subscriptionmanagement.model.SubscriptionJPA;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.processing.Generated;
@@ -13,7 +13,7 @@ public class SubscriptionDTOMapperImpl extends SubscriptionDTOMapper{
 
 
     @Override
-    public SubscriptionDTO toSubscriptionDTO(Subscription sub) {
+    public SubscriptionDTO toSubscriptionDTO(SubscriptionJPA sub) {
         if (sub == null) {
             return null;
         }

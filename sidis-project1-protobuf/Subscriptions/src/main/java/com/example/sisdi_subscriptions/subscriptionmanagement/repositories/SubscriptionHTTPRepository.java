@@ -1,8 +1,7 @@
 package com.example.sisdi_subscriptions.subscriptionmanagement.repositories;
 
-import com.example.sisdi_subscriptions.subscriptionmanagement.model.Subscription;
+import com.example.sisdi_subscriptions.subscriptionmanagement.model.SubscriptionJPA;
 import com.example.sisdi_subscriptions.utils.LocalDateTimeTypeAdapter;
-import com.example.sisdi_subscriptions.utils.ServerPortListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
@@ -10,17 +9,13 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPatch;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 @Component
 @RequiredArgsConstructor
@@ -52,7 +47,7 @@ public class SubscriptionHTTPRepository {
         return null;
     }
 
-    public Subscription cancelSubscription(String authorization) throws Exception {
+    public SubscriptionJPA cancelSubscription(String authorization) throws Exception {
         String url = this.getBaseUrl() + "/internal/cancel";
 
         HttpPatch httpPatch = new HttpPatch(url);
@@ -67,13 +62,13 @@ public class SubscriptionHTTPRepository {
                     .create();
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return gson.fromJson(EntityUtils.toString(response.getEntity()), Subscription.class);
+                return gson.fromJson(EntityUtils.toString(response.getEntity()), SubscriptionJPA.class);
             }
         }
         return null;
     }
 
-    public Subscription renewSubscription(String authorization) throws Exception {
+    public SubscriptionJPA renewSubscription(String authorization) throws Exception {
         String url = this.getBaseUrl() + "/internal/renew";
 
         HttpPatch httpPatch = new HttpPatch(url);
@@ -88,13 +83,13 @@ public class SubscriptionHTTPRepository {
                     .create();
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return gson.fromJson(EntityUtils.toString(response.getEntity()), Subscription.class);
+                return gson.fromJson(EntityUtils.toString(response.getEntity()), SubscriptionJPA.class);
             }
         }
         return null;
     }
 
-    public Subscription swichtPlan(String name, String authorization) throws Exception {
+    public SubscriptionJPA swichtPlan(String name, String authorization) throws Exception {
         String url = this.getBaseUrl() + "/internal/switch/" + name;
 
         HttpPatch httpPatch = new HttpPatch(url);
@@ -109,7 +104,7 @@ public class SubscriptionHTTPRepository {
                     .create();
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return gson.fromJson(EntityUtils.toString(response.getEntity()), Subscription.class);
+                return gson.fromJson(EntityUtils.toString(response.getEntity()), SubscriptionJPA.class);
             }
         }
         return null;

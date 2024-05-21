@@ -1,0 +1,12 @@
+syntax = "proto3";
+package example;
+option java_package = "com.example.sisdi_subscriptions.subscriptionmanagement.api.proto";
+
+
+message CreateSubscriptionRequest {
+  string username = 1;
+  string plan = 2;
+  string feeType = 3;
+  string paymentMethod = 4;
+  string initialDate = 5;
+}

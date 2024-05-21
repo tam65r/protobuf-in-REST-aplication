@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Service
 @RequiredArgsConstructor
 public class SubscriptionService {
@@ -17,13 +15,13 @@ public class SubscriptionService {
 	final SubscriptionRepository subscriptionRepository;
 	final PlanRepository planRepository;
 
-	public Subscription create(CreateSubscriptionRequest resource) throws Exception {
+	public SubscriptionJPA create(CreateSubscriptionRequest resource) throws Exception {
 		planRepository.checkIfPlanExists(resource.getPlan());
 		return subscriptionRepository.create(resource);
 	}
 
 
-	public Subscription switchPlan(String username, String plan,  String authorization, boolean internal) throws Exception {
+	public SubscriptionJPA switchPlan(String username, String plan, String authorization, boolean internal) throws Exception {
 		planRepository.checkIfPlanExists(plan);
 		if (!internal) {
 			return subscriptionRepository.switchPlan(username,plan,authorization,false);
@@ -33,7 +31,7 @@ public class SubscriptionService {
 		}
 	}
 
-	public Subscription cancel(String username,  String authorization, boolean internal) throws Exception {
+	public SubscriptionJPA cancel(String username, String authorization, boolean internal) throws Exception {
 		if (!internal) {
 			return subscriptionRepository.cancel(username,authorization,false);
 
@@ -41,7 +39,7 @@ public class SubscriptionService {
 			return subscriptionRepository.cancel(username,null,true);
 		}
 	}
-	public Subscription renewSubscription(String username,  String authorization, boolean internal) throws Exception{
+	public SubscriptionJPA renewSubscription(String username, String authorization, boolean internal) throws Exception{
 		if (!internal) {
 			return subscriptionRepository.renewSubscription(username,authorization,false);
 

@@ -25,6 +25,32 @@ public enum PaymentMethod {
 		throw new IllegalArgumentException("Invalid PaymentMethod: " + text);
 	}
 
+
+	public static PaymentMethod fromInt(int value) {
+		switch (value){
+			case 0:
+				return PaymentMethod.NA;
+			case 1:
+				return PaymentMethod.MBWAY;
+			case 2:
+				return PaymentMethod.CARD;
+			default:
+				return null;
+		}
+	}
+
+	public static int toInt(PaymentMethod paymentMethod) {
+		switch (paymentMethod){
+			case NA:
+				return 0;
+			case MBWAY:
+				return 1;
+			case CARD:
+				return 2;
+			default:
+				return -12;
+		}
+	}
 	@Override
 	public String toString() {
 		return getDescription();
