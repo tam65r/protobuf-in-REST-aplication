@@ -4,14 +4,13 @@ package com.example.sisdi_subscriptions.subscriptionmanagement.repositories;
 import com.example.sisdi_subscriptions.exceptions.DuplicatedDataException;
 import com.example.sisdi_subscriptions.exceptions.InconsistencyDataException;
 import com.example.sisdi_subscriptions.exceptions.NotFoundException;
-import com.example.sisdi_subscriptions.subscriptionmanagement.api.CreateSubscriptionRequest;
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.FeeType;
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.PaymentMethod;
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.SubscriptionJPA;
 import com.example.sisdi_subscriptions.subscriptionmanagement.service.SubscriptionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
+import com.example.sisdi_subscriptions.subscriptionmanagement.api.proto.SubscriptionRequests.CreateSubscriptionRequest;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -153,10 +152,10 @@ public class SubscriberRepositoryImpl implements SubscriptionRepository {
         throw new NotFoundException(SubscriptionJPA.class, username);
     }
     @Override
-    public String getDetailsByUsername(String username, String authorization, boolean internal) throws Exception {
+    public byte [] getDetailsByUsername(String username, String authorization, boolean internal) throws Exception {
 
         Optional<SubscriptionJPA> subscriptionDB = dbRepository.findBySubscriberID(username);
-        String response;
+        byte [] response;
 
         if (subscriptionDB.isPresent()) {
             String planName = subscriptionDB.get().getPlan();

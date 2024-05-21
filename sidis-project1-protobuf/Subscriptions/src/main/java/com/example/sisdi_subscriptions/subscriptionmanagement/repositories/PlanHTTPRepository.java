@@ -25,15 +25,14 @@ public class PlanHTTPRepository {
         }
     }
 
-    public  String checkIfPlanExistsResponse(String planName) throws Exception {
+    public  byte [] checkIfPlanExistsResponse(String planName) throws Exception {
 
         HttpGet request = new HttpGet(getBaseUrl() + "/name/" + planName);
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(request)) {
 
-            return EntityUtils.toString(response.getEntity());
-
+            return EntityUtils.toByteArray(response.getEntity());
         }
     }
 

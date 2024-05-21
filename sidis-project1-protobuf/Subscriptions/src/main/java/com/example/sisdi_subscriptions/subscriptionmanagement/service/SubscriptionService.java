@@ -1,9 +1,8 @@
 package com.example.sisdi_subscriptions.subscriptionmanagement.service;
 
 
-import com.example.sisdi_subscriptions.subscriptionmanagement.api.CreateSubscriptionRequest;
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.*;
-
+import com.example.sisdi_subscriptions.subscriptionmanagement.api.proto.SubscriptionRequests.CreateSubscriptionRequest;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -48,7 +47,7 @@ public class SubscriptionService {
 		}
 	}
 
-	public String getDetailsByUsername(String username, String authorization, boolean internal) throws Exception {
+	public byte [] getDetailsByUsername(String username, String authorization, boolean internal) throws Exception {
 		if (!internal) {
 			return subscriptionRepository.getDetailsByUsername(username,authorization,false);
 		} else {

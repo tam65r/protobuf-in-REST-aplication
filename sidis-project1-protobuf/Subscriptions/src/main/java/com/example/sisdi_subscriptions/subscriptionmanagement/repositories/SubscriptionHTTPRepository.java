@@ -1,9 +1,8 @@
 package com.example.sisdi_subscriptions.subscriptionmanagement.repositories;
 
+import com.example.sisdi_subscriptions.subscriptionmanagement.api.SubscriptionDTOMapper;
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.SubscriptionJPA;
-import com.example.sisdi_subscriptions.utils.LocalDateTimeTypeAdapter;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.sisdi_subscriptions.subscriptionmanagement.model.proto.SubscriptionEntity.Subscription;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -15,8 +14,6 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Component
 @RequiredArgsConstructor
 public class SubscriptionHTTPRepository {
@@ -25,12 +22,13 @@ public class SubscriptionHTTPRepository {
     @Value("${replica.port}")
     private String port;
 
+    private final SubscriptionDTOMapper mapper;
 
     private String getBaseUrl(){
         return "http://localhost:"+ this.port + "/api/subscriptions";
     }
 
-    public String getDetailsByUsername(String authorization) throws Exception{
+    public byte [] getDetailsByUsername(String authorization) throws Exception{
         String url = this.getBaseUrl() + "/internal/userPlanDetails/";
 
         HttpGet httpRequest = new HttpGet(url);
@@ -40,7 +38,7 @@ public class SubscriptionHTTPRepository {
 
             try (CloseableHttpResponse response = httpClient.execute(httpRequest)) {
                 if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                    return EntityUtils.toString(response.getEntity());
+                    return EntityUtils.toByteArray(response.getEntity());
                 }
             }
         }
@@ -52,17 +50,15 @@ public class SubscriptionHTTPRepository {
 
         HttpPatch httpPatch = new HttpPatch(url);
 
-        httpPatch.setHeader("Content-Type", "application/json");
+        httpPatch.setHeader("Content-Type", "application/x-protobuf");
         httpPatch.setHeader("Authorization", authorization);
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(httpPatch)) {
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
-                    .create();
+
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return gson.fromJson(EntityUtils.toString(response.getEntity()), SubscriptionJPA.class);
+                return mapper.toJPAEntity(Subscription.parseFrom(EntityUtils.toByteArray(response.getEntity())));
             }
         }
         return null;
@@ -73,17 +69,14 @@ public class SubscriptionHTTPRepository {
 
         HttpPatch httpPatch = new HttpPatch(url);
 
-        httpPatch.setHeader("Content-Type", "application/json");
+        httpPatch.setHeader("Content-Type", "application/x-protobuf");
         httpPatch.setHeader("Authorization", authorization);
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(httpPatch)) {
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
-                    .create();
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return gson.fromJson(EntityUtils.toString(response.getEntity()), SubscriptionJPA.class);
+                return mapper.toJPAEntity(Subscription.parseFrom(EntityUtils.toByteArray(response.getEntity())));
             }
         }
         return null;
@@ -94,17 +87,14 @@ public class SubscriptionHTTPRepository {
 
         HttpPatch httpPatch = new HttpPatch(url);
 
-        httpPatch.setHeader("Content-Type", "application/json");
+        httpPatch.setHeader("Content-Type", "application/x-protobuf");
         httpPatch.setHeader("Authorization", authorization);
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(httpPatch)) {
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
-                    .create();
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return gson.fromJson(EntityUtils.toString(response.getEntity()), SubscriptionJPA.class);
+                return mapper.toJPAEntity(Subscription.parseFrom(EntityUtils.toByteArray(response.getEntity())));
             }
         }
         return null;
