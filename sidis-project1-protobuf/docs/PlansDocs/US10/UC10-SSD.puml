@@ -5,7 +5,7 @@ autonumber
 autoactivate on
 
 !theme toy
-
+skinparam backgroundColor Transparent
 ClientHTTP -> Plans: Post/create
 box "system"
 participant Plans

@@ -5,7 +5,7 @@ autonumber
 autoactivate on
 
 !theme toy
-
+skinparam backgroundColor Transparent
 participant ClientHTTP as "ClientHTTP"
 participant PlanController as "PlanController"
 participant PlanService as "PlanService"

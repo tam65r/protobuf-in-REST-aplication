@@ -4,9 +4,9 @@
 skinparam classAttributeIconSize 0
 hide circle
 hide methods
-!theme hacker
+!theme toy
 
-skinparam defaultFontColor Black
+skinparam backgroundColor Transparent
 
 class Plan #F8DE7E/00FFFF{
     id

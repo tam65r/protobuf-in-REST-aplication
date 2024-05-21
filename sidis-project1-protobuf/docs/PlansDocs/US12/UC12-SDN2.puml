@@ -4,10 +4,9 @@
 autonumber
 autoactivate on
 
-!theme hacker
+!theme toy
+skinparam backgroundColor Transparent
 
-skinparam defaultFontColor Grey
-skinparam participantFontColor Black
 participant "P1:Plan" as P1
 participant "P2:Plan" as P2
 

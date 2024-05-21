@@ -3,14 +3,10 @@
 
 autonumber
 
-!theme hacker
+!theme toy
 
 
-
-skinparam defaultFontColor Grey
-skinparam participantFontColor Black
-skinparam noteFontColor Black
-
+skinparam backgroundColor Transparent
 participant "S2:Subscription" as S2
 participant "S1:Subscription" as S1
 participant "P?:Plan" as P1

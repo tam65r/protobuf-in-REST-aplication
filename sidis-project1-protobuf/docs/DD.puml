@@ -1,11 +1,10 @@
 @startuml
 'https://plantuml.com/deployment-diagram
 
-!theme hacker
+!theme toy
 
-skinparam componentBackgroundColor Transparent
-skinparam defaultFontColor White
-
+skinparam backgroundColor Transparent
+skinparam nodeBackgroundColor MOTIVATION
 node "Personal Computer" as sisdi {
     component "P1:Plan" as p1
     component "P2:Plan" as p2

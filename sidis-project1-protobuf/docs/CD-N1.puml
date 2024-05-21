@@ -1,8 +1,8 @@
 @startuml
 'https://plantuml.com/component-diagram
 
-!theme hacker
-skinparam interfaceFontColor Black
+!theme toy
+skinparam backgroundColor Transparent
 
 component " " as sidis <<Subscription Management>> {
     portin "REST API Plan"  as apiP
@@ -14,7 +14,7 @@ component " " as sidis <<Subscription Management>> {
 }
 
 skinparam component {
-    backgroundColor grey
+    backgroundColor MOTIVATION
 }
 
 interface "HTTP Client" as HTTPa

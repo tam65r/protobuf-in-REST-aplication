@@ -3,7 +3,7 @@
 !theme toy
 
 skinparam backgroundColor Transparent
-skinparam componentBackgroundColor Gray
+skinparam componentBackgroundColor MOTIVATION
 component " " <<Subscription Management>> {
     portin "REST API Plan"  as apiP
         portin "REST API Plan2"  as apiP2

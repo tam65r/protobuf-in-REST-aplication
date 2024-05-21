@@ -2,6 +2,9 @@
 'https://plantuml.com/component-diagram
 
 !theme toy
+
+skinparam backgroundColor Transparent
+
 interface " " as PlansCompInter
 
 interface " " as HttpClient

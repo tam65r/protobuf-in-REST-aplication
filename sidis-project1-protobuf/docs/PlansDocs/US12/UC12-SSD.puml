@@ -5,7 +5,7 @@ autonumber
 autoactivate on
 
 !theme toy
-
+skinparam backgroundColor Transparent
 ClientHTTP -> Plans: Get/all
 box
 participant Plans
