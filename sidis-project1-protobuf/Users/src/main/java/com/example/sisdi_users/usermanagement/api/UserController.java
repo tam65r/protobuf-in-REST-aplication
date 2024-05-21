@@ -1,6 +1,5 @@
 package com.example.sisdi_users.usermanagement.api;
 
-import com.example.sisdi_users.auth.api.AuthRequest;
 import com.example.sisdi_users.exceptions.InconsistencyDataException;
 
 import com.example.sisdi_users.usermanagement.model.UserJPA;
@@ -15,9 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
-import static java.lang.String.format;
-import static java.util.stream.Collectors.joining;
+import com.example.sisdi_users.usermanagement.model.proto.UserEntity.User;
+import com.example.sisdi_users.usermanagement.api.proto.UserRequests.AuthRequest;
 
 @Tag(name = "Users")
 @RestController
@@ -33,16 +31,16 @@ public class UserController {
 	@Operation(summary = "Endpoint to get a user")
 	@GetMapping("/{username}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<UserDTO> getByUsername(@PathVariable("username") String username)  throws Exception{
+	public ResponseEntity<User> getByUsername(@PathVariable("username") String username)  throws Exception{
 		UserJPA userJPA = service.getByUsername(username, false);
-		return ResponseEntity.ok().body(mapper.toUserView(userJPA));
+		return ResponseEntity.ok().body(mapper.toDTOEntity(userJPA));
 	}
 	@Operation(summary = "Endpoint to verify if user exist in other instance")
 	@GetMapping("/internal/{username}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<UserDTO> getByUsernameInternal(@PathVariable("username") String username)  throws Exception{
+	public ResponseEntity<User> getByUsernameInternal(@PathVariable("username") String username)  throws Exception{
 		UserJPA userJPA = service.getByUsername(username, true);
-		return ResponseEntity.ok().body(mapper.toUserView(userJPA));
+		return ResponseEntity.ok().body(mapper.toDTOEntity(userJPA));
 	}
 
 

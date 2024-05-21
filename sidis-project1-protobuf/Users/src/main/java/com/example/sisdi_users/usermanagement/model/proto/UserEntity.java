@@ -31,12 +31,6 @@ public final class UserEntity {
         getNameBytes();
 
     /**
-     * <code>bool enabled = 2;</code>
-     * @return The enabled.
-     */
-    boolean getEnabled();
-
-    /**
      * <code>string citizenCardNumber = 3;</code>
      * @return The citizenCardNumber.
      */
@@ -96,12 +90,12 @@ public final class UserEntity {
     com.example.sisdi_users.usermanagement.model.proto.UserEntity.User.Gender getGender();
 
     /**
-     * <code>string role = 8;</code>
+     * <code>string role = 2;</code>
      * @return The role.
      */
     java.lang.String getRole();
     /**
-     * <code>string role = 8;</code>
+     * <code>string role = 2;</code>
      * @return The bytes for role.
      */
     com.google.protobuf.ByteString
@@ -309,17 +303,6 @@ public final class UserEntity {
       }
     }
 
-    public static final int ENABLED_FIELD_NUMBER = 2;
-    private boolean enabled_;
-    /**
-     * <code>bool enabled = 2;</code>
-     * @return The enabled.
-     */
-    @java.lang.Override
-    public boolean getEnabled() {
-      return enabled_;
-    }
-
     public static final int CITIZENCARDNUMBER_FIELD_NUMBER = 3;
     private volatile java.lang.Object citizenCardNumber_;
     /**
@@ -491,10 +474,10 @@ public final class UserEntity {
       return result == null ? com.example.sisdi_users.usermanagement.model.proto.UserEntity.User.Gender.UNRECOGNIZED : result;
     }
 
-    public static final int ROLE_FIELD_NUMBER = 8;
+    public static final int ROLE_FIELD_NUMBER = 2;
     private volatile java.lang.Object role_;
     /**
-     * <code>string role = 8;</code>
+     * <code>string role = 2;</code>
      * @return The role.
      */
     @java.lang.Override
@@ -511,7 +494,7 @@ public final class UserEntity {
       }
     }
     /**
-     * <code>string role = 8;</code>
+     * <code>string role = 2;</code>
      * @return The bytes for role.
      */
     @java.lang.Override
@@ -546,8 +529,8 @@ public final class UserEntity {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
-      if (enabled_ != false) {
-        output.writeBool(2, enabled_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(role_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, role_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(citizenCardNumber_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, citizenCardNumber_);
@@ -564,9 +547,6 @@ public final class UserEntity {
       if (gender_ != com.example.sisdi_users.usermanagement.model.proto.UserEntity.User.Gender.OTHER.getNumber()) {
         output.writeEnum(7, gender_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(role_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, role_);
-      }
       getUnknownFields().writeTo(output);
     }
 
@@ -579,9 +559,8 @@ public final class UserEntity {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
-      if (enabled_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, enabled_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(role_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, role_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(citizenCardNumber_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, citizenCardNumber_);
@@ -598,9 +577,6 @@ public final class UserEntity {
       if (gender_ != com.example.sisdi_users.usermanagement.model.proto.UserEntity.User.Gender.OTHER.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(7, gender_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(role_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, role_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -619,8 +595,6 @@ public final class UserEntity {
 
       if (!getName()
           .equals(other.getName())) return false;
-      if (getEnabled()
-          != other.getEnabled()) return false;
       if (!getCitizenCardNumber()
           .equals(other.getCitizenCardNumber())) return false;
       if (!getBirthday()
@@ -645,9 +619,6 @@ public final class UserEntity {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + ENABLED_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getEnabled());
       hash = (37 * hash) + CITIZENCARDNUMBER_FIELD_NUMBER;
       hash = (53 * hash) + getCitizenCardNumber().hashCode();
       hash = (37 * hash) + BIRTHDAY_FIELD_NUMBER;
@@ -790,8 +761,6 @@ public final class UserEntity {
         super.clear();
         name_ = "";
 
-        enabled_ = false;
-
         citizenCardNumber_ = "";
 
         birthday_ = "";
@@ -831,7 +800,6 @@ public final class UserEntity {
       public com.example.sisdi_users.usermanagement.model.proto.UserEntity.User buildPartial() {
         com.example.sisdi_users.usermanagement.model.proto.UserEntity.User result = new com.example.sisdi_users.usermanagement.model.proto.UserEntity.User(this);
         result.name_ = name_;
-        result.enabled_ = enabled_;
         result.citizenCardNumber_ = citizenCardNumber_;
         result.birthday_ = birthday_;
         result.phoneNumber_ = phoneNumber_;
@@ -890,9 +858,6 @@ public final class UserEntity {
           name_ = other.name_;
           onChanged();
         }
-        if (other.getEnabled() != false) {
-          setEnabled(other.getEnabled());
-        }
         if (!other.getCitizenCardNumber().isEmpty()) {
           citizenCardNumber_ = other.citizenCardNumber_;
           onChanged();
@@ -947,11 +912,11 @@ public final class UserEntity {
 
                 break;
               } // case 10
-              case 16: {
-                enabled_ = input.readBool();
+              case 18: {
+                role_ = input.readStringRequireUtf8();
 
                 break;
-              } // case 16
+              } // case 18
               case 26: {
                 citizenCardNumber_ = input.readStringRequireUtf8();
 
@@ -977,11 +942,6 @@ public final class UserEntity {
 
                 break;
               } // case 56
-              case 66: {
-                role_ = input.readStringRequireUtf8();
-
-                break;
-              } // case 66
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1070,37 +1030,6 @@ public final class UserEntity {
   checkByteStringIsUtf8(value);
         
         name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private boolean enabled_ ;
-      /**
-       * <code>bool enabled = 2;</code>
-       * @return The enabled.
-       */
-      @java.lang.Override
-      public boolean getEnabled() {
-        return enabled_;
-      }
-      /**
-       * <code>bool enabled = 2;</code>
-       * @param value The enabled to set.
-       * @return This builder for chaining.
-       */
-      public Builder setEnabled(boolean value) {
-        
-        enabled_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool enabled = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearEnabled() {
-        
-        enabled_ = false;
         onChanged();
         return this;
       }
@@ -1465,7 +1394,7 @@ public final class UserEntity {
 
       private java.lang.Object role_ = "";
       /**
-       * <code>string role = 8;</code>
+       * <code>string role = 2;</code>
        * @return The role.
        */
       public java.lang.String getRole() {
@@ -1481,7 +1410,7 @@ public final class UserEntity {
         }
       }
       /**
-       * <code>string role = 8;</code>
+       * <code>string role = 2;</code>
        * @return The bytes for role.
        */
       public com.google.protobuf.ByteString
@@ -1498,7 +1427,7 @@ public final class UserEntity {
         }
       }
       /**
-       * <code>string role = 8;</code>
+       * <code>string role = 2;</code>
        * @param value The role to set.
        * @return This builder for chaining.
        */
@@ -1513,7 +1442,7 @@ public final class UserEntity {
         return this;
       }
       /**
-       * <code>string role = 8;</code>
+       * <code>string role = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearRole() {
@@ -1523,7 +1452,7 @@ public final class UserEntity {
         return this;
       }
       /**
-       * <code>string role = 8;</code>
+       * <code>string role = 2;</code>
        * @param value The bytes for role to set.
        * @return This builder for chaining.
        */
@@ -2396,15 +2325,15 @@ public final class UserEntity {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020UserEntity.proto\022\007example\"\330\001\n\004User\022\014\n\004" +
-      "name\030\001 \001(\t\022\017\n\007enabled\030\002 \001(\010\022\031\n\021citizenCa" +
-      "rdNumber\030\003 \001(\t\022\020\n\010birthday\030\004 \001(\t\022\023\n\013phon" +
-      "eNumber\030\005 \001(\t\022\020\n\010username\030\006 \001(\t\022$\n\006gende" +
-      "r\030\007 \001(\0162\024.example.User.Gender\022\014\n\004role\030\010 " +
-      "\001(\t\")\n\006Gender\022\t\n\005OTHER\020\000\022\n\n\006FEMALE\020\001\022\010\n\004" +
-      "MALE\020\002\"\'\n\010UserList\022\033\n\004user\030\001 \003(\0132\r.examp" +
-      "le.UserB4\n2com.example.sisdi_users.userm" +
-      "anagement.model.protob\006proto3"
+      "\n\020UserEntity.proto\022\007example\"\307\001\n\004User\022\014\n\004" +
+      "name\030\001 \001(\t\022\031\n\021citizenCardNumber\030\003 \001(\t\022\020\n" +
+      "\010birthday\030\004 \001(\t\022\023\n\013phoneNumber\030\005 \001(\t\022\020\n\010" +
+      "username\030\006 \001(\t\022$\n\006gender\030\007 \001(\0162\024.example" +
+      ".User.Gender\022\014\n\004role\030\002 \001(\t\")\n\006Gender\022\t\n\005" +
+      "OTHER\020\000\022\n\n\006FEMALE\020\001\022\010\n\004MALE\020\002\"\'\n\010UserLis" +
+      "t\022\033\n\004user\030\001 \003(\0132\r.example.UserB4\n2com.ex" +
+      "ample.sisdi_users.usermanagement.model.p" +
+      "rotob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2415,7 +2344,7 @@ public final class UserEntity {
     internal_static_example_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_example_User_descriptor,
-        new java.lang.String[] { "Name", "Enabled", "CitizenCardNumber", "Birthday", "PhoneNumber", "Username", "Gender", "Role", });
+        new java.lang.String[] { "Name", "CitizenCardNumber", "Birthday", "PhoneNumber", "Username", "Gender", "Role", });
     internal_static_example_UserList_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_example_UserList_fieldAccessorTable = new

@@ -1,23 +1,20 @@
 package com.example.sisdi_users.usermanagement.repositories;
 
-import com.example.sisdi_users.auth.api.AuthRequest;
+import com.example.sisdi_users.usermanagement.api.UserDTOMapper;
 import com.example.sisdi_users.usermanagement.model.UserJPA;
-import com.example.sisdi_users.utils.LocalDateTimeTypeAdapter;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
+import com.example.sisdi_users.usermanagement.api.proto.UserRequests.AuthRequest;
+import com.example.sisdi_users.usermanagement.model.proto.UserEntity.User;
 
 
 @Component
@@ -27,6 +24,7 @@ public class UserHTTPRepository {
     @Value("${replica.port}")
     private String port;
 
+    private UserDTOMapper mapper;
 
     private String getBaseUrl(){
         return "http://localhost:"+ this.port + "/api/users";
@@ -38,11 +36,8 @@ public class UserHTTPRepository {
             HttpGet httpRequest = new HttpGet(url);
 
             try (CloseableHttpResponse response = httpClient.execute(httpRequest)) {
-                Gson gson = new GsonBuilder()
-                        .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
-                        .create();
                 if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                    return gson.fromJson(EntityUtils.toString(response.getEntity()), UserJPA.class);
+                    return mapper.toJPAEntity(User.parseFrom(EntityUtils.toByteArray(response.getEntity())));
                 }
             }
         }
@@ -52,14 +47,9 @@ public class UserHTTPRepository {
     public String login(AuthRequest request) throws Exception {
         HttpPost post = new HttpPost(getBaseUrl() + "/internal/login");
 
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
-                .create();
 
-        String resource = gson.toJson(request);
-
-        post.setHeader("Content-Type", "application/json");
-        post.setEntity(new StringEntity(resource));
+        post.setHeader("Content-Type", "application/x-protobuf");
+        post.setEntity(new ByteArrayEntity(request.toByteArray()));
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(post)) {

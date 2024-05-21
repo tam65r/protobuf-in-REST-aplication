@@ -1,10 +1,7 @@
 package com.example.sisdi_users.usermanagementapi;
 
 
-import com.example.sisdi_users.auth.api.AuthRequest;
 import com.example.sisdi_users.testutils.JsonHelper;
-import com.example.sisdi_users.usermanagement.api.CreateUserRequest;
-import com.example.sisdi_users.usermanagement.api.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

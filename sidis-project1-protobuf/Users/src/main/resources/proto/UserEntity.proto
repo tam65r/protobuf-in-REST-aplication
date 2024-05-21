@@ -5,7 +5,6 @@ option java_package = "com.example.sisdi_users.usermanagement.model.proto";
 
 message User {
   string name = 1;
-  bool enabled = 2;
   string citizenCardNumber = 3;
   string birthday = 4;
   string phoneNumber = 5;
@@ -19,7 +18,7 @@ message User {
 
 
   Gender gender = 7;
-  string role = 8;
+  string role = 2;
 }
 
 message UserList {

@@ -1,10 +1,8 @@
 package com.example.sisdi_users.usermanagement.repositories;
 
-import com.example.sisdi_users.auth.api.AuthRequest;
 import com.example.sisdi_users.exceptions.DuplicatedDataException;
 import com.example.sisdi_users.exceptions.InconsistencyDataException;
 import com.example.sisdi_users.exceptions.NotFoundException;
-import com.example.sisdi_users.usermanagement.api.CreateSubscriberRequest;
 import com.example.sisdi_users.usermanagement.model.UserJPA;
 
 import com.example.sisdi_users.usermanagement.service.UserRepository;
@@ -19,7 +17,9 @@ import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Component;
-
+import com.example.sisdi_users.usermanagement.api.proto.UserRequests.AuthRequest;
+import com.example.sisdi_users.usermanagement.api.proto.UserRequests.CreateUserRequest;
+import com.example.sisdi_users.usermanagement.api.proto.UserRequests.CreateSubscriptionRequest;
 import java.time.Instant;
 import java.util.Optional;
 
@@ -36,7 +36,7 @@ public class UserRepositoryImpl implements UserRepository {
     private final JwtEncoder jwtEncoder;
 
     @Override
-    public UserJPA create(UserJPA userJPA, CreateSubscriberRequest request) throws Exception {
+    public UserJPA create(UserJPA userJPA, CreateSubscriptionRequest request) throws Exception {
         final var userOpt = dbRepository.findByUsername(userJPA.getUsername());
         if(userOpt.isEmpty()){ //nao existe "neste"
             if(httpRepository.getByUsername(userJPA.getUsername()) == null){ //nao existe "no outro"

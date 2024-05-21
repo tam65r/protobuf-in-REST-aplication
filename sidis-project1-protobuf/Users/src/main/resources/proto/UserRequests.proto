@@ -27,3 +27,8 @@ message CreateUserRequest {
   string initialDate = 12;
 }
 
+message AuthRequest {
+  string username = 1;
+  string password = 2;
+}
+
