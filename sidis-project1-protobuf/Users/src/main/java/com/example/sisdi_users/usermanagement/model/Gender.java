@@ -26,6 +26,32 @@ public enum Gender {
 		throw new IllegalArgumentException("Invalid Gender: " + text);
 	}
 
+	public static Gender fromInt(int value) {
+		switch (value){
+			case 0:
+				return Gender.OTHER;
+			case 1:
+				return Gender.FEMALE;
+			case 2:
+				return Gender.MALE;
+			default:
+				return null;
+		}
+	}
+
+	public static int toInt(Gender gender) {
+		switch (gender){
+			case OTHER:
+				return 0;
+			case FEMALE:
+				return 1;
+			case MALE:
+				return 2;
+			default:
+				return -12;
+		}
+	}
+
 	@Override
 	public String toString() {
 		return getDescription();

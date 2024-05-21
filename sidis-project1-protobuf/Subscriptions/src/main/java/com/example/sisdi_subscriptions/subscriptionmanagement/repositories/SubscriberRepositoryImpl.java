@@ -37,7 +37,7 @@ public class SubscriberRepositoryImpl implements SubscriptionRepository {
             subscriptionJPA.setPaymentMethod(PaymentMethod.NA);
         } else {
             subscriptionJPA.setPlan(plan);
-            if (resource.getFeeType() == null || resource.getPaymentMethod() == null) {
+            if (resource.getFeeType() == null || resource.getPaymentMethod() == null || resource.getPaymentMethod().isEmpty() || resource.getFeeType().isEmpty()) {
                 throw new InconsistencyDataException(SubscriptionJPA.class,"Null not a valid value");
             }
             if (resource.getFeeType().equals(FeeType.NA.toString()) || resource.getPaymentMethod().equals(PaymentMethod.NA.toString())) {

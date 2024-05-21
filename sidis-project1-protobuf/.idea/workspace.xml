@@ -6,23 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="4843af55-48bd-4704-a298-23669195d3bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/utils/ServerPortListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/utils/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/CreateSubscriptionRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionDTOMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionDTOMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionDTOMapperImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/PlanHTTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/PlanHTTPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/PlanRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/PlanRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/SubscriberRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/SubscriberRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/SubscriptionHTTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/repositories/SubscriptionHTTPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/service/PlanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/service/PlanRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/service/SubscriptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/service/SubscriptionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/service/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/service/SubscriptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/utils/LocalDateTimeTypeAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/utils/ServerPortListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/test/java/com/example/sisdi_subscriptions/subscriptionsmanagementapi/TestSubscriptionsApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/test/java/com/example/sisdi_subscriptions/subscriptionsmanagementapi/TestSubscriptionsApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/auth/api/AuthApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/auth/api/AuthApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/auth/api/AuthRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/api/CreateSubscriberRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/api/CreateUserRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/api/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/api/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/api/UserDTOMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/api/UserDTOMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/api/proto/UserRequests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/model/proto/UserEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/repositories/SubscriptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/repositories/SubscriptionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/repositories/UserHTTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/repositories/UserHTTPRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/repositories/UserRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/repositories/UserRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/service/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/service/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Users/src/main/java/com/example/sisdi_users/usermanagement/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/resources/proto/UserEntity.proto" beforeDir="false" afterPath="$PROJECT_DIR$/Users/src/main/resources/proto/UserEntity.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/main/resources/proto/UserRequests.proto" beforeDir="false" afterPath="$PROJECT_DIR$/Users/src/main/resources/proto/UserRequests.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/src/test/java/com/example/sisdi_users/usermanagementapi/TestUsersApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/Users/src/test/java/com/example/sisdi_users/usermanagementapi/TestUsersApi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +66,7 @@
     "Spring Boot.SubscriptionsApplication 2.executor": "Run",
     "Spring Boot.SubscriptionsApplication.executor": "Run",
     "Spring Boot.UsersApplication.executor": "Run",
-    "git-widget-placeholder": "protobuf-definitions-subscriptions",
+    "git-widget-placeholder": "protobuf-definitions-users",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
