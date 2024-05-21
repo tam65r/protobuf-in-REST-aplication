@@ -3,7 +3,7 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for psoft-g2" enabled="true">
+      <profile name="Annotation profile for plan-protobuf-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -15,9 +15,9 @@
         </processorPath>
         <module name="psoft-g2 (3)" />
         <module name="psoft-g2 (2)" />
+        <module name="psoft-g2 (1)" />
         <module name="sidis-subscriptions-pj1" />
         <module name="sidis-users-pj1" />
-        <module name="psoft-g2 (1)" />
         <module name="sidis-plans-pj1" />
       </profile>
     </annotationProcessing>

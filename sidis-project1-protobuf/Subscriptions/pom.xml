@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>psoft-g2</artifactId>
+	<artifactId>subscription-protobuf-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>psoft-g2</name>
-	<description>G2 psoft project</description>
+	<name>subscription-protobuf-service</name>
+	<description>Subscription Service</description>
 
 	<properties>
 		<java.version>17</java.version>
@@ -103,6 +103,32 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.10</version>
+		</dependency>
+
+		<!-- Protocol Buffers Dependencies -->
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>3.25.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protoc</artifactId>
+			<version>3.25.3</version>
+			<type>pom</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java-util</artifactId>
+			<version>3.25.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.protobuf-java-format</groupId>
+			<artifactId>protobuf-java-format</artifactId>
+			<version>1.4</version>
 		</dependency>
 	</dependencies>
 
