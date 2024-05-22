@@ -24,7 +24,7 @@ public class UserHTTPRepository {
     @Value("${replica.port}")
     private String port;
 
-    private UserDTOMapper mapper;
+    private final UserDTOMapper mapper;
 
     private String getBaseUrl(){
         return "http://localhost:"+ this.port + "/api/users";

@@ -35,10 +35,10 @@ public class SubscriptionDTOMapper {
         return Subscription.newBuilder()
                 .setSubscriberID(jpaEntity.getSubscriberID())
                 .setPlan(jpaEntity.getPlan())
-                .setInitialDate(jpaEntity.getInitialDate().toString())
+                .setInitialDate(jpaEntity.getInitialDate() != null ? jpaEntity.getInitialDate().toLocalDate().toString() : "")
                 .setIsActive(jpaEntity.getStatus())
-                .setFinalDate(jpaEntity.getFinalDate().toString())
-                .setEndSubscriptionDate(jpaEntity.getEndSubscriptionDate().toString())
+                .setFinalDate(jpaEntity.getFinalDate() != null ? jpaEntity.getFinalDate().toLocalDate().toString() : "")
+                .setEndSubscriptionDate(jpaEntity.getEndSubscriptionDate() != null ? jpaEntity.getEndSubscriptionDate().toLocalDate().toString() : "")
                 .setFeeTypeValue(FeeType.toInt(jpaEntity.getFeeType()))
                 .setPaymentMethodValue(PaymentMethod.toInt(jpaEntity.getPaymentMethod()))
                 .build();
