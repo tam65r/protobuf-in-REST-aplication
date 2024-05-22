@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/deployment-diagram
+
+!theme toy
+
+skinparam backgroundColor Transparent
+skinparam nodeBackgroundColor MOTIVATION
+node "Personal Computer" as sisdi {
+    component "P1:Plan" as p1
+    component "P2:Plan" as p2
+    component "S1:Subscription" as s1
+    component "S2:Subscription" as s2
+    component "U1:User" as u1
+    component "U2:User" as u2
+
+    rectangle "H2" as h2  {
+        component "db-plan" as dbp
+        component "db-plan2" as dbp2
+        component "db-subscription" as dbs
+        component "db-subscription2" as dbs2
+        component "db-user" as dbu
+        component "db-user2" as dbu2
+    }
+}
+
+
+
+p1 --- dbp : database
+p2 --- dbp2: database
+s1 --- dbs: database
+s2 --- dbs2: database
+u1 --- dbu: database
+u2 --- dbu2: database
+
+@enduml

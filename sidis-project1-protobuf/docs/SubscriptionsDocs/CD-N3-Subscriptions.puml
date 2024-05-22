@@ -1,0 +1,108 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+!theme toy
+
+skinparam backgroundColor Transparent
+
+interface " " as PlansCompInter
+
+interface " " as HttpClient
+interface " " as SubscriptionCompInter
+interface " " as SubscriptionDBInter
+
+component "Http Client" as NodeHTTP
+
+component "Plans REST API" as PlansComp
+component "Subscriptions REST API" as SubscriptionComp
+database "Subscriptions DB API" as SubscriptionDB
+
+component "<<REST API Subscriptions>>" as Subsss {
+    portin "REST API Repository Plans" as apiPlans
+
+    portin "REST API Subscriptions" as out
+    portin "REST API Repository Subscriptions" as apiSubscriptions
+    portin "DB API Repository Subscriptions" as dbSubscriptions
+    component "Routes" as routes
+    component "SubscriptionController" as ctrl
+    component "SubscriptionService" as service
+    component "Subscription" as sub
+    component "PlanHTTPRepository" as pRepo
+    component "SubscriptionHTTPRepository" as sRepo
+    component "SubscriptionDBRepository" as repo
+    component "PlanRepository" as pDriver
+    component "SubscriptionRepository" as driver
+    component "Driver Plans HTTP" as planHTTPDriver
+    component "Driver Subscriptions HTTP" as subHTTPDriver
+    component "Driver DB" as subDBDriver
+    interface " " as ctrlSer
+    interface " " as routesCtr
+    interface " " as model
+    interface " " as subDriver
+    interface " " as planDriver
+    interface " " as repos
+    interface " " as planHttpInterface
+    interface " " as subHttpInterface
+    interface " " as subDBInterface
+    interface " " as planHttpInterface2
+
+}
+
+HttpClient -d- out
+PlansCompInter )-d- apiPlans
+SubscriptionCompInter )-d- apiSubscriptions
+SubscriptionDBInter )-d- dbSubscriptions
+
+
+NodeHTTP -d-( HttpClient
+PlansComp -d- PlansCompInter
+SubscriptionComp -d- SubscriptionCompInter
+SubscriptionDB -d- SubscriptionDBInter
+
+
+routes -u- out
+routes -d-( routesCtr
+ctrl -u- routesCtr
+ctrl -l[hidden]- pRepo
+ctrl -r[hidden]- sRepo
+sRepo -r[hidden]- repo
+
+ctrl -d-( ctrlSer
+service -u- ctrlSer
+
+service -d-( model
+sub -u- model
+
+service -r-( subDriver
+driver -l- subDriver
+
+service -l-( planDriver
+pDriver -r- planDriver
+
+sRepo -d- repos
+repo -d- repos
+
+driver -u-( repos
+
+pDriver -u-( planHttpInterface
+pRepo -d- planHttpInterface
+
+routes -r[hidden]- subHTTPDriver
+planHTTPDriver -r[hidden]- routes
+sRepo -u-( subHttpInterface
+subHTTPDriver -d- subHttpInterface
+
+repo -u-( subDBInterface
+subDBDriver -d- subDBInterface
+
+pRepo -u-( planHttpInterface2
+planHTTPDriver -d- planHttpInterface2
+
+planHTTPDriver -u- apiPlans
+
+subHTTPDriver -u- apiSubscriptions
+
+subDBDriver -u- dbSubscriptions
+
+subHTTPDriver -r[hidden]- subDBDriver
+@enduml

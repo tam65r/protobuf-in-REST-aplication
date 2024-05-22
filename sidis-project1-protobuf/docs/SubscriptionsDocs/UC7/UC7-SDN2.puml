@@ -1,0 +1,69 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+!theme toy
+
+
+skinparam backgroundColor Transparent
+participant "S2:Subscription" as S2
+participant "S1:Subscription" as S1
+participant "P?:Plan" as P1
+
+note left of S2
+    The username that is used to get the information
+    is extracted from the **JWT token**, so if the token is valid
+    the subscriber exists in one of the instances
+end note
+
+note left of P1
+    Because a subscription can not be created
+    without a valid plan, the return of the plan
+    will never be not found
+end note
+
+[o-> S2: GET/userPlanDetails
+activate S2
+
+S2 -> S2: getDetailsByUsername(username,...)
+activate S2
+alt subscriber found
+S2 --> S2: planName
+deactivate S2
+
+S2 -> P1: GET/plan
+activate P1
+P1 -->S2: plan
+deactivate P1
+
+[o<-- S2: 200/plan
+else plan found
+activate S2
+S2 --> S2: null
+deactivate S2
+
+S2 -> S1: GET/internal/userPlanDetails
+activate S1
+
+S1 -> P1: GET/plan
+activate P1
+P1 -->S1: plan
+deactivate P1
+
+
+S1 --> S2: 200/plan
+
+
+deactivate S1
+
+[o<-- S2: 200/plan
+deactivate S2
+
+
+end
+
+
+
+
+@enduml

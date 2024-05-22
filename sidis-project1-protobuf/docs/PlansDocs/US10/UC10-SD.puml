@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+autoactivate on
+
+!theme toy
+skinparam backgroundColor Transparent
+participant ClientHTTP as "ClientHTTP"
+participant PlanController as "PlanController"
+participant PlanService as "PlanService"
+participant PlanRepositoryDriver as "PlanRepository"
+participant PlanDBRepository as "PlanRepository"
+participant PlanHTTPRepository as "PlanHTTPRepository"
+participant Plans2 as "Plans2"
+participant Plan as "plan:Plan"
+
+ClientHTTP -> PlanController: Post/create
+PlanController -> PlanService: create
+PlanService -> PlanRepositoryDriver:create(plan)
+PlanRepositoryDriver -> PlanRepository:findByName(plan.getName())
+return empty
+PlanRepositoryDriver -> PlanHTTPRepository:getPlanByName(plan.getName())
+
+    PlanHTTPRepository -> Plans2: GET/{name}
+
+
+     Plans2 --> PlanHTTPRepository: 404
+    PlanHTTPRepository --> PlanRepositoryDriver:null
+
+    PlanRepositoryDriver -> Plan**:Plan(name,description,numberOfMinutes, MusicSuggestions.fromString(musicSuggestions),musicCollections,monthlyFee,anualFee)
+    return plan
+    PlanRepositoryDriver ->PlanRepository: save(plan)
+    return plan
+    PlanRepositoryDriver --> PlanService: plan
+    PlanService --> PlanController: plan
+    PlanController --> ClientHTTP: 201/plan
+@enduml

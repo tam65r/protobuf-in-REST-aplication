@@ -1,0 +1,90 @@
+@startuml
+'https://plantuml.com/component-diagram
+!theme toy
+
+skinparam backgroundColor Transparent
+skinparam componentBackgroundColor MOTIVATION
+component " " <<Subscription Management>> {
+    portin "REST API Plan"  as apiP
+        portin "REST API Plan2"  as apiP2
+
+    portin "REST API Subscription" as apiS
+        portin "REST API Subscription2" as apiS2
+
+    portin "REST API User" as apiU
+        portin "REST API User2" as apiU2
+
+    component "P1:Plan" as plans #F8DE7E/00FFFF
+        component "P2:Plan" as plans2 #F8DE7E/00FFFF
+
+    component "S1:Subscription" as subscriptions #F8DE7E/00FFFF
+        component "S2:Subscription" as subscriptions2 #F8DE7E/00FFFF
+
+    component "U1:User" as users #F8DE7E/00FFFF
+
+        component "U2:User" as users2 #F8DE7E/00FFFF
+
+
+    interface " " as inter1
+    interface " " as inter2
+    interface " " as inter3
+    interface " " as inter4
+    interface " " as inter5
+    interface " " as inter6
+}
+
+
+
+interface "HTTP Client" as HTTPa
+interface "HTTP Client" as HTTPb
+interface "HTTP Client" as HTTPc
+
+interface "HTTP Client" as HTTPa2
+interface "HTTP Client" as HTTPb2
+interface "HTTP Client" as HTTPc2
+
+apiP --plans
+apiS - subscriptions
+apiU - users
+
+HTTPa -- apiP
+HTTPb -- apiS
+HTTPc -- apiU
+
+
+
+
+
+apiP2 - plans2
+apiS2 - subscriptions2
+apiU2 - users2
+
+HTTPa2 -- apiP2
+HTTPb2 -- apiS2
+HTTPc2 -- apiU2
+
+plans  -( inter1
+inter1 - plans2
+
+plans -d- inter2
+
+subscriptions --( inter2
+subscriptions2 --( inter2
+plans2 --( inter2
+
+subscriptions -- inter3
+subscriptions2 --( inter3
+
+subscriptions --( inter4
+subscriptions2 -- inter4
+
+
+users -- inter5
+users2 --( inter5
+
+users --( inter6
+users2 -- inter6
+
+users --( inter3
+users2 --( inter3
+@enduml

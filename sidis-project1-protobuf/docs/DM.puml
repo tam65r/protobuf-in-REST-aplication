@@ -1,0 +1,60 @@
+@startuml
+
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+!theme toy
+
+skinparam backgroundColor Transparent
+
+class Plan #F8DE7E/00FFFF{
+    id
+    name
+    description
+    numberMinutes
+    maxNumberDevices
+    musicCollections
+    musicSuggestions
+    monthlyFee
+    annualFee
+    isActive
+}
+
+class Subscription #F8DE7E/00FFFF{
+    id
+    initialDate
+    isActive
+    finalDate
+    feeType
+    isRenewed
+    paymentMethod
+    endSubscriptionDate
+}
+
+
+
+
+class AuthorityRole #F8DE7E/00FFFF{
+    authority
+}
+
+class User #F8DE7E/00FFFF{
+    username
+    password
+    id
+    name
+    citizenCardNumber
+    birthday
+    phoneNumber
+    sex
+}
+
+Plan "1" -right-  "*..1" Subscription:contains <
+
+AuthorityRole "1" -left- "*..1" User:has <
+User "1" -down-  "*..1"Subscription:manages/contains >
+
+
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+!theme toy
+skinparam backgroundColor Transparent
+
+component " " as sidis <<Subscription Management>> {
+    portin "REST API Plan"  as apiP
+    portin "REST API Subscription" as apiS
+    portin "REST API User" as apiU
+        portin "REST API Plan2"  as apiP2
+        portin "REST API Subscription2" as apiS2
+        portin "REST API User2" as apiU2
+}
+
+skinparam component {
+    backgroundColor MOTIVATION
+}
+
+interface "HTTP Client" as HTTPa
+interface "HTTP Client" as HTTPb
+interface "HTTP Client" as HTTPc
+
+interface "HTTP Client" as HTTPa2
+interface "HTTP Client" as HTTPb2
+interface "HTTP Client" as HTTPc2
+
+HTTPa -- apiP
+HTTPb -- apiS
+HTTPc -- apiU
+
+HTTPa2 -- apiP2
+HTTPb2 -- apiS2
+HTTPc2 -- apiU2
+
+
+@enduml

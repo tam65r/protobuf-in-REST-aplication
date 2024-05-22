@@ -1,0 +1,34 @@
+syntax = "proto3";
+package example;
+option java_package = "com.example.sisdi_users.usermanagement.api.proto";
+
+
+message CreateSubscriptionRequest {
+  string username = 1;
+  string plan = 2;
+  string feeType = 3;
+  string paymentMethod = 4;
+  string initialDate = 5;
+}
+
+
+message CreateUserRequest {
+  string username = 1;
+  string password = 2;
+  string name = 3;
+  string citizenCardNumber = 4;
+  string birthday = 5;
+  string phoneNumber = 6;
+  string sex = 7;
+  string role = 8;
+  string plan = 9;
+  string feeType = 10;
+  string paymentMethod = 11;
+  string initialDate = 12;
+}
+
+message AuthRequest {
+  string username = 1;
+  string password = 2;
+}
+

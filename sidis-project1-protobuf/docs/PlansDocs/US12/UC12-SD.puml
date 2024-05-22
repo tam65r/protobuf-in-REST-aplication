@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+autoactivate on
+
+!theme toy
+skinparam backgroundColor Transparent
+ClientHTTP -> PlanController: Get/all
+PlanController -> PlanService: getAll
+PlanService -> PlanRepository:getAll(request, false)
+PlanRepository -> PlanDBRepository:findAllByStatus()
+return plansDB
+PlanRepository -> PlanHTTPRepository:getAllPlans(request)
+
+    PlanHTTPRepository -> Plans2: GET/all
+    Plans2 --> PlanHTTPRepository: plans
+
+
+
+    PlanHTTPRepository --> PlanRepository: plans
+    PlanRepository --> PlanService: plans
+    PlanService --> PlanController: plans
+    PlanController --> ClientHTTP: 200/plans
+@enduml

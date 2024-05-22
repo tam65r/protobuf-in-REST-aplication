@@ -1,0 +1,66 @@
+@startuml
+'https://plantuml.com/component-diagram
+!theme toy
+
+skinparam backgroundColor Transparent
+component " " <<Subscription Management>> {
+    portin "REST API Plans"  as apiP
+    portin "REST API Subscriptions" as apiS
+    portin "REST API Users" as apiU
+        portin "REST API Plans2"  as apiP2
+        portin "REST API Subscriptions2" as apiS2
+        portin "REST API Users2" as apiU2
+
+    component "Plans:P1" as plans #F8DE7E/00FFFF
+    component "Subscriptions:S1" as subscriptions #F8DE7E/00FFFF
+    component "Users:U1" as users #F8DE7E/00FFFF
+    database "db-plans" as dbplans
+    database "db-users" as dbusers
+    database "db-subscriptions" as dbsub
+
+        component "Plans:P2" as plans2 #F8DE7E/00FFFF
+        component "Subscriptions:S2" as subscriptions2 #F8DE7E/00FFFF
+        component "Users:U2" as users2 #F8DE7E/00FFFF
+        database "db-plans2" as dbplans2
+        database "db-users2" as dbusers2
+        database "db-subscriptions2" as dbsub2
+
+}
+
+
+skinparam component {
+    backgroundColor MOTIVATION
+}
+
+interface "HTTP Client" as HTTPa
+interface "HTTP Client" as HTTPb
+interface "HTTP Client" as HTTPc
+
+interface "HTTP Client" as HTTPa2
+interface "HTTP Client" as HTTPb2
+interface "HTTP Client" as HTTPc2
+apiP --> plans
+apiS --> subscriptions
+apiU --> users
+
+HTTPa -- apiP
+HTTPb -- apiS
+HTTPc -- apiU
+
+plans -- dbplans
+users -- dbusers
+subscriptions -- dbsub
+
+
+apiP2 --> plans2
+apiS2 --> subscriptions2
+apiU2 --> users2
+
+HTTPa2 -- apiP2
+HTTPb2 -- apiS2
+HTTPc2 -- apiU2
+
+plans2 -- dbplans2
+users2 -- dbusers2
+subscriptions2 -- dbsub2
+@enduml

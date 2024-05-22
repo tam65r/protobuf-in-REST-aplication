@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+!theme toy
+
+left to right direction
+
+skinparam backgroundColor Transparent
+
+:Admin: as "Admin" #F8DE7E/00FFFF
+:Director: as "Marketing Director" #F8DE7E/00FFFF
+:User: as "User" #F8DE7E/00FFFF
+:Subscriber: as "Subscriber" #F8DE7E/00FFFF
+
+package Plans {
+ usecase "UC9 - Change Plan Details" as UC8
+ usecase "UC10 - Create New Plan" as UC9
+ usecase "UC11 - Deactivate Plan" as UC10
+ usecase "UC12 - List All Plans" as UC11
+ usecase "UC2 - Bootstrap System Plans" as UC12
+}
+
+package Subscriptions {
+    usecase "UC5 - Cancel Subscription" as UC4
+    usecase "UC6 - Change Subscription Plan" as UC5
+    usecase "UC7 - View Subscription Plan Details" as UC6
+    usecase "UC8 - Renew Subscription" as UC7
+}
+
+package Users {
+    usecase "UC3 - Register Account" as UC1
+    usecase "UC1 - Bootstrap System Users" as UC2
+    usecase "UC4 - Login" as UC3
+}
+
+
+UC2 <-- Admin
+UC12 <-- Admin
+
+UC8 <-- Director
+UC9 <-- Director
+UC10 <-- Director
+UC11 <-- Director
+
+UC1 <-- User
+UC3 <-- User
+UC11 <-- User
+
+Subscriber --> UC4
+Subscriber --> UC5
+Subscriber --> UC6
+Subscriber --> UC7
+@enduml

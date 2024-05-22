@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+autoactivate on
+
+!theme toy
+skinparam backgroundColor Transparent
+
+participant "P1:Plan" as P1
+participant "P2:Plan" as P2
+
+
+[o-> P1: GET/all
+
+
+P1 -> P2: GET/internal/all
+
+P2 --> P1: 200/plans
+
+
+
+
+[o<-- P1: 200/plans
+
+
+@enduml
