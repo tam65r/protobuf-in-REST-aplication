@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4843af55-48bd-4704-a298-23669195d3bd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/test/java/com/example/sisdi_plans/planmanagementapi/TestPlansApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/test/java/com/example/sisdi_plans/planmanagementapi/TestPlansApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionDTOMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions/src/main/java/com/example/sisdi_subscriptions/subscriptionmanagement/api/SubscriptionDTOMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,13 +44,13 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.PlansApplication 2.executor": "Debug",
-    "Spring Boot.PlansApplication.executor": "Debug",
-    "Spring Boot.SubscriptionsApplication 2.executor": "Debug",
-    "Spring Boot.SubscriptionsApplication.executor": "Debug",
-    "Spring Boot.UsersApplication 2.executor": "Debug",
-    "Spring Boot.UsersApplication.executor": "Debug",
-    "git-widget-placeholder": "protobuf-definitions-corrections",
+    "Spring Boot.PlansApplication 2.executor": "Run",
+    "Spring Boot.PlansApplication.executor": "Run",
+    "Spring Boot.SubscriptionsApplication 2.executor": "Run",
+    "Spring Boot.SubscriptionsApplication.executor": "Run",
+    "Spring Boot.UsersApplication 2.executor": "Run",
+    "Spring Boot.UsersApplication.executor": "Run",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
@@ -78,9 +76,9 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.UsersApplication 2">
+  <component name="RunManager" selected="Spring Boot.SubscriptionsApplication 2">
     <configuration name="PlansApplication 2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="plan-protobuf-service" />
+      <module name="planJPA-protobuf-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sisdi_plans.PlansApplication" />
       <option name="VM_PARAMETERS" value="-Dserver.port=8085 -Dreplica.port=8080 -Dspring.datasource.url=jdbc:h2:~/databases/protobuf/plansJPA2;AUTO_SERVER=true;" />
       <method v="2">
@@ -88,14 +86,14 @@
       </method>
     </configuration>
     <configuration name="PlansApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="plan-protobuf-service" />
+      <module name="planJPA-protobuf-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sisdi_plans.PlansApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="SubscriptionsApplication 2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="subscription-protobuf-service" />
+      <module name="subscriptionJPA-protobuf-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sisdi_subscriptions.SubscriptionsApplication" />
       <option name="VM_PARAMETERS" value="-Dserver.port=8086 -Dreplica.port=8081 -Dspring.datasource.url=jdbc:h2:~/databases/protobuf/subscriptionsJPA2;AUTO_SERVER=true;" />
       <method v="2">
@@ -103,14 +101,14 @@
       </method>
     </configuration>
     <configuration name="SubscriptionsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="subscription-protobuf-service" />
+      <module name="subscriptionJPA-protobuf-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sisdi_subscriptions.SubscriptionsApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="UsersApplication 2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="user-protobuf-service" />
+      <module name="userJPA-protobuf-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sisdi_users.UsersApplication" />
       <option name="VM_PARAMETERS" value="-Dserver.port=8087 -Dreplica.port=8083 -Dsubscriptions.port=8086 -Dspring.datasource.url=jdbc:h2:~/databases/protobuf/usersJPA2;AUTO_SERVER=true;" />
       <method v="2">
@@ -118,7 +116,7 @@
       </method>
     </configuration>
     <configuration name="UsersApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="user-protobuf-service" />
+      <module name="userJPA-protobuf-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sisdi_users.UsersApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -152,6 +150,7 @@
       <workItem from="1716331646603" duration="371000" />
       <workItem from="1716370824299" duration="1035000" />
       <workItem from="1716390350781" duration="3430000" />
+      <workItem from="1716394383401" duration="366000" />
     </task>
     <servers />
   </component>

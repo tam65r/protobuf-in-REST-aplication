@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>subscriptionJPA-protobuf-service</artifactId>
+	<artifactId>subscription-protobuf-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>subscriptionJPA-protobuf-service</name>
+	<name>subscription-protobuf-service</name>
 	<description>Subscription Service</description>
 
 	<properties>
