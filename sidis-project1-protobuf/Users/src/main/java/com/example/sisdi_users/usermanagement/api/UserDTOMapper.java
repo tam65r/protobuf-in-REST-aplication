@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.sisdi_users.usermanagement.api.proto.UserRequests;
 import com.example.sisdi_users.usermanagement.model.Gender;
 import com.example.sisdi_users.usermanagement.model.UserJPA;
 import com.example.sisdi_users.usermanagement.model.proto.UserEntity.User;
@@ -33,7 +32,7 @@ public class UserDTOMapper {
         return User.newBuilder()
                 .setName(jpaEntity.getName())
                 .setCitizenCardNumber(jpaEntity.getCitizenCardNumber())
-                .setBirthday(jpaEntity.getBirthday().toString())
+                .setBirthday(jpaEntity.getBirthday().toLocalDate().toString())
                 .setPhoneNumber(jpaEntity.getPhoneNumber())
                 .setUsername(jpaEntity.getUsername())
                 .setRole(jpaEntity.getRole())
