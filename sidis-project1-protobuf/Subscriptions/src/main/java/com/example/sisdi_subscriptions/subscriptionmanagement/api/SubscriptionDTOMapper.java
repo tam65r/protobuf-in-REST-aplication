@@ -24,7 +24,7 @@ public class SubscriptionDTOMapper {
         FeeType feeType = FeeType.fromInt(dto.getFeeTypeValue());
         PaymentMethod paymentMethod = PaymentMethod.fromInt(dto.getPaymentMethodValue());
 
-        SubscriptionJPA jpa = new SubscriptionJPA(subscriberID,plan, Utils.parseString(initialDate),feeType,paymentMethod,Utils.parseString(finalDate));
+        SubscriptionJPA jpa = new SubscriptionJPA(subscriberID,plan, Utils.parseString(initialDate),feeType,paymentMethod,!finalDate.isEmpty() ? Utils.parseString(finalDate) : null);
         jpa.setActive(isActive);
         jpa.setEndSubscriptionDate(Utils.parseString(endSubscriptionDate));
 
