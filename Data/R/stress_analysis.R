@@ -53,7 +53,6 @@ mTimeJGSP<-mean(jGSP$elapsed)
 mTimeJPCP<-mean(jPCP$elapsed)
 mTimeJPCS<-mean(jPCS$elapsed)
 
-
 # Protobuf
 
 mTimePGP<-mean(pGP$elapsed)
@@ -105,7 +104,16 @@ bar_colors <- c("plum2", "cyan3")
 
 # Create Bar
 graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+# Calculate median values
+medians <- c(median(pGP$elapsed),median(jGP$elapsed))
 
+for (i in 1:length(medians)) {
+  # Add a line for the current median value
+  lines(x = c(graph[i] - 0.4, graph[i] + 0.4), y = c(medians[i], medians[i]), col = "black", lwd = 2)
+  
+  # Add text label for the current median value
+  text(x = graph[i], y = medians[i] + 1, labels = medians[i], pos = 3, col = "black")
+}
 # Add Value For Each Bar
 text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
 
