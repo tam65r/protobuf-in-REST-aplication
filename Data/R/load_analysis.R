@@ -7,37 +7,37 @@ View(stats)
 
 ## Load JSON files
 
-jGP <- read_csv("../baseline/json_get_plan_data.csv")
+jGP <- read_csv("../load/json_get_plan_data.csv")
 View(jGP)
 
 
-jGSP <- read_csv("../baseline/json_get_specific_plan_data.csv")
+jGSP <- read_csv("../load/json_get_specific_plan_data.csv")
 View(jGSP)
 
 
-jPCP <- read_csv("../baseline/json_post_plan_data.csv")
+jPCP <- read_csv("../load/json_post_plan_data.csv")
 View(jPCP)
 
 
-jPCS <- read_csv("../baseline/json_post_subs_data.csv")
+jPCS <- read_csv("../load/json_post_subs_data.csv")
 View(jPCS)
 
 
 ## Load Protocol Buffers files
 
-pGP <- read_csv("../baseline/protobuf_get_plan_data.csv")
+pGP <- read_csv("../load/protobuf_get_plan_data.csv")
 View(pGP)
 
 
-pGSP <- read_csv("../baseline/protobuf_get_specific_plan_data.csv")
+pGSP <- read_csv("../load/protobuf_get_specific_plan_data.csv")
 View(pGSP)
 
 
-pPCP <- read_csv("../baseline/protobuf_post_plan_data.csv")
+pPCP <- read_csv("../load/protobuf_post_plan_data.csv")
 View(pPCP)
 
 
-pPCS <- read_csv("../baseline/protobuf_post_subs_data.csv")
+pPCS <- read_csv("../load/protobuf_post_subs_data.csv")
 View(pPCS)
 
 
@@ -87,7 +87,7 @@ mBytesPPCS<-mean(pPCS$bytes)
 
 # Graph Title
 
-title <- "Baseline GET Plan Elapsed Time"
+title <- "Load GET Plan Elapsed Time"
 
 # Graph Data
 
@@ -118,7 +118,7 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline GET Plan Bytes"
+title <- "Load GET Plan Bytes"
 
 # Graph Data
 data <- round(c(mBytesPGP, mBytesJGP), 2)
@@ -147,10 +147,10 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline GET Plan Throughput"
+title <- "Load GET Plan Throughput"
 
 # Graph Data
-data <- c(stats$Throughput[1],stats$Throughput[13])
+data <- c(stats$Throughput[5],stats$Throughput[17])
 
 # Bar Names Labels
 names <- c("Protobuf", "JSON")
@@ -181,7 +181,7 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline GET Specific Plan Elapsed Time"
+title <- "Load GET Specific Plan Elapsed Time"
 
 # Graph Data
 
@@ -212,7 +212,7 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline GET Specific Plan Bytes"
+title <- "Load GET Specific Plan Bytes"
 
 # Graph Data
 data <- round(c(mBytesPGSP, mBytesJGSP), 2)
@@ -241,10 +241,10 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline GET Specific Plan Throughput"
+title <- "Load GET Specific Plan Throughput"
 
 # Graph Data
-data <- c(stats$Throughput[2],stats$Throughput[14])
+data <- c(stats$Throughput[6],stats$Throughput[18])
 
 # Bar Names Labels
 names <- c("Protobuf", "JSON")
@@ -265,6 +265,35 @@ text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
 # Graph Color Legend
 legend("topright", legend = names, fill = bar_colors)
 
+## Error
+
+
+# Graph Title
+
+title <- "Load GET Specific Plan Error"
+
+# Graph Data
+data <- c(stats$Error[6],stats$Error[18])
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Error %")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+
 
 
 ### POST Subscriber
@@ -273,7 +302,7 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline POST Subscriber Elapsed Time"
+title <- "Load POST Subscriber Elapsed Time"
 
 # Graph Data
 
@@ -304,7 +333,7 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline POST Subscriber Bytes"
+title <- "Load POST Subscriber Bytes"
 
 # Graph Data
 data <- round(c(mBytesPPCS, mBytesJPCS), 2)
@@ -333,10 +362,10 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline POST Subscriber Throughput"
+title <- "Load POST Subscriber Throughput"
 
 # Graph Data
-data <- c(stats$Throughput[3],stats$Throughput[15])
+data <- c(stats$Throughput[7],stats$Throughput[19])
 
 # Bar Names Labels
 names <- c("Protobuf", "JSON")
@@ -357,7 +386,34 @@ text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
 # Graph Color Legend
 legend("topright", legend = names, fill = bar_colors)
 
+## Error
 
+
+# Graph Title
+
+title <- "Load POST Subscriber Error"
+
+# Graph Data
+data <- c(stats$Error[7],stats$Error[19])
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Error %")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
 
 
 ### POST Plan
@@ -366,7 +422,7 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline POST Plan Elapsed Time"
+title <- "Load POST Plan Elapsed Time"
 
 # Graph Data
 
@@ -397,7 +453,7 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline POST Plan Bytes"
+title <- "Load POST Plan Bytes"
 
 # Graph Data
 data <- round(c(mBytesPPCP, mBytesJPCP), 2)
@@ -426,10 +482,10 @@ legend("topright", legend = names, fill = bar_colors)
 
 # Graph Title
 
-title <- "Baseline POST Plan Throughput"
+title <- "Load POST Plan Throughput"
 
 # Graph Data
-data <- c(stats$Throughput[4],stats$Throughput[16])
+data <- c(stats$Throughput[8],stats$Throughput[20])
 
 # Bar Names Labels
 names <- c("Protobuf", "JSON")
@@ -467,7 +523,7 @@ lillie.test(jGP$elapsed)
 lillie.test(pGP$elapsed)
 
 valor_p <- wilcox.test(pGP$elapsed,jGP$elapsed, paired=FALSE)$p.value
-valor_p # 2.858037e-11, H1
+valor_p # 6.533664e-44, H1
 
 valor_pBytes <- wilcox.test(pGP$bytes,jGP$bytes, paired=FALSE)$p.value
 valor_pBytes # 0, H1
@@ -475,7 +531,7 @@ valor_pBytes # 0, H1
 ## Get Specific Plan
 
 valor_p <- wilcox.test(pGSP$elapsed,jGSP$elapsed, paired=FALSE)$p.value
-valor_p # 4.551959e-09, H1
+valor_p #  1.115191e-75, H1
 
 valor_pBytes <- wilcox.test(pGSP$bytes,jGSP$bytes, paired=FALSE)$p.value
 valor_pBytes # 0, H1
@@ -483,7 +539,7 @@ valor_pBytes # 0, H1
 ## Post Subscriber
 
 valor_p <- wilcox.test(pPCS$elapsed,jPCS$elapsed, paired=FALSE)$p.value
-valor_p #  0.0147173, H1
+valor_p #  1.01745e-63, H1
 
 valor_pBytes <- wilcox.test(pPCS$bytes,jPCS$bytes, paired=FALSE)$p.value
 valor_pBytes # 0, H1
@@ -491,7 +547,7 @@ valor_pBytes # 0, H1
 ## Post Plan
 
 valor_p <- wilcox.test(pPCP$elapsed,jPCP$elapsed, paired=FALSE)$p.value
-valor_p # 1.162059e-26, H1
+valor_p # 2.214287e-19, H1
 
 valor_pBytes <- wilcox.test(pPCP$bytes,jPCP$bytes, paired=FALSE)$p.value
 valor_pBytes # 0, H1
