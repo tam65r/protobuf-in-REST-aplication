@@ -1,18 +1,1100 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "Protobuf in REST Applications Analysis"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+# Analysis
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
+# Baseline
+
+**Conditions**
+
+Test Setup
+
+\|- Baseline Thread Group\
+\|-\|-- GET All Plan\
+\|-\|-- GET Plan from User\
+\|-\|-- POST Create Subscriber\
+\|-\|-- POST Create Plan
+
+Thread Options
+
+| Number of Threads | Ramp-up period (s) | Loop Count | Duration (s) |
+|-------------------|--------------------|------------|--------------|
+| 10                | 5                  | Infinite   | 180          |
 
 ```{r}
-plot(cars)
+library(readr)
+
+## Global Stats
+
+stats <- read_csv("../Stats.csv")
+
+## Load JSON files
+
+jGP <- read_csv("../baseline/json_get_plan_data.csv")
+
+jGSP <- read_csv("../baseline/json_get_specific_plan_data.csv")
+
+jPCP <- read_csv("../baseline/json_post_plan_data.csv")
+
+jPCS <- read_csv("../baseline/json_post_subs_data.csv")
+
+
+## Load Protocol Buffers files
+
+pGP <- read_csv("../baseline/protobuf_get_plan_data.csv")
+
+pGSP <- read_csv("../baseline/protobuf_get_specific_plan_data.csv")
+
+pPCP <- read_csv("../baseline/protobuf_post_plan_data.csv")
+
+pPCS <- read_csv("../baseline/protobuf_post_subs_data.csv")
+
+
+
+#### MEAN
+
+## MEAN Elapsed
+
+# JSON
+
+mTimeJGP<-mean(jGP$elapsed)
+mTimeJGSP<-mean(jGSP$elapsed)
+mTimeJPCP<-mean(jPCP$elapsed)
+mTimeJPCS<-mean(jPCS$elapsed)
+
+
+# Protobuf
+
+mTimePGP<-mean(pGP$elapsed)
+mTimePGSP<-mean(pGSP$elapsed)
+mTimePPCP<-mean(pPCP$elapsed)
+mTimePPCS<-mean(pPCS$elapsed)
+
+## MEAN Bytes
+
+# JSON
+
+mBytesJGP<-mean(jGP$bytes)
+mBytesJGSP<-mean(jGSP$bytes)
+mBytesJPCP<-mean(jPCP$bytes)
+mBytesJPCS<-mean(jPCS$bytes)
+
+
+# Protobuf
+
+mBytesPGP<-mean(pGP$bytes)
+mBytesPGSP<-mean(pGSP$bytes)
+mBytesPPCP<-mean(pPCP$bytes)
+mBytesPPCS<-mean(pPCS$bytes)
+
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+## Bar Plot
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+### Endpoint - GET Plan
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+#### Elapsed Time
+
+```{r}
+title <- "Baseline GET Plan Elapsed Time"
+data <- round(c(mTimePGP, mTimeJGP),2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Elapsed Time (ms)")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+#### Bytes
+
+```{r}
+title <- "Baseline GET Plan Bytes"
+data <- round(c(mBytesPGP, mBytesJGP), 2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Bytes")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Throughput
+
+```{r}
+title <- "Baseline GET Plan Throughput"
+data <- c(stats$Throughput[1],stats$Throughput[13])
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Throughput /sec ")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+### Endpoint - GET Specific Plan
+
+#### Elapsed Time
+
+```{r}
+title <- "Baseline GET Specific Plan Elapsed Time"
+data <- round(c(mTimePGSP, mTimeJGSP),2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Elapsed Time (ms)")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Bytes
+
+```{r}
+title <- "Baseline GET Specific Plan Bytes"
+data <- round(c(mBytesPGSP, mBytesJGSP), 2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Bytes")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Throughput
+
+```{r}
+title <- "Baseline GET Specific Plan Throughput"
+data <- c(stats$Throughput[2],stats$Throughput[14])
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Throughput /sec ")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+
+```
+
+### Endpoint - POST Subscriber
+
+#### Elapsed Time
+
+```{r}
+title <- "Baseline POST Subscriber Elapsed Time"
+data <- round(c(mTimePPCS, mTimeJPCS),2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Elapsed Time (ms)")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+
+```
+
+#### Bytes
+
+```{r}
+title <- "Baseline POST Subscriber Bytes"
+data <- round(c(mBytesPPCS, mBytesJPCS), 2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Bytes")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+#### Throughput
+
+```{r}
+title <- "Baseline POST Subscriber Throughput"
+data <- c(stats$Throughput[3],stats$Throughput[15])
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Throughput /sec ")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+### Endpoint - POST Plan
+
+#### Elapsed Time
+
+```{r}
+title <- "Baseline POST Plan Elapsed Time"
+data <- round(c(mTimePPCP, mTimeJPCP), 2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format", "Elapsed Time (ms)")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title, ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+
+```
+
+#### Bytes
+
+```{r}
+title <- "Baseline POST Plan Bytes"
+data <- round(c(mBytesPPCP, mBytesJPCP), 2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Bytes")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+#### Throughput
+
+```{r}
+title <- "Baseline POST Plan Throughput"
+data <- c(stats$Throughput[4],stats$Throughput[16])
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Throughput /sec ")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+```
+# Load
+
+**Conditions**
+
+Test Setup
+
+\|- Baseline Thread Group\
+\|-\|-- GET All Plan\
+\|-\|-- GET Plan from User\
+\|-\|-- POST Create Subscriber\
+\|-\|-- POST Create Plan
+
+Thread Options
+
+| Number of Threads | Ramp-up period (s) | Loop Count | Duration (s) |
+|-------------------|--------------------|------------|--------------|
+| 600                | 30                  | Infinite   | 360          |
+
+
+```{r}
+library(readr)
+
+## Global Stats
+
+stats <- read_csv("../Stats.csv")
+
+## Load JSON files
+
+jGP <- read_csv("../load/json_get_plan_data.csv")
+
+
+jGSP <- read_csv("../load/json_get_specific_plan_data.csv")
+
+
+
+jPCP <- read_csv("../load/json_post_plan_data.csv")
+
+
+jPCS <- read_csv("../load/json_post_subs_data.csv")
+
+
+## Load Protocol Buffers files
+
+pGP <- read_csv("../load/protobuf_get_plan_data.csv")
+
+
+pGSP <- read_csv("../load/protobuf_get_specific_plan_data.csv")
+
+
+
+pPCP <- read_csv("../load/protobuf_post_plan_data.csv")
+
+
+pPCS <- read_csv("../load/protobuf_post_subs_data.csv")
+
+
+
+#### MEAN
+
+## MEAN Elapsed
+
+# JSON
+
+mTimeJGP<-mean(jGP$elapsed)
+mTimeJGSP<-mean(jGSP$elapsed)
+mTimeJPCP<-mean(jPCP$elapsed)
+mTimeJPCS<-mean(jPCS$elapsed)
+
+
+# Protobuf
+
+mTimePGP<-mean(pGP$elapsed)
+mTimePGSP<-mean(pGSP$elapsed)
+mTimePPCP<-mean(pPCP$elapsed)
+mTimePPCS<-mean(pPCS$elapsed)
+
+## MEAN Bytes
+
+# JSON
+
+mBytesJGP<-mean(jGP$bytes)
+mBytesJGSP<-mean(jGSP$bytes)
+mBytesJPCP<-mean(jPCP$bytes)
+mBytesJPCS<-mean(jPCS$bytes)
+
+
+# Protobuf
+
+mBytesPGP<-mean(pGP$bytes)
+mBytesPGSP<-mean(pGSP$bytes)
+mBytesPPCP<-mean(pPCP$bytes)
+mBytesPPCS<-mean(pPCS$bytes)
+
+```
+
+## Bar Plot
+
+### Endpoint - GET Plan
+
+#### Elapsed Time
+```{r}
+title <- "Load GET Plan Elapsed Time"
+data <- round(c(mTimePGP, mTimeJGP),2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Elapsed Time (ms)")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+#### Bytes
+```{r}
+data <- round(c(mBytesPGP, mBytesJGP), 2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Bytes")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Throughput
+```{r}
+title <- "Load GET Plan Throughput"
+data <- c(stats$Throughput[5],stats$Throughput[17])
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Throughput /sec ")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+### Endpoint - GET Specific Plan
+
+#### Elapsed Time
+```{r}
+title <- "Load GET Specific Plan Elapsed Time"
+data <- round(c(mTimePGSP, mTimeJGSP),2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Elapsed Time (ms)")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Bytes
+```{r}
+title <- "Load GET Specific Plan Bytes"
+data <- round(c(mBytesPGSP, mBytesJGSP), 2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Bytes")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Throughput
+```{r}
+title <- "Load GET Specific Plan Throughput"
+data <- c(stats$Throughput[6],stats$Throughput[18])
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Throughput /sec ")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Error
+```{r}
+title <- "Load GET Specific Plan Error"
+data <- c(stats$Error[6],stats$Error[18])
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Error %")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+### Endpoint - POST Subscriber
+
+#### Elapsed Time
+```{r}
+title <- "Load POST Subscriber Elapsed Time"
+data <- round(c(mTimePPCS, mTimeJPCS),2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Elapsed Time (ms)")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Bytes
+```{r}
+title <- "Load POST Subscriber Bytes"
+data <- round(c(mBytesPPCS, mBytesJPCS), 2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Bytes")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+#### Throughput
+```{r}
+title <- "Load POST Subscriber Throughput"
+data <- c(stats$Throughput[7],stats$Throughput[19])
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Throughput /sec ")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Error
+
+```{r}
+title <- "Load POST Subscriber Error"
+data <- c(stats$Error[7],stats$Error[19])
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Error %")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+
+### Endpoint - POST Plan
+
+#### Elapsed Time
+
+```{r}
+title <- "Load POST Plan Elapsed Time"
+data <- round(c(mTimePPCP, mTimeJPCP),2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Elapsed Time (ms)")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+
+#### Bytes
+```{r}
+title <- "Load POST Plan Bytes"
+data <- round(c(mBytesPPCP, mBytesJPCP), 2)
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Bytes")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Throughput
+```{r}
+title <- "Load POST Plan Throughput"
+data <- c(stats$Throughput[8],stats$Throughput[20])
+names <- c("Protobuf", "JSON")
+axis <- c("Data Format","Throughput /sec ")
+bar_colors <- c("plum2", "cyan3")
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+legend("topright", legend = names, fill = bar_colors)
+
+```
+# Stress
+
+**Conditions**
+
+Test Setup
+
+\|- Baseline Thread Group\
+\|-\|-- GET All Plan\
+\|-\|-- GET Plan from User\
+\|-\|-- POST Create Subscriber\
+\|-\|-- POST Create Plan
+
+Thread Options
+
+| Number of Threads | Ramp-up period (s) | Loop Count | Duration (s) |
+|-------------------|--------------------|------------|--------------|
+| 3000                | 100             | Infinite   | 600          |
+
+```{r}
+library(readr)
+
+## Global Stats
+
+stats <- read_csv("../Stats.csv")
+
+## Stress JSON files
+
+jGP <- read_csv("../stress/json_get_plan_data.csv")
+jGSP <- read_csv("../stress/json_get_specific_plan_data.csv")
+jPCP <- read_csv("../stress/json_post_plan_data.csv")
+jPCS <- read_csv("../stress/json_post_subs_data.csv")
+
+## Stress Protocol Buffers files
+
+pGP <- read_csv("../stress/protobuf_get_plan_data.csv")
+pGSP <- read_csv("../stress/protobuf_get_specific_plan_data.csv")
+pPCP <- read_csv("../stress/protobuf_post_plan_data.csv")
+pPCS <- read_csv("../stress/protobuf_post_subs_data.csv")
+
+
+#### MEAN
+
+## MEAN Elapsed
+
+# JSON
+
+mTimeJGP<-mean(jGP$elapsed)
+mTimeJGSP<-mean(jGSP$elapsed)
+mTimeJPCP<-mean(jPCP$elapsed)
+mTimeJPCS<-mean(jPCS$elapsed)
+
+# Protobuf
+
+mTimePGP<-mean(pGP$elapsed)
+mTimePGSP<-mean(pGSP$elapsed)
+mTimePPCP<-mean(pPCP$elapsed)
+mTimePPCS<-mean(pPCS$elapsed)
+
+## MEAN Bytes
+
+# JSON
+
+mBytesJGP<-mean(jGP$bytes)
+mBytesJGSP<-mean(jGSP$bytes)
+mBytesJPCP<-mean(jPCP$bytes)
+mBytesJPCS<-mean(jPCS$bytes)
+
+
+# Protobuf
+
+mBytesPGP<-mean(pGP$bytes)
+mBytesPGSP<-mean(pGSP$bytes)
+mBytesPPCP<-mean(pPCP$bytes)
+mBytesPPCS<-mean(pPCS$bytes)
+
+```
+
+## Bar Plot
+
+### Endpoint - GET Plan
+
+#### Elapsed Time
+```{r}
+title <- "Stress GET Plan Elapsed Time"
+
+# Graph Data
+
+data <- round(c(mTimePGP, mTimeJGP),2)
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Elapsed Time (ms)")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+# Calculate median values
+medians <- c(median(pGP$elapsed),median(jGP$elapsed))
+
+for (i in 1:length(medians)) {
+  # Add a line for the current median value
+  lines(x = c(graph[i] - 0.4, graph[i] + 0.4), y = c(medians[i], medians[i]), col = "black", lwd = 2)
+  
+  # Add text label for the current median value
+  text(x = graph[i], y = medians[i] + 1, labels = medians[i], pos = 3, col = "black")
+}
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+#### Bytes
+```{r}
+title <- "Stress GET Plan Bytes"
+
+# Graph Data
+data <- round(c(mBytesPGP, mBytesJGP), 2)
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Bytes")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Throughput
+```{r}
+# Graph Title
+
+title <- "Stress GET Plan Throughput"
+
+# Graph Data
+data <- c(stats$Throughput[9],stats$Throughput[21])
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Throughput /sec ")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Error
+```{r}
+# Graph Title
+
+title <- "Stress GET Plan Error"
+
+# Graph Data
+data <- c(stats$Error[9],stats$Error[21])
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Error %")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+```
+
+### Endpoint - GET Specific Plan
+
+#### Elapsed Time
+```{r}
+# Graph Title
+
+title <- "Stress GET Specific Plan Elapsed Time"
+
+# Graph Data
+
+data <- round(c(mTimePGSP, mTimeJGSP),2)
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Elapsed Time (ms)")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Bytes
+```{r}
+# Graph Title
+
+title <- "Stress GET Specific Plan Bytes"
+
+# Graph Data
+data <- round(c(mBytesPGSP, mBytesJGSP), 2)
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Bytes")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Throughput
+```{r}
+title <- "Stress GET Specific Plan Throughput"
+
+# Graph Data
+data <- c(stats$Throughput[10],stats$Throughput[22])
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Throughput /sec ")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+#### Error
+```{r}
+title <- "Stress GET Specific Plan Error"
+
+# Graph Data
+data <- c(stats$Error[10],stats$Error[22])
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Error %")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+```
+
+### Endpoint - POST Subscriber
+
+#### Elapsed Time
+```{r}
+# Graph Title
+
+title <- "Stress POST Subscriber Elapsed Time"
+
+# Graph Data
+
+data <- round(c(mTimePPCS, mTimeJPCS),2)
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Elapsed Time (ms)")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+#### Bytes
+```{r}
+title <- "Stress POST Subscriber Bytes"
+
+# Graph Data
+data <- round(c(mBytesPPCS, mBytesJPCS), 2)
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Bytes")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Throughput
+```{r}
+title <- "Stress POST Subscriber Throughput"
+
+# Graph Data
+data <- c(stats$Throughput[11],stats$Throughput[23])
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Throughput /sec ")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Error
+```{r}
+title <- "Stress POST Subscriber Error"
+
+# Graph Data
+data <- c(stats$Error[11],stats$Error[23])
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Error %")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+### Endpoint - POST Plan
+
+#### Elapsed Time
+```{r}
+title <- "Stress POST Plan Elapsed Time"
+
+# Graph Data
+
+data <- round(c(mTimePPCP, mTimeJPCP),2)
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Elapsed Time (ms)")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
+#### Bytes
+```{r}
+title <- "Stress POST Plan Bytes"
+
+# Graph Data
+data <- round(c(mBytesPPCP, mBytesJPCP), 2)
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Bytes")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Throughput
+```{r}
+title <- "Stress POST Plan Throughput"
+
+# Graph Data
+data <- c(stats$Throughput[12],stats$Throughput[24])
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Throughput /sec ")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+```
+
+#### Error
+```{r}
+title <- "Stress POST Plan Error"
+
+# Graph Data
+data <- c(stats$Error[12],stats$Error[24])
+
+# Bar Names Labels
+names <- c("Protobuf", "JSON")
+
+# Bar Axis Names
+
+axis <- c("Data Format","Error %")
+
+# Custom colors for the bars
+bar_colors <- c("plum2", "cyan3")
+
+# Create Bar
+graph <- barplot(data, names.arg = names, xlab = axis[1], ylab = axis[2], col = bar_colors, main = title ,ylim = c(0, max(data) + max(data)/3))
+
+# Add Value For Each Bar
+text(x = graph, y = data, labels = data, pos = 3, col = "black")
+
+# Graph Color Legend
+legend("topright", legend = names, fill = bar_colors)
+
+```
+
