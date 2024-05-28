@@ -7,6 +7,39 @@ output:
 ---
 
 # Analysis
+| **Endpoint**          | **Format**   | **Test**   | **Mean Elapsed Time (ms)** | **Mean Bytes** | **Thoughput** | **Samples** | **Error (%)** | **Success Samples** |
+|-----------------------|--------------|------------|----------------------------|----------------|---------------|-------------|---------------|---------------------|
+| **GET Plan**          | **Protobuf** | _Baseline_ |            57.48           |    155001.32   |      29.8     |     5368    |       0       |         5368        |
+|                       |              | _Load_     |           778.82           |    481577.09   |      20.6     |     7458    |       0       |         7458        |
+|                       |              | _Stress_   |           4877.28          |    801593.87   |      15.3     |     9242    |       0       |         9242        |
+|                       |              |            |                            |                |               |             |               |                     |
+|                       | **JSON**     | _Baseline_ |            64.60           |    502139.83   |      29.6     |     5324    |       0       |         5324        |
+|                       |              | _Load_     |           870.53           |   1538487.83   |      18.9     |     6858    |       0       |         6858        |
+|                       |              | _Stress_   |          21092.84          |   1340689.67   |      10.3     |     6385    |     42.65     |         3661        |
+|                       |              |            |                            |                |               |             |               |                     |
+| **GET Specific Plan** | **Protobuf** | _Baseline_ |            31.56           |     471.73     |      29.9     |     5366    |       0       |         5366        |
+|                       |              | _Load_     |           2722.95          |     472.52     |      20.6     |     7443    |      0.23     |         7425        |
+|                       |              | _Stress_   |          140301.59         |     502.91     |      14.2     |     9229    |     13.56     |         7977        |
+|                       |              |            |                            |                |               |             |               |                     |
+|                       | **JSON**     | _Baseline_ |            30.46           |     603.73     |      29.6     |     5322    |       0       |         5322        |
+|                       |              | _Load_     |           3562.23          |     604.32     |       19      |     6842    |      0.34     |         6818        |
+|                       |              | _Stress_   |          127894.27         |     1143.33    |      9.7      |     6137    |     79.91     |         1232        |
+|                       |              |            |                            |                |               |             |               |                     |
+| **POST Subscriber**   | **Protobuf** | _Baseline_ |           228.49           |     682.32     |       30      |     5366    |       0       |         5366        |
+|                       |              | _Load_     |          24547.52          |     679.23     |       20      |     7433    |      0.11     |         7424        |
+|                       |              | _Stress_   |          51012.44          |     681.30     |      11.5     |     7572    |      7.70     |         6988        |
+|                       |              |            |                            |                |               |             |               |                     |
+|                       | **JSON**     | _Baseline_ |           225.98           |     665.31     |      29.7     |     5320    |       0       |         5320        |
+|                       |              | _Load_     |          26056.61          |     662.29     |      18.4     |     6825    |      0.21     |         6810        |
+|                       |              | _Stress_   |          62193.64          |     1181.59    |      7.9      |     4986    |     86.10     |         693         |
+|                       |              |            |                            |                |               |             |               |                     |
+| **POST Plan**         | **Protobuf** | _Baseline_ |           225.98           |     682.32     |       30      |     5368    |       0       |         5368        |
+|                       |              | _Load_     |           372.53           |     679.23     |      19.1     |     6866    |       0       |         6866        |
+|                       |              | _Stress_   |           1825.16          |     681.30     |      10.4     |     6243    |       0       |         6243        |
+|                       |              |            |                            |                |               |             |               |                     |
+|                       | **JSON**     | _Baseline_ |            12.75           |     698.04     |      29.7     |     5315    |       0       |         5315        |
+|                       |              | _Load_     |           417.40           |     690.65     |      17.4     |     6261    |       0       |         6261        |
+|                       |              | _Stress_   |          30905.40          |     1129.19    |      7.2      |     4420    |     31.06     |         3047        |
 
 # Baseline
 
@@ -93,6 +126,45 @@ mBytesPPCP<-mean(pPCP$bytes)
 mBytesPPCS<-mean(pPCS$bytes)
 
 ```
+
+
+## Data
+
+```{r}
+library(knitr)
+
+# Sample data
+data <- data.frame(
+  Endpoint = c("GET Plan","GET Specific Plan", "POST Subscriber", "POST Plan"),
+  Mean_Elapsed_Time = c(round(mTimePGP,2),round(mTimePGSP,2),round(mTimePPCS,2),round(mTimePPCP,2)),
+  Median_Elapsed_Time = round(c(median(pGP$elapsed),median(pGSP$elapsed),median(pPCS$elapsed),median(pPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(pGP$elapsed),sd(pGSP$elapsed),sd(pPCS$elapsed),sd(pPCP$elapsed)),2),
+  Mean_Bytes = c(round(mBytesPGP,2),round(mBytesPGSP,2),round(mBytesPPCS,2),round(mBytesPPCS,2)),
+  Median_Bytes = round(c(median(pGP$bytes),median(pGSP$bytes),median(pPCS$bytes),median(pPCP$bytes)),2),
+   #Bytes_Standart_Deviation = round(c(sd(pGP$bytes),sd(pGSP$bytes),sd(pPCS$bytes),sd(pPCP$bytes)),2),
+  Throughput = c(stats$Throughput[1],stats$Throughput[2],stats$Throughput[3], stats$Throughput[4]),
+  Error = c(stats$Error[1],stats$Error[2],stats$Error[3], stats$Error[4] ),
+  Samples = c(nrow(pGP),nrow(pGSP),nrow(pPCS),nrow(pPCP))
+)
+
+data2 <- data.frame(
+ Endpoint = c("GET Plan","GET Specific Plan", "POST Subscriber", "POST Plan"),
+  Mean_Elapsed_Time = round(c(mTimeJGP,mTimeJGSP,mTimeJPCS,mTimeJPCP),2),
+  Median_Elapsed_Time = round(c(median(jGP$elapsed),median(jGSP$elapsed),median(jPCS$elapsed),median(jPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(jGP$elapsed),sd(jGSP$elapsed),sd(jPCS$elapsed),sd(jPCP$elapsed)),2),
+  Mean_Bytes= round(c(mBytesJGP,mBytesJGSP,mBytesJPCS,mBytesJPCP),2),
+  Median_Bytes = round(c(median(jGP$bytes),median(jGSP$bytes),median(jPCS$bytes),median(jPCP$bytes)),2),
+  #Bytes_Standart_Deviation = round(c(sd(jGP$bytes),sd(jGSP$bytes),sd(jPCS$bytes),sd(jPCP$bytes)),2),
+  Throughput = c(stats$Throughput[13],stats$Throughput[14],stats$Throughput[15],stats$Throughput[16]),
+  Error = c(stats$Error[13],stats$Error[14],stats$Error[15],stats$Error[16]),
+  Samples = c(nrow(jGP),nrow(jGSP),nrow(jPCS),nrow(jPCP))
+)
+
+# Display the table
+kable(data, caption = "Performance Metrics for Protobuf Baseline Tests")
+kable(data2, caption = "Performance Metrics for JSON Baseline Tests")
+```
+
 
 ## Bar Plot
 
@@ -364,7 +436,42 @@ mBytesPPCP<-mean(pPCP$bytes)
 mBytesPPCS<-mean(pPCS$bytes)
 
 ```
+## Data
 
+```{r}
+library(knitr)
+
+# Sample data
+data <- data.frame(
+  Endpoint = c("GET Plan","GET Specific Plan", "POST Subscriber", "POST Plan"),
+  Mean_Elapsed_Time = c(round(mTimePGP,2),round(mTimePGSP,2),round(mTimePPCS,2),round(mTimePPCP,2)),
+  Median_Elapsed_Time = round(c(median(pGP$elapsed),median(pGSP$elapsed),median(pPCS$elapsed),median(pPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(pGP$elapsed),sd(pGSP$elapsed),sd(pPCS$elapsed),sd(pPCP$elapsed)),2),
+  Mean_Bytes = c(round(mBytesPGP,2),round(mBytesPGSP,2),round(mBytesPPCS,2),round(mBytesPPCS,2)),
+  Median_Bytes = round(c(median(pGP$bytes),median(pGSP$bytes),median(pPCS$bytes),median(pPCP$bytes)),2),
+   #Bytes_Standart_Deviation = round(c(sd(pGP$bytes),sd(pGSP$bytes),sd(pPCS$bytes),sd(pPCP$bytes)),2),
+  Throughput = c(stats$Throughput[5],stats$Throughput[6],stats$Throughput[7], stats$Throughput[8]),
+  Error = c(stats$Error[5],stats$Error[6],stats$Error[7], stats$Error[8] ),
+  Samples = c(nrow(pGP),nrow(pGSP),nrow(pPCS),nrow(pPCP))
+)
+
+data2 <- data.frame(
+ Endpoint = c("GET Plan","GET Specific Plan", "POST Subscriber", "POST Plan"),
+  Mean_Elapsed_Time = round(c(mTimeJGP,mTimeJGSP,mTimeJPCS,mTimeJPCP),2),
+  Median_Elapsed_Time = round(c(median(jGP$elapsed),median(jGSP$elapsed),median(jPCS$elapsed),median(jPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(jGP$elapsed),sd(jGSP$elapsed),sd(jPCS$elapsed),sd(jPCP$elapsed)),2),
+  Mean_Bytes= round(c(mBytesJGP,mBytesJGSP,mBytesJPCS,mBytesJPCP),2),
+  Median_Bytes = round(c(median(jGP$bytes),median(jGSP$bytes),median(jPCS$bytes),median(jPCP$bytes)),2),
+  #Bytes_Standart_Deviation = round(c(sd(jGP$bytes),sd(jGSP$bytes),sd(jPCS$bytes),sd(jPCP$bytes)),2),
+  Throughput = c(stats$Throughput[17],stats$Throughput[18],stats$Throughput[19],stats$Throughput[20]),
+  Error = c(stats$Error[17],stats$Error[18],stats$Error[19],stats$Error[20]),
+  Samples = c(nrow(jGP),nrow(jGSP),nrow(jPCS),nrow(jPCP))
+)
+
+# Display the table
+kable(data, caption = "Performance Metrics for Protobuf Load Tests")
+kable(data2, caption = "Performance Metrics for JSON Load Tests")
+```
 ## Bar Plot
 
 ### Endpoint - GET Plan
@@ -626,7 +733,42 @@ mBytesPPCP<-mean(pPCP$bytes)
 mBytesPPCS<-mean(pPCS$bytes)
 
 ```
+## Data
 
+```{r}
+library(knitr)
+
+# Sample data
+data <- data.frame(
+  Endpoint = c("GET Plan","GET Specific Plan", "POST Subscriber", "POST Plan"),
+  Mean_Elapsed_Time = c(round(mTimePGP,2),round(mTimePGSP,2),round(mTimePPCS,2),round(mTimePPCP,2)),
+  Median_Elapsed_Time = round(c(median(pGP$elapsed),median(pGSP$elapsed),median(pPCS$elapsed),median(pPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(pGP$elapsed),sd(pGSP$elapsed),sd(pPCS$elapsed),sd(pPCP$elapsed)),2),
+  Mean_Bytes = c(round(mBytesPGP,2),round(mBytesPGSP,2),round(mBytesPPCS,2),round(mBytesPPCS,2)),
+  Median_Bytes = round(c(median(pGP$bytes),median(pGSP$bytes),median(pPCS$bytes),median(pPCP$bytes)),2),
+   #Bytes_Standart_Deviation = round(c(sd(pGP$bytes),sd(pGSP$bytes),sd(pPCS$bytes),sd(pPCP$bytes)),2),
+  Throughput = c(stats$Throughput[9],stats$Throughput[10],stats$Throughput[11], stats$Throughput[12]),
+  Error = c(stats$Error[9],stats$Error[10],stats$Error[11], stats$Error[12] ),
+  Samples = c(nrow(pGP),nrow(pGSP),nrow(pPCS),nrow(pPCP))
+)
+
+data2 <- data.frame(
+ Endpoint = c("GET Plan","GET Specific Plan", "POST Subscriber", "POST Plan"),
+  Mean_Elapsed_Time = round(c(mTimeJGP,mTimeJGSP,mTimeJPCS,mTimeJPCP),2),
+  Median_Elapsed_Time = round(c(median(jGP$elapsed),median(jGSP$elapsed),median(jPCS$elapsed),median(jPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(jGP$elapsed),sd(jGSP$elapsed),sd(jPCS$elapsed),sd(jPCP$elapsed)),2),
+  Mean_Bytes= round(c(mBytesJGP,mBytesJGSP,mBytesJPCS,mBytesJPCP),2),
+  Median_Bytes = round(c(median(jGP$bytes),median(jGSP$bytes),median(jPCS$bytes),median(jPCP$bytes)),2),
+  #Bytes_Standart_Deviation = round(c(sd(jGP$bytes),sd(jGSP$bytes),sd(jPCS$bytes),sd(jPCP$bytes)),2),
+  Throughput = c(stats$Throughput[21],stats$Throughput[22],stats$Throughput[23],stats$Throughput[24]),
+  Error = c(stats$Error[21],stats$Error[22],stats$Error[23],stats$Error[24]),
+  Samples = c(nrow(jGP),nrow(jGSP),nrow(jPCS),nrow(jPCP))
+)
+
+# Display the table
+kable(data, caption = "Performance Metrics for Protobuf Stress Tests")
+kable(data2, caption = "Performance Metrics for JSON Stress Tests")
+```
 ## Bar Plot
 
 ### Endpoint - GET Plan

@@ -1626,6 +1626,375 @@ display: none;
 
 <div id="analysis" class="section level1">
 <h1>Analysis</h1>
+<table style="width:100%;">
+<colgroup>
+<col width="14%" />
+<col width="8%" />
+<col width="7%" />
+<col width="17%" />
+<col width="10%" />
+<col width="9%" />
+<col width="8%" />
+<col width="9%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Endpoint</strong></th>
+<th><strong>Format</strong></th>
+<th><strong>Test</strong></th>
+<th><strong>Mean Elapsed Time (ms)</strong></th>
+<th><strong>Mean Bytes</strong></th>
+<th><strong>Thoughput</strong></th>
+<th><strong>Samples</strong></th>
+<th><strong>Error (%)</strong></th>
+<th><strong>Success Samples</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>GET Plan</strong></td>
+<td><strong>Protobuf</strong></td>
+<td><em>Baseline</em></td>
+<td>57.48</td>
+<td>155001.32</td>
+<td>29.8</td>
+<td>5368</td>
+<td>0</td>
+<td>5368</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><em>Load</em></td>
+<td>778.82</td>
+<td>481577.09</td>
+<td>20.6</td>
+<td>7458</td>
+<td>0</td>
+<td>7458</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><em>Stress</em></td>
+<td>4877.28</td>
+<td>801593.87</td>
+<td>15.3</td>
+<td>9242</td>
+<td>0</td>
+<td>9242</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><strong>JSON</strong></td>
+<td><em>Baseline</em></td>
+<td>64.60</td>
+<td>502139.83</td>
+<td>29.6</td>
+<td>5324</td>
+<td>0</td>
+<td>5324</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><em>Load</em></td>
+<td>870.53</td>
+<td>1538487.83</td>
+<td>18.9</td>
+<td>6858</td>
+<td>0</td>
+<td>6858</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><em>Stress</em></td>
+<td>21092.84</td>
+<td>1340689.67</td>
+<td>10.3</td>
+<td>6385</td>
+<td>42.65</td>
+<td>3661</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>GET Specific Plan</strong></td>
+<td><strong>Protobuf</strong></td>
+<td><em>Baseline</em></td>
+<td>31.56</td>
+<td>471.73</td>
+<td>29.9</td>
+<td>5366</td>
+<td>0</td>
+<td>5366</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><em>Load</em></td>
+<td>2722.95</td>
+<td>472.52</td>
+<td>20.6</td>
+<td>7443</td>
+<td>0.23</td>
+<td>7425</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><em>Stress</em></td>
+<td>140301.59</td>
+<td>502.91</td>
+<td>14.2</td>
+<td>9229</td>
+<td>13.56</td>
+<td>7977</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><strong>JSON</strong></td>
+<td><em>Baseline</em></td>
+<td>30.46</td>
+<td>603.73</td>
+<td>29.6</td>
+<td>5322</td>
+<td>0</td>
+<td>5322</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><em>Load</em></td>
+<td>3562.23</td>
+<td>604.32</td>
+<td>19</td>
+<td>6842</td>
+<td>0.34</td>
+<td>6818</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><em>Stress</em></td>
+<td>127894.27</td>
+<td>1143.33</td>
+<td>9.7</td>
+<td>6137</td>
+<td>79.91</td>
+<td>1232</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>POST Subscriber</strong></td>
+<td><strong>Protobuf</strong></td>
+<td><em>Baseline</em></td>
+<td>228.49</td>
+<td>682.32</td>
+<td>30</td>
+<td>5366</td>
+<td>0</td>
+<td>5366</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><em>Load</em></td>
+<td>24547.52</td>
+<td>679.23</td>
+<td>20</td>
+<td>7433</td>
+<td>0.11</td>
+<td>7424</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><em>Stress</em></td>
+<td>51012.44</td>
+<td>681.30</td>
+<td>11.5</td>
+<td>7572</td>
+<td>7.70</td>
+<td>6988</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><strong>JSON</strong></td>
+<td><em>Baseline</em></td>
+<td>225.98</td>
+<td>665.31</td>
+<td>29.7</td>
+<td>5320</td>
+<td>0</td>
+<td>5320</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><em>Load</em></td>
+<td>26056.61</td>
+<td>662.29</td>
+<td>18.4</td>
+<td>6825</td>
+<td>0.21</td>
+<td>6810</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><em>Stress</em></td>
+<td>62193.64</td>
+<td>1181.59</td>
+<td>7.9</td>
+<td>4986</td>
+<td>86.10</td>
+<td>693</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>POST Plan</strong></td>
+<td><strong>Protobuf</strong></td>
+<td><em>Baseline</em></td>
+<td>225.98</td>
+<td>682.32</td>
+<td>30</td>
+<td>5368</td>
+<td>0</td>
+<td>5368</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><em>Load</em></td>
+<td>372.53</td>
+<td>679.23</td>
+<td>19.1</td>
+<td>6866</td>
+<td>0</td>
+<td>6866</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><em>Stress</em></td>
+<td>1825.16</td>
+<td>681.30</td>
+<td>10.4</td>
+<td>6243</td>
+<td>0</td>
+<td>6243</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><strong>JSON</strong></td>
+<td><em>Baseline</em></td>
+<td>12.75</td>
+<td>698.04</td>
+<td>29.7</td>
+<td>5315</td>
+<td>0</td>
+<td>5315</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><em>Load</em></td>
+<td>417.40</td>
+<td>690.65</td>
+<td>17.4</td>
+<td>6261</td>
+<td>0</td>
+<td>6261</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><em>Stress</em></td>
+<td>30905.40</td>
+<td>1129.19</td>
+<td>7.2</td>
+<td>4420</td>
+<td>31.06</td>
+<td>3047</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="baseline" class="section level1">
 <h1>Baseline</h1>
@@ -1787,6 +2156,175 @@ mBytesPGP&lt;-mean(pGP$bytes)
 mBytesPGSP&lt;-mean(pGSP$bytes)
 mBytesPPCP&lt;-mean(pPCP$bytes)
 mBytesPPCS&lt;-mean(pPCS$bytes)</code></pre>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<pre class="r"><code>library(knitr)
+
+# Sample data
+data &lt;- data.frame(
+  Endpoint = c(&quot;GET Plan&quot;,&quot;GET Specific Plan&quot;, &quot;POST Subscriber&quot;, &quot;POST Plan&quot;),
+  Mean_Elapsed_Time = c(round(mTimePGP,2),round(mTimePGSP,2),round(mTimePPCS,2),round(mTimePPCP,2)),
+  Median_Elapsed_Time = round(c(median(pGP$elapsed),median(pGSP$elapsed),median(pPCS$elapsed),median(pPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(pGP$elapsed),sd(pGSP$elapsed),sd(pPCS$elapsed),sd(pPCP$elapsed)),2),
+  Mean_Bytes = c(round(mBytesPGP,2),round(mBytesPGSP,2),round(mBytesPPCS,2),round(mBytesPPCS,2)),
+  Median_Bytes = round(c(median(pGP$bytes),median(pGSP$bytes),median(pPCS$bytes),median(pPCP$bytes)),2),
+   #Bytes_Standart_Deviation = round(c(sd(pGP$bytes),sd(pGSP$bytes),sd(pPCS$bytes),sd(pPCP$bytes)),2),
+  Throughput = c(stats$Throughput[1],stats$Throughput[2],stats$Throughput[3], stats$Throughput[4]),
+  Error = c(stats$Error[1],stats$Error[2],stats$Error[3], stats$Error[4] ),
+  Samples = c(nrow(pGP),nrow(pGSP),nrow(pPCS),nrow(pPCP))
+)
+
+data2 &lt;- data.frame(
+ Endpoint = c(&quot;GET Plan&quot;,&quot;GET Specific Plan&quot;, &quot;POST Subscriber&quot;, &quot;POST Plan&quot;),
+  Mean_Elapsed_Time = round(c(mTimeJGP,mTimeJGSP,mTimeJPCS,mTimeJPCP),2),
+  Median_Elapsed_Time = round(c(median(jGP$elapsed),median(jGSP$elapsed),median(jPCS$elapsed),median(jPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(jGP$elapsed),sd(jGSP$elapsed),sd(jPCS$elapsed),sd(jPCP$elapsed)),2),
+  Mean_Bytes= round(c(mBytesJGP,mBytesJGSP,mBytesJPCS,mBytesJPCP),2),
+  Median_Bytes = round(c(median(jGP$bytes),median(jGSP$bytes),median(jPCS$bytes),median(jPCP$bytes)),2),
+  #Bytes_Standart_Deviation = round(c(sd(jGP$bytes),sd(jGSP$bytes),sd(jPCS$bytes),sd(jPCP$bytes)),2),
+  Throughput = c(stats$Throughput[13],stats$Throughput[14],stats$Throughput[15],stats$Throughput[16]),
+  Error = c(stats$Error[13],stats$Error[14],stats$Error[15],stats$Error[16]),
+  Samples = c(nrow(jGP),nrow(jGSP),nrow(jPCS),nrow(jPCP))
+)
+
+# Display the table
+kable(data, caption = &quot;Performance Metrics for Protobuf Baseline Tests&quot;)</code></pre>
+<table>
+<caption>Performance Metrics for Protobuf Baseline Tests</caption>
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="19%" />
+<col width="10%" />
+<col width="12%" />
+<col width="10%" />
+<col width="5%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Endpoint</th>
+<th align="right">Mean_Elapsed_Time</th>
+<th align="right">Median_Elapsed_Time</th>
+<th align="right">Mean_Bytes</th>
+<th align="right">Median_Bytes</th>
+<th align="right">Throughput</th>
+<th align="right">Error</th>
+<th align="right">Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">GET Plan</td>
+<td align="right">57.48</td>
+<td align="right">49</td>
+<td align="right">155001.32</td>
+<td align="right">154896</td>
+<td align="right">29.8</td>
+<td align="right">0</td>
+<td align="right">5368</td>
+</tr>
+<tr class="even">
+<td align="left">GET Specific Plan</td>
+<td align="right">31.56</td>
+<td align="right">27</td>
+<td align="right">471.73</td>
+<td align="right">472</td>
+<td align="right">29.9</td>
+<td align="right">0</td>
+<td align="right">5366</td>
+</tr>
+<tr class="odd">
+<td align="left">POST Subscriber</td>
+<td align="right">228.49</td>
+<td align="right">217</td>
+<td align="right">682.32</td>
+<td align="right">683</td>
+<td align="right">30.0</td>
+<td align="right">0</td>
+<td align="right">5366</td>
+</tr>
+<tr class="even">
+<td align="left">POST Plan</td>
+<td align="right">13.23</td>
+<td align="right">11</td>
+<td align="right">682.32</td>
+<td align="right">658</td>
+<td align="right">30.0</td>
+<td align="right">0</td>
+<td align="right">5358</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(data2, caption = &quot;Performance Metrics for JSON Baseline Tests&quot;)</code></pre>
+<table>
+<caption>Performance Metrics for JSON Baseline Tests</caption>
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="19%" />
+<col width="10%" />
+<col width="12%" />
+<col width="10%" />
+<col width="5%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Endpoint</th>
+<th align="right">Mean_Elapsed_Time</th>
+<th align="right">Median_Elapsed_Time</th>
+<th align="right">Mean_Bytes</th>
+<th align="right">Median_Bytes</th>
+<th align="right">Throughput</th>
+<th align="right">Error</th>
+<th align="right">Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">GET Plan</td>
+<td align="right">64.60</td>
+<td align="right">55</td>
+<td align="right">502139.83</td>
+<td align="right">502021.5</td>
+<td align="right">29.6</td>
+<td align="right">0</td>
+<td align="right">5324</td>
+</tr>
+<tr class="even">
+<td align="left">GET Specific Plan</td>
+<td align="right">30.46</td>
+<td align="right">27</td>
+<td align="right">603.73</td>
+<td align="right">604.0</td>
+<td align="right">29.6</td>
+<td align="right">0</td>
+<td align="right">5322</td>
+</tr>
+<tr class="odd">
+<td align="left">POST Subscriber</td>
+<td align="right">225.98</td>
+<td align="right">215</td>
+<td align="right">665.31</td>
+<td align="right">666.0</td>
+<td align="right">29.7</td>
+<td align="right">0</td>
+<td align="right">5320</td>
+</tr>
+<tr class="even">
+<td align="left">POST Plan</td>
+<td align="right">12.75</td>
+<td align="right">11</td>
+<td align="right">698.04</td>
+<td align="right">699.0</td>
+<td align="right">29.7</td>
+<td align="right">0</td>
+<td align="right">5315</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="bar-plot" class="section level2">
 <h2>Bar Plot</h2>
 <div id="endpoint---get-plan" class="section level3">
@@ -2104,6 +2642,175 @@ mBytesPPCP&lt;-mean(pPCP$bytes)
 mBytesPPCS&lt;-mean(pPCS$bytes)</code></pre>
 </div>
 </div>
+</div>
+<div id="data-1" class="section level2">
+<h2>Data</h2>
+<pre class="r"><code>library(knitr)
+
+# Sample data
+data &lt;- data.frame(
+  Endpoint = c(&quot;GET Plan&quot;,&quot;GET Specific Plan&quot;, &quot;POST Subscriber&quot;, &quot;POST Plan&quot;),
+  Mean_Elapsed_Time = c(round(mTimePGP,2),round(mTimePGSP,2),round(mTimePPCS,2),round(mTimePPCP,2)),
+  Median_Elapsed_Time = round(c(median(pGP$elapsed),median(pGSP$elapsed),median(pPCS$elapsed),median(pPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(pGP$elapsed),sd(pGSP$elapsed),sd(pPCS$elapsed),sd(pPCP$elapsed)),2),
+  Mean_Bytes = c(round(mBytesPGP,2),round(mBytesPGSP,2),round(mBytesPPCS,2),round(mBytesPPCS,2)),
+  Median_Bytes = round(c(median(pGP$bytes),median(pGSP$bytes),median(pPCS$bytes),median(pPCP$bytes)),2),
+   #Bytes_Standart_Deviation = round(c(sd(pGP$bytes),sd(pGSP$bytes),sd(pPCS$bytes),sd(pPCP$bytes)),2),
+  Throughput = c(stats$Throughput[5],stats$Throughput[6],stats$Throughput[7], stats$Throughput[8]),
+  Error = c(stats$Error[5],stats$Error[6],stats$Error[7], stats$Error[8] ),
+  Samples = c(nrow(pGP),nrow(pGSP),nrow(pPCS),nrow(pPCP))
+)
+
+data2 &lt;- data.frame(
+ Endpoint = c(&quot;GET Plan&quot;,&quot;GET Specific Plan&quot;, &quot;POST Subscriber&quot;, &quot;POST Plan&quot;),
+  Mean_Elapsed_Time = round(c(mTimeJGP,mTimeJGSP,mTimeJPCS,mTimeJPCP),2),
+  Median_Elapsed_Time = round(c(median(jGP$elapsed),median(jGSP$elapsed),median(jPCS$elapsed),median(jPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(jGP$elapsed),sd(jGSP$elapsed),sd(jPCS$elapsed),sd(jPCP$elapsed)),2),
+  Mean_Bytes= round(c(mBytesJGP,mBytesJGSP,mBytesJPCS,mBytesJPCP),2),
+  Median_Bytes = round(c(median(jGP$bytes),median(jGSP$bytes),median(jPCS$bytes),median(jPCP$bytes)),2),
+  #Bytes_Standart_Deviation = round(c(sd(jGP$bytes),sd(jGSP$bytes),sd(jPCS$bytes),sd(jPCP$bytes)),2),
+  Throughput = c(stats$Throughput[17],stats$Throughput[18],stats$Throughput[19],stats$Throughput[20]),
+  Error = c(stats$Error[17],stats$Error[18],stats$Error[19],stats$Error[20]),
+  Samples = c(nrow(jGP),nrow(jGSP),nrow(jPCS),nrow(jPCP))
+)
+
+# Display the table
+kable(data, caption = &quot;Performance Metrics for Protobuf Load Tests&quot;)</code></pre>
+<table>
+<caption>Performance Metrics for Protobuf Load Tests</caption>
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="19%" />
+<col width="10%" />
+<col width="12%" />
+<col width="10%" />
+<col width="5%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Endpoint</th>
+<th align="right">Mean_Elapsed_Time</th>
+<th align="right">Median_Elapsed_Time</th>
+<th align="right">Mean_Bytes</th>
+<th align="right">Median_Bytes</th>
+<th align="right">Throughput</th>
+<th align="right">Error</th>
+<th align="right">Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">GET Plan</td>
+<td align="right">778.82</td>
+<td align="right">756</td>
+<td align="right">481577.09</td>
+<td align="right">479176</td>
+<td align="right">20.6</td>
+<td align="right">0.00</td>
+<td align="right">7458</td>
+</tr>
+<tr class="even">
+<td align="left">GET Specific Plan</td>
+<td align="right">2722.95</td>
+<td align="right">712</td>
+<td align="right">472.52</td>
+<td align="right">472</td>
+<td align="right">20.6</td>
+<td align="right">0.23</td>
+<td align="right">7443</td>
+</tr>
+<tr class="odd">
+<td align="left">POST Subscriber</td>
+<td align="right">24547.52</td>
+<td align="right">27631</td>
+<td align="right">679.23</td>
+<td align="right">679</td>
+<td align="right">20.0</td>
+<td align="right">0.11</td>
+<td align="right">7433</td>
+</tr>
+<tr class="even">
+<td align="left">POST Plan</td>
+<td align="right">372.53</td>
+<td align="right">378</td>
+<td align="right">679.23</td>
+<td align="right">650</td>
+<td align="right">19.1</td>
+<td align="right">0.00</td>
+<td align="right">6866</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(data2, caption = &quot;Performance Metrics for JSON Load Tests&quot;)</code></pre>
+<table>
+<caption>Performance Metrics for JSON Load Tests</caption>
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="19%" />
+<col width="10%" />
+<col width="12%" />
+<col width="10%" />
+<col width="5%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Endpoint</th>
+<th align="right">Mean_Elapsed_Time</th>
+<th align="right">Median_Elapsed_Time</th>
+<th align="right">Mean_Bytes</th>
+<th align="right">Median_Bytes</th>
+<th align="right">Throughput</th>
+<th align="right">Error</th>
+<th align="right">Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">GET Plan</td>
+<td align="right">870.53</td>
+<td align="right">841.0</td>
+<td align="right">1538487.83</td>
+<td align="right">1529788</td>
+<td align="right">18.9</td>
+<td align="right">0.00</td>
+<td align="right">6858</td>
+</tr>
+<tr class="even">
+<td align="left">GET Specific Plan</td>
+<td align="right">3562.23</td>
+<td align="right">1011.5</td>
+<td align="right">604.32</td>
+<td align="right">604</td>
+<td align="right">19.0</td>
+<td align="right">0.34</td>
+<td align="right">6842</td>
+</tr>
+<tr class="odd">
+<td align="left">POST Subscriber</td>
+<td align="right">26056.61</td>
+<td align="right">30459.0</td>
+<td align="right">662.20</td>
+<td align="right">662</td>
+<td align="right">18.4</td>
+<td align="right">0.21</td>
+<td align="right">6825</td>
+</tr>
+<tr class="even">
+<td align="left">POST Plan</td>
+<td align="right">417.40</td>
+<td align="right">420.0</td>
+<td align="right">690.65</td>
+<td align="right">691</td>
+<td align="right">17.4</td>
+<td align="right">0.00</td>
+<td align="right">6261</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="bar-plot-1" class="section level2">
 <h2>Bar Plot</h2>
@@ -2445,6 +3152,175 @@ mBytesPPCP&lt;-mean(pPCP$bytes)
 mBytesPPCS&lt;-mean(pPCS$bytes)</code></pre>
 </div>
 </div>
+</div>
+<div id="data-2" class="section level2">
+<h2>Data</h2>
+<pre class="r"><code>library(knitr)
+
+# Sample data
+data &lt;- data.frame(
+  Endpoint = c(&quot;GET Plan&quot;,&quot;GET Specific Plan&quot;, &quot;POST Subscriber&quot;, &quot;POST Plan&quot;),
+  Mean_Elapsed_Time = c(round(mTimePGP,2),round(mTimePGSP,2),round(mTimePPCS,2),round(mTimePPCP,2)),
+  Median_Elapsed_Time = round(c(median(pGP$elapsed),median(pGSP$elapsed),median(pPCS$elapsed),median(pPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(pGP$elapsed),sd(pGSP$elapsed),sd(pPCS$elapsed),sd(pPCP$elapsed)),2),
+  Mean_Bytes = c(round(mBytesPGP,2),round(mBytesPGSP,2),round(mBytesPPCS,2),round(mBytesPPCS,2)),
+  Median_Bytes = round(c(median(pGP$bytes),median(pGSP$bytes),median(pPCS$bytes),median(pPCP$bytes)),2),
+   #Bytes_Standart_Deviation = round(c(sd(pGP$bytes),sd(pGSP$bytes),sd(pPCS$bytes),sd(pPCP$bytes)),2),
+  Throughput = c(stats$Throughput[9],stats$Throughput[10],stats$Throughput[11], stats$Throughput[12]),
+  Error = c(stats$Error[9],stats$Error[10],stats$Error[11], stats$Error[12] ),
+  Samples = c(nrow(pGP),nrow(pGSP),nrow(pPCS),nrow(pPCP))
+)
+
+data2 &lt;- data.frame(
+ Endpoint = c(&quot;GET Plan&quot;,&quot;GET Specific Plan&quot;, &quot;POST Subscriber&quot;, &quot;POST Plan&quot;),
+  Mean_Elapsed_Time = round(c(mTimeJGP,mTimeJGSP,mTimeJPCS,mTimeJPCP),2),
+  Median_Elapsed_Time = round(c(median(jGP$elapsed),median(jGSP$elapsed),median(jPCS$elapsed),median(jPCP$elapsed)),2),
+  #Elapsed_Time_Standart_Deviation = round(c(sd(jGP$elapsed),sd(jGSP$elapsed),sd(jPCS$elapsed),sd(jPCP$elapsed)),2),
+  Mean_Bytes= round(c(mBytesJGP,mBytesJGSP,mBytesJPCS,mBytesJPCP),2),
+  Median_Bytes = round(c(median(jGP$bytes),median(jGSP$bytes),median(jPCS$bytes),median(jPCP$bytes)),2),
+  #Bytes_Standart_Deviation = round(c(sd(jGP$bytes),sd(jGSP$bytes),sd(jPCS$bytes),sd(jPCP$bytes)),2),
+  Throughput = c(stats$Throughput[21],stats$Throughput[22],stats$Throughput[23],stats$Throughput[24]),
+  Error = c(stats$Error[21],stats$Error[22],stats$Error[23],stats$Error[24]),
+  Samples = c(nrow(jGP),nrow(jGSP),nrow(jPCS),nrow(jPCP))
+)
+
+# Display the table
+kable(data, caption = &quot;Performance Metrics for Protobuf Stress Tests&quot;)</code></pre>
+<table>
+<caption>Performance Metrics for Protobuf Stress Tests</caption>
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="19%" />
+<col width="10%" />
+<col width="12%" />
+<col width="10%" />
+<col width="5%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Endpoint</th>
+<th align="right">Mean_Elapsed_Time</th>
+<th align="right">Median_Elapsed_Time</th>
+<th align="right">Mean_Bytes</th>
+<th align="right">Median_Bytes</th>
+<th align="right">Throughput</th>
+<th align="right">Error</th>
+<th align="right">Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">GET Plan</td>
+<td align="right">4877.28</td>
+<td align="right">1661</td>
+<td align="right">801593.87</td>
+<td align="right">770773</td>
+<td align="right">15.3</td>
+<td align="right">0.00</td>
+<td align="right">9242</td>
+</tr>
+<tr class="even">
+<td align="left">GET Specific Plan</td>
+<td align="right">140301.59</td>
+<td align="right">152928</td>
+<td align="right">502.91</td>
+<td align="right">472</td>
+<td align="right">14.2</td>
+<td align="right">13.56</td>
+<td align="right">9229</td>
+</tr>
+<tr class="odd">
+<td align="left">POST Subscriber</td>
+<td align="right">51012.44</td>
+<td align="right">50940</td>
+<td align="right">681.30</td>
+<td align="right">681</td>
+<td align="right">11.5</td>
+<td align="right">7.70</td>
+<td align="right">7572</td>
+</tr>
+<tr class="even">
+<td align="left">POST Plan</td>
+<td align="right">1825.16</td>
+<td align="right">693</td>
+<td align="right">681.30</td>
+<td align="right">654</td>
+<td align="right">10.4</td>
+<td align="right">0.00</td>
+<td align="right">6243</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(data2, caption = &quot;Performance Metrics for JSON Stress Tests&quot;)</code></pre>
+<table>
+<caption>Performance Metrics for JSON Stress Tests</caption>
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="19%" />
+<col width="10%" />
+<col width="12%" />
+<col width="10%" />
+<col width="5%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Endpoint</th>
+<th align="right">Mean_Elapsed_Time</th>
+<th align="right">Median_Elapsed_Time</th>
+<th align="right">Mean_Bytes</th>
+<th align="right">Median_Bytes</th>
+<th align="right">Throughput</th>
+<th align="right">Error</th>
+<th align="right">Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">GET Plan</td>
+<td align="right">21092.84</td>
+<td align="right">11026.0</td>
+<td align="right">1340689.67</td>
+<td align="right">2172353</td>
+<td align="right">10.3</td>
+<td align="right">42.65</td>
+<td align="right">6385</td>
+</tr>
+<tr class="even">
+<td align="left">GET Specific Plan</td>
+<td align="right">127894.27</td>
+<td align="right">133594.0</td>
+<td align="right">1143.33</td>
+<td align="right">700</td>
+<td align="right">9.7</td>
+<td align="right">79.91</td>
+<td align="right">6137</td>
+</tr>
+<tr class="odd">
+<td align="left">POST Subscriber</td>
+<td align="right">62193.64</td>
+<td align="right">72557.0</td>
+<td align="right">1181.58</td>
+<td align="right">686</td>
+<td align="right">7.9</td>
+<td align="right">86.10</td>
+<td align="right">4986</td>
+</tr>
+<tr class="even">
+<td align="left">POST Plan</td>
+<td align="right">30905.40</td>
+<td align="right">35100.5</td>
+<td align="right">1129.19</td>
+<td align="right">695</td>
+<td align="right">7.2</td>
+<td align="right">31.06</td>
+<td align="right">4420</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="bar-plot-2" class="section level2">
 <h2>Bar Plot</h2>
