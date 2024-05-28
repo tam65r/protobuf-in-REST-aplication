@@ -6,40 +6,64 @@ output:
   pdf_document: default
 ---
 
+# Tests
+
+There were three types of tests:
+
+-   Baseline -\> to verify how would the application work with minimal load
+-   Load -\> to verify how would the application react to a decent load
+-   Stress -\> to verify how would the application react to a stress load
+
+Both versions of the application underwent the same tests. Each type of test did the same request, the only change was the load on each one. Chaging the amount of Threads sending requests and the ammount of time the tests underwent.
+
+Four different endpoints were used for the tests with various purposes, for a better assessment between the results:  
+
+ * GET Plan - received by the first instance of the Plans microservice, it retrieves all plans, meaning it needs to ask the second instance for their database information. This is perfect to analyze the difference between the bytes received.\
+ * GET Specific Plan - sent to the second Subscription microservice, it ask for the plan information that the user has associated to its subscription. Because the jwt token was from a user from the first microservice, the second one has to ask the first one for the information. The plan in question is saved on the database of the second instance, so the first one will need to retrieve that information. Because the request passes though various stages before returning something, it helps simulate a sitution where four instances are working for a single request.\
+ * POST Subscriber - received by the first User microservice, it needs to ask the second one if the user already exits and after that send the creation request for the Subscription microservice, that proceeds to ask the Plan microservice if the plan associated with the creation request is valid.\
+ * POST Plan - requests the Plan microservice to create a valid plan. For the request be accepted, the plan can not exist in neither of the instances.
+
 # Analysis
+
+Analyzing all of the data obtained, it is possible to verified that between the two versions of the application there is a significant difference. This affirmation can be proved by the hypotheses tests done.
+
+Knowing that there is a significant difference between them, there is still the question of what does that difference tell.
+
+Well, in the table, we can see that for the baseline tests Protobuf and JSON are eye to eye in elapsed time. Well in some endpoints JSON as a sightly inferior average elapsed time, being it a plus. For the bytes, when a request is done to "GET Plan", endpoint that retrieves every plan, a vast amount of information is returned, making it easier to see that Protobuf uses least amount of memory. For the throughput, even if it is a very small difference, Protobuf has the lead. Analyzing the data from the load tests, it is evident that Protobuf exceeds. With smaller elapsed times, least amount of bytes received, higher throughput, smaller error rate and more samples obtained. Adding the stress tests results to the mixer, one can perceived what the load tests pre-accessed. Protobuf has the lead in every field and JSON starts showing big weakness. Protobuf can handle more extreme situations, with error rates, compared to JSON, low and reasonable throughput.
+
 | **Endpoint**          | **Format**   | **Test**   | **Mean Elapsed Time (ms)** | **Mean Bytes** | **Thoughput** | **Samples** | **Error (%)** | **Success Samples** |
-|-----------------------|--------------|------------|----------------------------|----------------|---------------|-------------|---------------|---------------------|
-| **GET Plan**          | **Protobuf** | _Baseline_ |            57.48           |    155001.32   |      29.8     |     5368    |       0       |         5368        |
-|                       |              | _Load_     |           778.82           |    481577.09   |      20.6     |     7458    |       0       |         7458        |
-|                       |              | _Stress_   |           4877.28          |    801593.87   |      15.3     |     9242    |       0       |         9242        |
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+| **GET Plan**          | **Protobuf** | *Baseline* | 57.48                      | 155001.32      | 29.8          | 5368        | 0             | 5368                |
+|                       |              | *Load*     | 778.82                     | 481577.09      | 20.6          | 7458        | 0             | 7458                |
+|                       |              | *Stress*   | 4877.28                    | 801593.87      | 15.3          | 9242        | 0             | 9242                |
 |                       |              |            |                            |                |               |             |               |                     |
-|                       | **JSON**     | _Baseline_ |            64.60           |    502139.83   |      29.6     |     5324    |       0       |         5324        |
-|                       |              | _Load_     |           870.53           |   1538487.83   |      18.9     |     6858    |       0       |         6858        |
-|                       |              | _Stress_   |          21092.84          |   1340689.67   |      10.3     |     6385    |     42.65     |         3661        |
+|                       | **JSON**     | *Baseline* | 64.60                      | 502139.83      | 29.6          | 5324        | 0             | 5324                |
+|                       |              | *Load*     | 870.53                     | 1538487.83     | 18.9          | 6858        | 0             | 6858                |
+|                       |              | *Stress*   | 21092.84                   | 1340689.67     | 10.3          | 6385        | 42.65         | 3661                |
 |                       |              |            |                            |                |               |             |               |                     |
-| **GET Specific Plan** | **Protobuf** | _Baseline_ |            31.56           |     471.73     |      29.9     |     5366    |       0       |         5366        |
-|                       |              | _Load_     |           2722.95          |     472.52     |      20.6     |     7443    |      0.23     |         7425        |
-|                       |              | _Stress_   |          140301.59         |     502.91     |      14.2     |     9229    |     13.56     |         7977        |
+| **GET Specific Plan** | **Protobuf** | *Baseline* | 31.56                      | 471.73         | 29.9          | 5366        | 0             | 5366                |
+|                       |              | *Load*     | 2722.95                    | 472.52         | 20.6          | 7443        | 0.23          | 7425                |
+|                       |              | *Stress*   | 140301.59                  | 502.91         | 14.2          | 9229        | 13.56         | 7977                |
 |                       |              |            |                            |                |               |             |               |                     |
-|                       | **JSON**     | _Baseline_ |            30.46           |     603.73     |      29.6     |     5322    |       0       |         5322        |
-|                       |              | _Load_     |           3562.23          |     604.32     |       19      |     6842    |      0.34     |         6818        |
-|                       |              | _Stress_   |          127894.27         |     1143.33    |      9.7      |     6137    |     79.91     |         1232        |
+|                       | **JSON**     | *Baseline* | 30.46                      | 603.73         | 29.6          | 5322        | 0             | 5322                |
+|                       |              | *Load*     | 3562.23                    | 604.32         | 19            | 6842        | 0.34          | 6818                |
+|                       |              | *Stress*   | 127894.27                  | 1143.33        | 9.7           | 6137        | 79.91         | 1232                |
 |                       |              |            |                            |                |               |             |               |                     |
-| **POST Subscriber**   | **Protobuf** | _Baseline_ |           228.49           |     682.32     |       30      |     5366    |       0       |         5366        |
-|                       |              | _Load_     |          24547.52          |     679.23     |       20      |     7433    |      0.11     |         7424        |
-|                       |              | _Stress_   |          51012.44          |     681.30     |      11.5     |     7572    |      7.70     |         6988        |
+| **POST Subscriber**   | **Protobuf** | *Baseline* | 228.49                     | 682.32         | 30            | 5366        | 0             | 5366                |
+|                       |              | *Load*     | 24547.52                   | 679.23         | 20            | 7433        | 0.11          | 7424                |
+|                       |              | *Stress*   | 51012.44                   | 681.30         | 11.5          | 7572        | 7.70          | 6988                |
 |                       |              |            |                            |                |               |             |               |                     |
-|                       | **JSON**     | _Baseline_ |           225.98           |     665.31     |      29.7     |     5320    |       0       |         5320        |
-|                       |              | _Load_     |          26056.61          |     662.29     |      18.4     |     6825    |      0.21     |         6810        |
-|                       |              | _Stress_   |          62193.64          |     1181.59    |      7.9      |     4986    |     86.10     |         693         |
+|                       | **JSON**     | *Baseline* | 225.98                     | 665.31         | 29.7          | 5320        | 0             | 5320                |
+|                       |              | *Load*     | 26056.61                   | 662.29         | 18.4          | 6825        | 0.21          | 6810                |
+|                       |              | *Stress*   | 62193.64                   | 1181.59        | 7.9           | 4986        | 86.10         | 693                 |
 |                       |              |            |                            |                |               |             |               |                     |
-| **POST Plan**         | **Protobuf** | _Baseline_ |           225.98           |     682.32     |       30      |     5368    |       0       |         5368        |
-|                       |              | _Load_     |           372.53           |     679.23     |      19.1     |     6866    |       0       |         6866        |
-|                       |              | _Stress_   |           1825.16          |     681.30     |      10.4     |     6243    |       0       |         6243        |
+| **POST Plan**         | **Protobuf** | *Baseline* | 13.23                      | 682.32         | 30            | 5368        | 0             | 5368                |
+|                       |              | *Load*     | 372.53                     | 679.23         | 19.1          | 6866        | 0             | 6866                |
+|                       |              | *Stress*   | 1825.16                    | 681.30         | 10.4          | 6243        | 0             | 6243                |
 |                       |              |            |                            |                |               |             |               |                     |
-|                       | **JSON**     | _Baseline_ |            12.75           |     698.04     |      29.7     |     5315    |       0       |         5315        |
-|                       |              | _Load_     |           417.40           |     690.65     |      17.4     |     6261    |       0       |         6261        |
-|                       |              | _Stress_   |          30905.40          |     1129.19    |      7.2      |     4420    |     31.06     |         3047        |
+|                       | **JSON**     | *Baseline* | 12.75                      | 698.04         | 29.7          | 5315        | 0             | 5315                |
+|                       |              | *Load*     | 417.40                     | 690.65         | 17.4          | 6261        | 0             | 6261                |
+|                       |              | *Stress*   | 30905.40                   | 1129.19        | 7.2           | 4420        | 31.06         | 3047                |
 
 # Baseline
 
@@ -127,7 +151,6 @@ mBytesPPCS<-mean(pPCS$bytes)
 
 ```
 
-
 ## Data
 
 ```{r}
@@ -164,7 +187,6 @@ data2 <- data.frame(
 kable(data, caption = "Performance Metrics for Protobuf Baseline Tests")
 kable(data2, caption = "Performance Metrics for JSON Baseline Tests")
 ```
-
 
 ## Bar Plot
 
@@ -342,6 +364,7 @@ text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
 legend("topright", legend = names, fill = bar_colors)
 
 ```
+
 # Load
 
 **Conditions**
@@ -358,8 +381,7 @@ Thread Options
 
 | Number of Threads | Ramp-up period (s) | Loop Count | Duration (s) |
 |-------------------|--------------------|------------|--------------|
-| 600                | 30                  | Infinite   | 360          |
-
+| 600               | 30                 | Infinite   | 360          |
 
 ```{r}
 library(readr)
@@ -436,6 +458,7 @@ mBytesPPCP<-mean(pPCP$bytes)
 mBytesPPCS<-mean(pPCS$bytes)
 
 ```
+
 ## Data
 
 ```{r}
@@ -472,11 +495,13 @@ data2 <- data.frame(
 kable(data, caption = "Performance Metrics for Protobuf Load Tests")
 kable(data2, caption = "Performance Metrics for JSON Load Tests")
 ```
+
 ## Bar Plot
 
 ### Endpoint - GET Plan
 
 #### Elapsed Time
+
 ```{r}
 title <- "Load GET Plan Elapsed Time"
 data <- round(c(mTimePGP, mTimeJGP),2)
@@ -490,6 +515,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Bytes
+
 ```{r}
 data <- round(c(mBytesPGP, mBytesJGP), 2)
 names <- c("Protobuf", "JSON")
@@ -501,6 +527,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Throughput
+
 ```{r}
 title <- "Load GET Plan Throughput"
 data <- c(stats$Throughput[5],stats$Throughput[17])
@@ -517,6 +544,7 @@ legend("topright", legend = names, fill = bar_colors)
 ### Endpoint - GET Specific Plan
 
 #### Elapsed Time
+
 ```{r}
 title <- "Load GET Specific Plan Elapsed Time"
 data <- round(c(mTimePGSP, mTimeJGSP),2)
@@ -529,6 +557,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Bytes
+
 ```{r}
 title <- "Load GET Specific Plan Bytes"
 data <- round(c(mBytesPGSP, mBytesJGSP), 2)
@@ -541,6 +570,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Throughput
+
 ```{r}
 title <- "Load GET Specific Plan Throughput"
 data <- c(stats$Throughput[6],stats$Throughput[18])
@@ -553,6 +583,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Error
+
 ```{r}
 title <- "Load GET Specific Plan Error"
 data <- c(stats$Error[6],stats$Error[18])
@@ -567,6 +598,7 @@ legend("topright", legend = names, fill = bar_colors)
 ### Endpoint - POST Subscriber
 
 #### Elapsed Time
+
 ```{r}
 title <- "Load POST Subscriber Elapsed Time"
 data <- round(c(mTimePPCS, mTimeJPCS),2)
@@ -579,6 +611,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Bytes
+
 ```{r}
 title <- "Load POST Subscriber Bytes"
 data <- round(c(mBytesPPCS, mBytesJPCS), 2)
@@ -592,6 +625,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Throughput
+
 ```{r}
 title <- "Load POST Subscriber Throughput"
 data <- c(stats$Throughput[7],stats$Throughput[19])
@@ -616,7 +650,6 @@ text(x = graph, y = data, labels = data, pos = 3, col = "black")
 legend("topright", legend = names, fill = bar_colors)
 ```
 
-
 ### Endpoint - POST Plan
 
 #### Elapsed Time
@@ -632,8 +665,8 @@ text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
 legend("topright", legend = names, fill = bar_colors)
 ```
 
-
 #### Bytes
+
 ```{r}
 title <- "Load POST Plan Bytes"
 data <- round(c(mBytesPPCP, mBytesJPCP), 2)
@@ -646,6 +679,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Throughput
+
 ```{r}
 title <- "Load POST Plan Throughput"
 data <- c(stats$Throughput[8],stats$Throughput[20])
@@ -657,6 +691,7 @@ text(x = graph, y = data + 1, labels = data, pos = 3, col = "black")
 legend("topright", legend = names, fill = bar_colors)
 
 ```
+
 # Stress
 
 **Conditions**
@@ -673,7 +708,7 @@ Thread Options
 
 | Number of Threads | Ramp-up period (s) | Loop Count | Duration (s) |
 |-------------------|--------------------|------------|--------------|
-| 3000                | 100             | Infinite   | 600          |
+| 3000              | 100                | Infinite   | 600          |
 
 ```{r}
 library(readr)
@@ -733,6 +768,7 @@ mBytesPPCP<-mean(pPCP$bytes)
 mBytesPPCS<-mean(pPCS$bytes)
 
 ```
+
 ## Data
 
 ```{r}
@@ -769,11 +805,13 @@ data2 <- data.frame(
 kable(data, caption = "Performance Metrics for Protobuf Stress Tests")
 kable(data2, caption = "Performance Metrics for JSON Stress Tests")
 ```
+
 ## Bar Plot
 
 ### Endpoint - GET Plan
 
 #### Elapsed Time
+
 ```{r}
 title <- "Stress GET Plan Elapsed Time"
 
@@ -812,6 +850,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Bytes
+
 ```{r}
 title <- "Stress GET Plan Bytes"
 
@@ -839,6 +878,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Throughput
+
 ```{r}
 # Graph Title
 
@@ -868,6 +908,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Error
+
 ```{r}
 # Graph Title
 
@@ -899,6 +940,7 @@ legend("topright", legend = names, fill = bar_colors)
 ### Endpoint - GET Specific Plan
 
 #### Elapsed Time
+
 ```{r}
 # Graph Title
 
@@ -929,6 +971,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Bytes
+
 ```{r}
 # Graph Title
 
@@ -958,6 +1001,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Throughput
+
 ```{r}
 title <- "Stress GET Specific Plan Throughput"
 
@@ -986,6 +1030,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Error
+
 ```{r}
 title <- "Stress GET Specific Plan Error"
 
@@ -1015,6 +1060,7 @@ legend("topright", legend = names, fill = bar_colors)
 ### Endpoint - POST Subscriber
 
 #### Elapsed Time
+
 ```{r}
 # Graph Title
 
@@ -1046,6 +1092,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Bytes
+
 ```{r}
 title <- "Stress POST Subscriber Bytes"
 
@@ -1073,6 +1120,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Throughput
+
 ```{r}
 title <- "Stress POST Subscriber Throughput"
 
@@ -1100,6 +1148,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Error
+
 ```{r}
 title <- "Stress POST Subscriber Error"
 
@@ -1130,6 +1179,7 @@ legend("topright", legend = names, fill = bar_colors)
 ### Endpoint - POST Plan
 
 #### Elapsed Time
+
 ```{r}
 title <- "Stress POST Plan Elapsed Time"
 
@@ -1159,6 +1209,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Bytes
+
 ```{r}
 title <- "Stress POST Plan Bytes"
 
@@ -1186,6 +1237,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Throughput
+
 ```{r}
 title <- "Stress POST Plan Throughput"
 
@@ -1213,6 +1265,7 @@ legend("topright", legend = names, fill = bar_colors)
 ```
 
 #### Error
+
 ```{r}
 title <- "Stress POST Plan Error"
 
@@ -1239,4 +1292,3 @@ text(x = graph, y = data, labels = data, pos = 3, col = "black")
 legend("topright", legend = names, fill = bar_colors)
 
 ```
-
