@@ -63,7 +63,7 @@ def create_one_pain_plot(stats, indexes, title, column, yLabel, xLabel = "Format
     if not percetange:
         ax.set_ylim(0, max(data) + max(data) / 3)
     else:
-        ax.set_ylim(0, 100)
+        ax.set_ylim(0, 125)
 
     
 
