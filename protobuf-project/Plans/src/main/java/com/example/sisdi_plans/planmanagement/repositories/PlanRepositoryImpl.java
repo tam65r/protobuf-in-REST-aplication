@@ -66,7 +66,7 @@ public class PlanRepositoryImpl implements PlanRepository {
         }
 
         if (!internal) {
-            PlanJPA planJPAHTTP = httpRepository.deactivePlan(name, authorization);
+            PlanJPA planJPAHTTP = httpRepository.deactivatePlan(name, authorization);
 
             if (planJPAHTTP != null) {
                 return planJPAHTTP;
