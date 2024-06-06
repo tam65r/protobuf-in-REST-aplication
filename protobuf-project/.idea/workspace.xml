@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4843af55-48bd-4704-a298-23669195d3bd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanHTTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanHTTPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/repositories/PlanRepositoryImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,36 +38,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.PlansApplication 2.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.PlansApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.SubscriptionsApplication 2.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.SubscriptionsApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UsersApplication 2.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UsersApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/3ANO2SEMESTRE/PESTA/protobuf-in-REST-applications/protobuf-project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.PlansApplication 2.executor": "Run",
+    "Spring Boot.PlansApplication.executor": "Debug",
+    "Spring Boot.SubscriptionsApplication 2.executor": "Run",
+    "Spring Boot.SubscriptionsApplication.executor": "Run",
+    "Spring Boot.UsersApplication 2.executor": "Run",
+    "Spring Boot.UsersApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/3ANO2SEMESTRE/PESTA/protobuf-in-REST-applications/protobuf-project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\sidis-project1-protobuf\Plans\src\main\resources\proto" />
@@ -86,9 +82,9 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SubscriptionsApplication 2">
+  <component name="RunManager" selected="Spring Boot.PlansApplication 2">
     <configuration name="PlansApplication 2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="planJPA-protobuf-service" />
+      <module name="plan-protobuf-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sisdi_plans.PlansApplication" />
       <option name="VM_PARAMETERS" value="-Dserver.port=8085 -Dreplica.port=8080 -Dspring.datasource.url=jdbc:h2:~/databases/protobuf/plansJPA2;AUTO_SERVER=true;" />
       <method v="2">
@@ -103,7 +99,7 @@
       </method>
     </configuration>
     <configuration name="SubscriptionsApplication 2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="subscriptionJPA-protobuf-service" />
+      <module name="subscription-protobuf-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sisdi_subscriptions.SubscriptionsApplication" />
       <option name="VM_PARAMETERS" value="-Dserver.port=8086 -Dreplica.port=8081 -Dspring.datasource.url=jdbc:h2:~/databases/protobuf/subscriptionsJPA2;AUTO_SERVER=true;" />
       <method v="2">
@@ -118,7 +114,7 @@
       </method>
     </configuration>
     <configuration name="UsersApplication 2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="userJPA-protobuf-service" />
+      <module name="user-protobuf-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sisdi_users.UsersApplication" />
       <option name="VM_PARAMETERS" value="-Dserver.port=8087 -Dreplica.port=8083 -Dsubscriptions.port=8086 -Dspring.datasource.url=jdbc:h2:~/databases/protobuf/usersJPA2;AUTO_SERVER=true;" />
       <method v="2">
@@ -168,7 +164,7 @@
       <workItem from="1717079443017" duration="552000" />
       <workItem from="1717080261829" duration="621000" />
       <workItem from="1717435232612" duration="5635000" />
-      <workItem from="1717494081808" duration="1065000" />
+      <workItem from="1717494081808" duration="8941000" />
     </task>
     <servers />
   </component>
@@ -190,6 +186,11 @@
           <url>file://$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanController.java</url>
           <line>120</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Plans/src/main/java/com/example/sisdi_plans/planmanagement/api/PlanController.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
