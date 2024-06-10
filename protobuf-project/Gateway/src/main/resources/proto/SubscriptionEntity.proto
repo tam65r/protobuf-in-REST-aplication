@@ -1,0 +1,31 @@
+syntax = "proto3";
+package example;
+option java_package = "com.example.gateway.model";
+
+message Subscription {
+  string subscriberID = 1;
+  string plan = 2;
+  string initialDate = 3;
+  bool isActive = 4;
+  string finalDate = 5;
+  string endSubscriptionDate = 6;
+
+  enum FeeType {
+    FEE_TYPE_NA = 0;
+    MONTHLY = 1;
+    ANNUAL = 2;
+  }
+
+  enum PaymentMethod {
+    PAYMENT_METHOD_NA = 0;
+    MBWAY = 1;
+    CARD = 2;
+  }
+
+  FeeType feeType = 7;
+  PaymentMethod paymentMethod = 8;
+}
+
+message SubscriptionList {
+  repeated Subscription subscriptions = 1;
+}
