@@ -20,6 +20,12 @@
         <module name="psoft-g2 (1)" />
         <module name="sidis-plans-pj1" />
       </profile>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="gateway" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="psoft-g2" target="11" />
@@ -27,6 +33,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="gateway" options="-parameters" />
       <module name="psoft-g2" options="-parameters" />
       <module name="psoft-g2 (1)" options="-parameters" />
       <module name="psoft-g2 (2)" options="-parameters" />

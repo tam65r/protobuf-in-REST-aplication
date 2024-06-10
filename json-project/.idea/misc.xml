@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/Plans/pom.xml" />
         <option value="$PROJECT_DIR$/Users/pom.xml" />
         <option value="$PROJECT_DIR$/Subscriptions/pom.xml" />
+        <option value="$PROJECT_DIR$/Gateway/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />

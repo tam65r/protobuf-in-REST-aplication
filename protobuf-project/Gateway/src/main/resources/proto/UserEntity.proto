@@ -1,0 +1,25 @@
+syntax = "proto3";
+package example;
+option java_package = "com.example.gateway.model";
+
+message User {
+  string name = 1;
+  string citizenCardNumber = 3;
+  string birthday = 4;
+  string phoneNumber = 5;
+  string username = 6;
+
+  enum Gender {
+    OTHER = 0;
+    FEMALE = 1;
+    MALE = 2;
+  }
+
+
+  Gender gender = 7;
+  string role = 2;
+}
+
+message UserList {
+  repeated User user = 1;
+}

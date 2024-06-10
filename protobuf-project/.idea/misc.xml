@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/Plans/pom.xml" />
         <option value="$PROJECT_DIR$/Users/pom.xml" />
+        <option value="$PROJECT_DIR$/Gateway/pom.xml" />
         <option value="$PROJECT_DIR$/Subscriptions/pom.xml" />
       </list>
     </option>
