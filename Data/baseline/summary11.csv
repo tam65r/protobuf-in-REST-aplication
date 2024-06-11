@@ -1,3 +1,0 @@
-Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
-GET Plan from User,10902,163,14,911,"112,55","0,000%","60,57205","32,95","60,10","557,0"
-TOTAL,10902,163,14,911,"112,55","0,000%","60,57205","32,95","60,10","557,0"

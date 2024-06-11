@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +56,14 @@ public class SubscriptionService {
 			return subscriptionRepository.getDetailsByUsername(username,authorization,false);
 		} else {
 			return subscriptionRepository.getDetailsByUsername(username,null,true);
+		}
+	}
+
+	public List<Subscription> getSubscriptionDetailsByPlan(String username, String authorization, boolean internal) throws Exception {
+		if (!internal) {
+			return subscriptionRepository.subscriptionDetailsByPlan(username,authorization,false);
+		} else {
+			return subscriptionRepository.subscriptionDetailsByPlan(username,null,true);
 		}
 	}
 

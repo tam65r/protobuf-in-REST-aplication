@@ -4,6 +4,8 @@ import com.example.sisdi_subscriptions.subscriptionmanagement.model.Subscription
 import org.springframework.stereotype.Component;
 
 import javax.annotation.processing.Generated;
+import java.util.ArrayList;
+import java.util.List;
 
 @Generated(
         value = "org.mapstruct.ap.MappingProcessor"
@@ -28,4 +30,16 @@ public class SubscriptionDTOMapperImpl extends SubscriptionDTOMapper{
 
         return dto;
     }
+
+    @Override
+    public List<SubscriptionDTO> toListSubscriptionDTO(List<Subscription> sub) {
+        List<SubscriptionDTO> dto = new ArrayList<>();
+        for(Subscription jpa : sub) {
+            dto.add(toSubscriptionDTO(jpa));
+        }
+
+        return dto;
+    }
+
+
 }

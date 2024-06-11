@@ -5,6 +5,7 @@ import com.example.sisdi_subscriptions.subscriptionmanagement.api.CreateSubscrip
 
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.Subscription;
 
+import java.util.List;
 
 
 public interface SubscriptionRepository {
@@ -19,4 +20,5 @@ public interface SubscriptionRepository {
 
     String getDetailsByUsername(String username, String authorization, boolean internal) throws Exception;
 
+    List<Subscription> subscriptionDetailsByPlan(String plan, String authorization, boolean internal) throws Exception;
 }

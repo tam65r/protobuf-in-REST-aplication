@@ -37,10 +37,9 @@ public class GatewayApplication {
 		return new ProtobufHttpMessageConverter();
 	}
 
+
 	private final ModifyResponseContentTypeFilter modifyResponseContentTypeFilter;
 
-	@Autowired
-	private ModifyRequestBodyGatewayFilterFactory modifyRequestBodyFilterFactory;
 
 	@Autowired
     public GatewayApplication(ModifyResponseContentTypeFilter modifyResponseContentTypeFilter) {

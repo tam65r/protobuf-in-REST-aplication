@@ -110,6 +110,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// Our public endpoints
 				.antMatchers("/api/subscriptions/test").permitAll()
 				.antMatchers("/api/subscriptions/newSub").permitAll()
+				.antMatchers("/api/subscriptions/details").hasRole(AuthorityRole.ADMIN)
+				.antMatchers("/api/subscriptions/internal/details").hasRole(AuthorityRole.ADMIN)
 				.antMatchers(HttpMethod.PATCH,"/api/subscriptions/**").hasRole(AuthorityRole.SUBSCRIBER)
 				.antMatchers(HttpMethod.GET,"/api/subscriptions/**").hasRole(AuthorityRole.SUBSCRIBER)
 				.anyRequest().authenticated()

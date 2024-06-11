@@ -2,6 +2,7 @@ package com.example.sisdi_subscriptions.subscriptionmanagement.repositories;
 
 import com.example.sisdi_subscriptions.subscriptionmanagement.api.SubscriptionDTOMapper;
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.SubscriptionJPA;
+import com.example.sisdi_subscriptions.subscriptionmanagement.model.proto.SubscriptionEntity;
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.proto.SubscriptionEntity.Subscription;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
@@ -13,6 +14,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -95,6 +98,24 @@ public class SubscriptionHTTPRepository {
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 return mapper.toJPAEntity(Subscription.parseFrom(EntityUtils.toByteArray(response.getEntity())));
+            }
+        }
+        return null;
+    }
+
+    public List<SubscriptionJPA> subscriptionByPlan(String plan, String authorization) throws Exception {
+        String url = this.getBaseUrl() + "/internal/details?plan=" + plan;
+
+        HttpGet httpGet = new HttpGet(url);
+
+        httpGet.setHeader("Content-Type", "application/x-protobuf");
+        httpGet.setHeader("Authorization", authorization);
+
+        try (CloseableHttpClient httpClient = HttpClients.createDefault();
+             CloseableHttpResponse response = httpClient.execute(httpGet)) {
+
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                return mapper.toJPAEntityList(mapper.toDTOEntityList(SubscriptionEntity.SubscriptionList.parseFrom(EntityUtils.toByteArray(response.getEntity()))));
             }
         }
         return null;

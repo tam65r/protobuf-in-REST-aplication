@@ -1,5 +1,6 @@
 package com.example.sisdi_subscriptions.subscriptionmanagement.repositories;
 
+import com.example.sisdi_subscriptions.subscriptionmanagement.api.SubscriptionDTO;
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.Subscription;
 import com.example.sisdi_subscriptions.utils.LocalDateTimeTypeAdapter;
 import com.example.sisdi_subscriptions.utils.ServerPortListener;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Repository;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -110,6 +112,28 @@ public class SubscriptionHTTPRepository {
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 return gson.fromJson(EntityUtils.toString(response.getEntity()), Subscription.class);
+            }
+        }
+        return null;
+    }
+
+    public List<Subscription> subscriptionByPlan(String plan, String authorization) throws Exception {
+        String url = this.getBaseUrl() + "/internal/details?plan=" + plan;
+
+        HttpGet httpGet = new HttpGet(url);
+        ArrayList<Subscription> array = new ArrayList<>();
+        httpGet.setHeader("Content-Type", "application/x-protobuf");
+        httpGet.setHeader("Authorization", authorization);
+
+        try (CloseableHttpClient httpClient = HttpClients.createDefault();
+             CloseableHttpResponse response = httpClient.execute(httpGet)) {
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
+                    .create();
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                Subscription[] dto = gson.fromJson(EntityUtils.toString(response.getEntity()), Subscription[].class);
+                array.addAll(List.of(dto));
+                return array;
             }
         }
         return null;

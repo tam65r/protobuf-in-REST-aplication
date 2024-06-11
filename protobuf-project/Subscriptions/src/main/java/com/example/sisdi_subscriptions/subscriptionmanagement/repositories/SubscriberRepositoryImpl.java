@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import com.example.sisdi_subscriptions.subscriptionmanagement.api.proto.SubscriptionRequests.CreateSubscriptionRequest;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -175,4 +176,23 @@ public class SubscriberRepositoryImpl implements SubscriptionRepository {
         throw new NotFoundException("Plan");
 
     }
+
+    @Override
+    public List<SubscriptionJPA> subscriptionDetailsByPlan(String plan, String authorization, boolean internal) throws Exception {
+
+        List<SubscriptionJPA> subscriptions = dbRepository.findByPlan(plan);
+
+        if (internal) {
+            return subscriptions;
+        }
+
+        List<SubscriptionJPA> list = httpRepository.subscriptionByPlan(plan, authorization);
+
+        if (list != null) {
+            subscriptions.addAll(list);
+        }
+
+        return subscriptions;
+    }
+
 }

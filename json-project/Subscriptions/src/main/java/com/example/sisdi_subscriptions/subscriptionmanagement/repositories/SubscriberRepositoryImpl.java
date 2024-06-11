@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -175,5 +176,23 @@ public class SubscriberRepositoryImpl implements SubscriptionRepository {
 
         throw new NotFoundException("Plan");
 
+    }
+
+    @Override
+    public List<Subscription> subscriptionDetailsByPlan(String plan, String authorization, boolean internal) throws Exception {
+
+        List<Subscription> subscriptions = dbRepository.findByPlan(plan);
+
+        if (internal) {
+            return subscriptions;
+        }
+
+        List<Subscription> list = httpRepository.subscriptionByPlan(plan, authorization);
+
+        if (list != null) {
+            subscriptions.addAll(list);
+        }
+
+        return subscriptions;
     }
 }

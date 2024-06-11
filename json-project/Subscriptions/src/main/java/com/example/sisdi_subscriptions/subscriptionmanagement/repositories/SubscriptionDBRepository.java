@@ -14,7 +14,7 @@ public interface SubscriptionDBRepository extends CrudRepository<Subscription,Lo
 	Optional<Subscription> findBySubscriberID(String subscriberID);
 
 
-	List<Subscription> findByPlan(Optional<String> planName);
-
+	@Query("SELECT s FROM Subscription s WHERE s.plan = :planName")
+	List<Subscription> findByPlan(String planName);
 	//List<Subscription> findByPlanId(long oldPlanId);
 }

@@ -3,6 +3,7 @@ package com.example.sisdi_subscriptions.subscriptionmanagement.api;
 
 
 import com.example.sisdi_subscriptions.subscriptionmanagement.model.AuthorityRole;
+import com.example.sisdi_subscriptions.subscriptionmanagement.model.proto.SubscriptionEntity;
 import com.example.sisdi_subscriptions.subscriptionmanagement.service.SubscriptionService;
 
 import com.example.sisdi_subscriptions.utils.Utils;
@@ -169,6 +170,27 @@ public class SubscriptionController {
 		final var planBytes = service.getDetailsByUsername(username,authorization,true);
 
 		return new ResponseEntity<byte []>(planBytes, httpHeaders, HttpStatus.OK);
+	}
+
+	@Operation(summary = "Retrieve subscription details")
+	@RolesAllowed({AuthorityRole.ADMIN})
+	@GetMapping("/details")
+	public ResponseEntity<SubscriptionEntity.SubscriptionList> getSubscriptionDetailsByPlan( HttpServletRequest request, @RequestParam String plan) throws Exception {
+		String authorization = request.getHeader("Authorization");
+
+		final var subscriptions = service.getSubscriptionDetailsByPlan(plan, authorization, false);
+
+		return ResponseEntity.ok().body(mapper.toDTOPlanList(mapper.toDTOEntityList(subscriptions)));
+	}
+
+	@Operation(summary = "Internal retrieve subscription details")
+	@RolesAllowed({AuthorityRole.ADMIN})
+	@GetMapping("/internal/details")
+	public ResponseEntity<SubscriptionEntity.SubscriptionList> getSubscriptionDetailsByPlanInternal(@RequestParam String plan) throws Exception {
+
+		final var subscriptions = service.getSubscriptionDetailsByPlan(plan, null, true);
+
+		return ResponseEntity.ok().body(mapper.toDTOPlanList(mapper.toDTOEntityList(subscriptions)));
 	}
 
 }

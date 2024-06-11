@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SubscriptionService {
@@ -55,4 +57,11 @@ public class SubscriptionService {
 		}
 	}
 
+	public List<SubscriptionJPA> getSubscriptionDetailsByPlan(String username, String authorization, boolean internal) throws Exception {
+		if (!internal) {
+			return subscriptionRepository.subscriptionDetailsByPlan(username,authorization,false);
+		} else {
+			return subscriptionRepository.subscriptionDetailsByPlan(username,null,true);
+		}
+	}
 }

@@ -1,0 +1,4 @@
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+POST Create User With SUBSCRIBER Role,1340,6056,266,20644,"3059,57","0,000%","40,49439","25,32","20,81","640,4"
+POST Create Plan,1340,116,10,1849,"184,97","0,000%","40,97483","25,34","52,11","633,3"
+TOTAL,2680,3086,10,20644,"3677,00","0,000%","80,95943","50,35","72,28","636,9"

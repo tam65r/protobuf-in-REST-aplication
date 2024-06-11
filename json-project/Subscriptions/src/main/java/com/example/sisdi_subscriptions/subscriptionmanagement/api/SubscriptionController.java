@@ -22,6 +22,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 
 @Tag(name = "Subscriptions")
@@ -167,6 +168,27 @@ public class SubscriptionController {
 		final var plan = service.getDetailsByUsername(username,authorization,true);
 
 		return new ResponseEntity<String>(plan, httpHeaders, HttpStatus.OK);
+	}
+
+	@Operation(summary = "Retrieve subscription details")
+	@RolesAllowed({AuthorityRole.ADMIN})
+	@GetMapping("/details")
+	public ResponseEntity<List<SubscriptionDTO>> getSubscriptionDetailsByPlan(HttpServletRequest request, @RequestParam String plan) throws Exception {
+		String authorization = request.getHeader("Authorization");
+
+		final var subscriptions = service.getSubscriptionDetailsByPlan(plan, authorization, false);
+
+		return ResponseEntity.ok().body(mapper.toListSubscriptionDTO(subscriptions));
+	}
+
+	@Operation(summary = "Internal retrieve subscription details")
+	@RolesAllowed({AuthorityRole.ADMIN})
+	@GetMapping("/internal/details")
+	public ResponseEntity<List<SubscriptionDTO>> getSubscriptionDetailsByPlanInternal(@RequestParam String plan) throws Exception {
+
+		final var subscriptions = service.getSubscriptionDetailsByPlan(plan, null, true);
+
+		return ResponseEntity.ok().body(mapper.toListSubscriptionDTO(subscriptions));
 	}
 
 }
