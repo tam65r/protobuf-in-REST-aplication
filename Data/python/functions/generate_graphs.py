@@ -160,7 +160,45 @@ def create_one_pain_plot_v3(stats1, stats2, stats3, indexes, title, column, yLab
     ax.set_ylabel(yLabel)
     ax.set_title(title)
     if not percetange:
-        ax.set_ylim(0, max(data) + max(data) / 3)
+        ax.set_ylim(0, max(data) + max(data) * (1/2))
+    else:
+        ax.set_ylim(0, 125)
+
+    
+
+    for bar, value in zip(bars, data):
+        yval = bar.get_height()
+        ax.text(bar.get_x() + bar.get_width() / 2.0, yval + 1, value, ha='center', va='bottom', color='black')
+
+    ax.legend(bars, labels, loc=loc)
+
+    plt.show()
+    
+    
+def create_error_plot_v3(stats1, stats2, stats3, indexes, title, column, yLabel, xLabel = "Format", labels = ["Protobuf", "JSON", "ProtobufV2"], colors = ["plum","cyan","salmon"], loc = "upper right", percetange = False):
+
+    
+    val1 = stats1[column][indexes].replace(",", ".")
+    val2 = stats2[column][indexes].replace(",", ".")
+    val3 = stats3[column][indexes].replace(",", ".")
+    
+    val1 = val1.replace("%", "")
+    val2 = val2.replace("%", "")
+    val3 = val3.replace("%", "")
+    
+    data = [
+        float(val1), 
+        float(val2), 
+        float(val3)
+    ]
+    fig, ax = plt.subplots()
+    bars = ax.bar(labels, data, color=colors)
+
+    ax.set_xlabel(xLabel)
+    ax.set_ylabel(yLabel)
+    ax.set_title(title)
+    if not percetange:
+        ax.set_ylim(0, max(data) + max(data) * (1/2))
     else:
         ax.set_ylim(0, 125)
 

@@ -5,506 +5,9 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Baseline Test Thread" enabled="true">
-        <intProp name="ThreadGroup.num_threads">25</intProp>
-        <intProp name="ThreadGroup.ramp_time">5</intProp>
-        <longProp name="ThreadGroup.duration">180</longProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </ThreadGroup>
-      <hashTree>
-        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-          <collectionProp name="Arguments.arguments">
-            <elementProp name="subscriber" elementType="Argument">
-              <stringProp name="Argument.name">subscriber</stringProp>
-              <stringProp name="Argument.value">eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMyxwYXBpbGxvbkBtYWlsLmNvbSIsImV4cCI6MTcxODA4MTU1NiwiaWF0IjoxNzE4MDQ1NTU2LCJyb2xlcyI6IlNVQlNDUklCRVIifQ.cAqRv8Nre5IW0hchXn1qEQaKk84K7ax9tiCr4BHTkBGZ1yz2bU3T_jcdNT2lUV-R-pG7YAi1_33CRlgF9nTGIPW8YAbLGhK-pht1hd6Z8tW2wl-VgkXDsoqAuBBUMGjpSgERXyI3lZZWVXb-v8aGTb2RWvKITtGN-ZZ3vSrnqTPFGzZWqQWGfnUf7ArbdHlDHaqY9S5QQf4-FAozCtLYtCTtPWkaLdOmAV2vLSZhNn7JsRb097BxXKRNRneTbkmYMJLI9H8_WIME4wHmTEylp5FLt2h7KZWWMt0vXrz1MQ142Ve8sJaBd14qz8kHfTpXcWmJadNqQ-IlrAxtOPcN0WGI3kMwLUA7ENHxdENEyAnSSXVvlzsYFfumyB9MgN_BAeDxa_9VtOXhoyxSAfHUu6PEt29jPHhhDJihhSL6rlLnc6UFY37yisI9xSmMrL64tiqiQlJJQaRJz4uauCplFhjA-1aX91K39N48gTYq5cEOPZTqbh3VKb9bK8jA9UYPqxdGUa-s5D24QqIk7dcyDoP1IsxVTI_Fyf8GEw-25R_pCJGGadbeBKYO5XfJ9kK_a88SMGVTEii6n4fFMAwOuLbsdldD7vfkCdKc0_ig9u_IbML_c8m_c6PvkXO319eTocgQrDyfYFLG5blTwzynuK4oBab1GW-p8rqbyscyVFo</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-          </collectionProp>
-        </Arguments>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET All Plan" enabled="true">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">1010</stringProp>
-          <stringProp name="HTTPSampler.path">/api/plans/all</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\baseline\protobuf_get_plan_data_v3.csv</stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Plan from User" enabled="true">
-          <stringProp name="TestPlan.comments">In order to retrieve 200 and the information, a user needs to be created before hand, so that the bearer token can be user in here</stringProp>
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">1010</stringProp>
-          <stringProp name="HTTPSampler.path">/api/subscriptions/userPlanDetails</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">Bearer ${subscriber}</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\baseline\protobuf_get_specific_plan_data_v3.csv</stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Create User With SUBSCRIBER Role" enabled="false">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">1010</stringProp>
-          <stringProp name="HTTPSampler.path">/api/public/register</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-    &quot;username&quot;: &quot;butterflybaseline${counter}@mail.com&quot;,&#xd;
-    &quot;password&quot;: &quot;papi55&quot;,&#xd;
-    &quot;name&quot;: &quot;Baseline&quot;,&#xd;
-    &quot;citizenCardNumber&quot;: &quot;123456789&quot;,&#xd;
-    &quot;birthday&quot;: &quot;2000-03-02&quot;,&#xd;
-    &quot;phoneNumber&quot;: &quot;912345678&quot;,&#xd;
-    &quot;sex&quot;: &quot;Male&quot;,&#xd;
-    &quot;role&quot;: &quot;SUBSCRIBER&quot;,&#xd;
-    &quot;plan&quot;: &quot;Diamond&quot;,&#xd;
-    &quot;feeType&quot;: &quot;Annual&quot;,&#xd;
-    &quot;paymentMethod&quot;: &quot;Card&quot;&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-            <stringProp name="CounterConfig.start">1</stringProp>
-            <stringProp name="CounterConfig.end"></stringProp>
-            <stringProp name="CounterConfig.incr">1</stringProp>
-            <stringProp name="CounterConfig.name">counter</stringProp>
-            <stringProp name="CounterConfig.format"></stringProp>
-            <boolProp name="CounterConfig.per_user">false</boolProp>
-          </CounterConfig>
-          <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Content-Type</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>false</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\baseline\json_post_subs_data.csv</stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Create Plan" enabled="false">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">1010</stringProp>
-          <stringProp name="HTTPSampler.path">/api/plans/create</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-    &quot;name&quot;: &quot;TestBaseline${counterPlan}&quot;,&#xd;
-    &quot;description&quot;: &quot;This is a test plan&quot;,&#xd;
-    &quot;numberOfMinutes&quot;: 15,&#xd;
-    &quot;musicSuggestions&quot;: &quot;Automatic&quot;,&#xd;
-    &quot;musicCollections&quot;: 1000,&#xd;
-    &quot;monthlyFee&quot;: 8.49,&#xd;
-    &quot;annualFee&quot;: 84.90&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMSxyaXZlckBtYWlsLmNvbSIsImV4cCI6MTcxNjc3MDY4MywiaWF0IjoxNzE2NzM0NjgzLCJyb2xlcyI6Ik1BUktFVElOR19ESVJFQ1RPUiJ9.OlWWi7H9TE-PexwR75QjArLF-rZpajMa1W-6YQyUFDQunNiow3w5lPAugvQODWF12RduWJGs3IzEDcweR6wyz_9bIvlp49TX14A_QxcDflUeB8a68YpnsBjHF9kBl534euuaFyD_fahByuDF6VnFJz4n9opTbfNuDYzO6iLQTafLHdWO1rpfUxyasXrmUqarS_Op6nHGm0sV8RMmaOldX2pu4GI_N5ilWipmcb4tH70rzSYQkrFk4EPS-bl8zLPsjDHjzpq0ceBSkfEdodPauqrF-vlbEeNcUlyDK6t4TPtj-ujiTHvVGvijalLW3Zc9faBlyzK2ATD1V4Gux2e45PxuwbOQgAagWdkLQ4DPt1WI2VmZhw_rWIPFTrii1RHB1w5xL-LpP_QwU8zPv3Dj4ftV3qiZWMH-wl8KW_ZdN_2XTDMQ-MVk2H7_oIUs6QcR6tPec237q6_H-9OMi9NQdMtAfqIZjJLXugwqJQHHaSkziMrhYmxLIt2KQu7hE7xwml1YjfYovkA14iZ1xsMsEM_NjBunDggMJdVODdzOzVMTGv9I2iBqgkO27GRNs0vUkpUZZWCsMwapy6UYjHff07qjnPY2-xV8vGFQLytjXuue3zrY0jq9MOv8WgNh6uPdD8OLEogt1JJFAP8cAjMKTNAGVqt_F77TLiTz4_ucSR0</stringProp>
-              </elementProp>
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Content-Type</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>false</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\baseline\json_post_plan_data.csv</stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-            <stringProp name="CounterConfig.start">1</stringProp>
-            <stringProp name="CounterConfig.end"></stringProp>
-            <stringProp name="CounterConfig.incr">1</stringProp>
-            <stringProp name="CounterConfig.name">counterPlan</stringProp>
-            <stringProp name="CounterConfig.format"></stringProp>
-            <boolProp name="CounterConfig.per_user">false</boolProp>
-          </CounterConfig>
-          <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <url>true</url>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-      </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Baseline Test Thread" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Create Data Test Thread">
         <intProp name="ThreadGroup.num_threads">335</intProp>
         <intProp name="ThreadGroup.ramp_time">10</intProp>
         <longProp name="ThreadGroup.duration">180</longProp>
@@ -526,192 +29,6 @@
           </collectionProp>
         </Arguments>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET All Plan" enabled="false">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">1010</stringProp>
-          <stringProp name="HTTPSampler.path">/api/plans/all</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\baseline\json_get_plan_data.csv</stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Plan from User" enabled="false">
-          <stringProp name="TestPlan.comments">In order to retrieve 200 and the information, a user needs to be created before hand, so that the bearer token can be user in here</stringProp>
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">1010</stringProp>
-          <stringProp name="HTTPSampler.path">/api/subscriptions/userPlanDetails</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">Bearer ${subscriber}</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\baseline\json_get_specific_plan_data.csv</stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Create User With SUBSCRIBER Role" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">1010</stringProp>
@@ -998,7 +315,254 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Load Test Thread" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Baseline Test Thread">
+        <intProp name="ThreadGroup.num_threads">25</intProp>
+        <intProp name="ThreadGroup.ramp_time">5</intProp>
+        <longProp name="ThreadGroup.duration">180</longProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <intProp name="LoopController.loops">-1</intProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="subscriber" elementType="Argument">
+              <stringProp name="Argument.name">subscriber</stringProp>
+              <stringProp name="Argument.value">eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMyxwYXBpbGxvbkBtYWlsLmNvbSIsImV4cCI6MTcxODA4MTU1NiwiaWF0IjoxNzE4MDQ1NTU2LCJyb2xlcyI6IlNVQlNDUklCRVIifQ.cAqRv8Nre5IW0hchXn1qEQaKk84K7ax9tiCr4BHTkBGZ1yz2bU3T_jcdNT2lUV-R-pG7YAi1_33CRlgF9nTGIPW8YAbLGhK-pht1hd6Z8tW2wl-VgkXDsoqAuBBUMGjpSgERXyI3lZZWVXb-v8aGTb2RWvKITtGN-ZZ3vSrnqTPFGzZWqQWGfnUf7ArbdHlDHaqY9S5QQf4-FAozCtLYtCTtPWkaLdOmAV2vLSZhNn7JsRb097BxXKRNRneTbkmYMJLI9H8_WIME4wHmTEylp5FLt2h7KZWWMt0vXrz1MQ142Ve8sJaBd14qz8kHfTpXcWmJadNqQ-IlrAxtOPcN0WGI3kMwLUA7ENHxdENEyAnSSXVvlzsYFfumyB9MgN_BAeDxa_9VtOXhoyxSAfHUu6PEt29jPHhhDJihhSL6rlLnc6UFY37yisI9xSmMrL64tiqiQlJJQaRJz4uauCplFhjA-1aX91K39N48gTYq5cEOPZTqbh3VKb9bK8jA9UYPqxdGUa-s5D24QqIk7dcyDoP1IsxVTI_Fyf8GEw-25R_pCJGGadbeBKYO5XfJ9kK_a88SMGVTEii6n4fFMAwOuLbsdldD7vfkCdKc0_ig9u_IbML_c8m_c6PvkXO319eTocgQrDyfYFLG5blTwzynuK4oBab1GW-p8rqbyscyVFo</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET All Plan">
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">1010</stringProp>
+          <stringProp name="HTTPSampler.path">/api/plans/all</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\baseline\protobuf_get_plan_data_v3.csv</stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Plan from User" enabled="true">
+          <stringProp name="TestPlan.comments">In order to retrieve 200 and the information, a user needs to be created before hand, so that the bearer token can be user in here</stringProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">1010</stringProp>
+          <stringProp name="HTTPSampler.path">/api/subscriptions/userPlanDetails</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${subscriber}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\baseline\protobuf_get_specific_plan_data_v3.csv</stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Load Test Thread">
         <intProp name="ThreadGroup.num_threads">600</intProp>
         <intProp name="ThreadGroup.ramp_time">30</intProp>
         <longProp name="ThreadGroup.duration">360</longProp>
@@ -1207,254 +771,6 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Create User With SUBSCRIBER Role" enabled="false">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">8083</stringProp>
-          <stringProp name="HTTPSampler.path">/api/public/register</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-    &quot;username&quot;: &quot;butterflyload${counter}@mail.com&quot;,&#xd;
-    &quot;password&quot;: &quot;papi55&quot;,&#xd;
-    &quot;name&quot;: &quot;Baseline&quot;,&#xd;
-    &quot;citizenCardNumber&quot;: &quot;123456789&quot;,&#xd;
-    &quot;birthday&quot;: &quot;2000-03-02&quot;,&#xd;
-    &quot;phoneNumber&quot;: &quot;912345678&quot;,&#xd;
-    &quot;sex&quot;: &quot;Male&quot;,&#xd;
-    &quot;role&quot;: &quot;SUBSCRIBER&quot;,&#xd;
-    &quot;plan&quot;: &quot;Diamond&quot;,&#xd;
-    &quot;feeType&quot;: &quot;Annual&quot;,&#xd;
-    &quot;paymentMethod&quot;: &quot;Card&quot;&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-            <stringProp name="CounterConfig.start">1</stringProp>
-            <stringProp name="CounterConfig.end"></stringProp>
-            <stringProp name="CounterConfig.incr">1</stringProp>
-            <stringProp name="CounterConfig.name">counter</stringProp>
-            <stringProp name="CounterConfig.format"></stringProp>
-            <boolProp name="CounterConfig.per_user">false</boolProp>
-          </CounterConfig>
-          <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Content-Type</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>false</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\load\json_post_subs_data.csv</stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Create Plan" enabled="false">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
-          <stringProp name="HTTPSampler.path">/api/plans/create</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-    &quot;name&quot;: &quot;TestLoad${counterPlan}&quot;,&#xd;
-    &quot;description&quot;: &quot;This is a test plan&quot;,&#xd;
-    &quot;numberOfMinutes&quot;: 15,&#xd;
-    &quot;musicSuggestions&quot;: &quot;Automatic&quot;,&#xd;
-    &quot;musicCollections&quot;: 1000,&#xd;
-    &quot;monthlyFee&quot;: 8.49,&#xd;
-    &quot;annualFee&quot;: 84.90&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMSxyaXZlckBtYWlsLmNvbSIsImV4cCI6MTcxNjc3MDY4MywiaWF0IjoxNzE2NzM0NjgzLCJyb2xlcyI6Ik1BUktFVElOR19ESVJFQ1RPUiJ9.OlWWi7H9TE-PexwR75QjArLF-rZpajMa1W-6YQyUFDQunNiow3w5lPAugvQODWF12RduWJGs3IzEDcweR6wyz_9bIvlp49TX14A_QxcDflUeB8a68YpnsBjHF9kBl534euuaFyD_fahByuDF6VnFJz4n9opTbfNuDYzO6iLQTafLHdWO1rpfUxyasXrmUqarS_Op6nHGm0sV8RMmaOldX2pu4GI_N5ilWipmcb4tH70rzSYQkrFk4EPS-bl8zLPsjDHjzpq0ceBSkfEdodPauqrF-vlbEeNcUlyDK6t4TPtj-ujiTHvVGvijalLW3Zc9faBlyzK2ATD1V4Gux2e45PxuwbOQgAagWdkLQ4DPt1WI2VmZhw_rWIPFTrii1RHB1w5xL-LpP_QwU8zPv3Dj4ftV3qiZWMH-wl8KW_ZdN_2XTDMQ-MVk2H7_oIUs6QcR6tPec237q6_H-9OMi9NQdMtAfqIZjJLXugwqJQHHaSkziMrhYmxLIt2KQu7hE7xwml1YjfYovkA14iZ1xsMsEM_NjBunDggMJdVODdzOzVMTGv9I2iBqgkO27GRNs0vUkpUZZWCsMwapy6UYjHff07qjnPY2-xV8vGFQLytjXuue3zrY0jq9MOv8WgNh6uPdD8OLEogt1JJFAP8cAjMKTNAGVqt_F77TLiTz4_ucSR0</stringProp>
-              </elementProp>
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Content-Type</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>false</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\load\json_post_plan_data.csv</stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-            <stringProp name="CounterConfig.start">1</stringProp>
-            <stringProp name="CounterConfig.end"></stringProp>
-            <stringProp name="CounterConfig.incr">1</stringProp>
-            <stringProp name="CounterConfig.name">counterPlan</stringProp>
-            <stringProp name="CounterConfig.format"></stringProp>
-            <boolProp name="CounterConfig.per_user">false</boolProp>
-          </CounterConfig>
-          <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
         <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
@@ -1493,7 +809,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Test Thread" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Test Thread">
         <intProp name="ThreadGroup.num_threads">3000</intProp>
         <intProp name="ThreadGroup.ramp_time">100</intProp>
         <longProp name="ThreadGroup.duration">600</longProp>
@@ -1506,7 +822,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments">
             <elementProp name="subscriber" elementType="Argument">
               <stringProp name="Argument.name">subscriber</stringProp>
@@ -1702,254 +1018,6 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Create User With SUBSCRIBER Role" enabled="false">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">8083</stringProp>
-          <stringProp name="HTTPSampler.path">/api/public/register</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-    &quot;username&quot;: &quot;butterflstress${counter}@mail.com&quot;,&#xd;
-    &quot;password&quot;: &quot;papi55&quot;,&#xd;
-    &quot;name&quot;: &quot;Baseline&quot;,&#xd;
-    &quot;citizenCardNumber&quot;: &quot;123456789&quot;,&#xd;
-    &quot;birthday&quot;: &quot;2000-03-02&quot;,&#xd;
-    &quot;phoneNumber&quot;: &quot;912345678&quot;,&#xd;
-    &quot;sex&quot;: &quot;Male&quot;,&#xd;
-    &quot;role&quot;: &quot;SUBSCRIBER&quot;,&#xd;
-    &quot;plan&quot;: &quot;Diamond&quot;,&#xd;
-    &quot;feeType&quot;: &quot;Annual&quot;,&#xd;
-    &quot;paymentMethod&quot;: &quot;Card&quot;&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-            <stringProp name="CounterConfig.start">1</stringProp>
-            <stringProp name="CounterConfig.end"></stringProp>
-            <stringProp name="CounterConfig.incr">1</stringProp>
-            <stringProp name="CounterConfig.name">counter</stringProp>
-            <stringProp name="CounterConfig.format"></stringProp>
-            <boolProp name="CounterConfig.per_user">false</boolProp>
-          </CounterConfig>
-          <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Content-Type</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>false</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\stress\json_post_subs_data.csv</stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Create Plan" enabled="false">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
-          <stringProp name="HTTPSampler.path">/api/plans/create</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-    &quot;name&quot;: &quot;TestStress${counterPlan}&quot;,&#xd;
-    &quot;description&quot;: &quot;This is a test plan&quot;,&#xd;
-    &quot;numberOfMinutes&quot;: 15,&#xd;
-    &quot;musicSuggestions&quot;: &quot;Automatic&quot;,&#xd;
-    &quot;musicCollections&quot;: 1000,&#xd;
-    &quot;monthlyFee&quot;: 8.49,&#xd;
-    &quot;annualFee&quot;: 84.90&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMSxyaXZlckBtYWlsLmNvbSIsImV4cCI6MTcxNjc3MDY4MywiaWF0IjoxNzE2NzM0NjgzLCJyb2xlcyI6Ik1BUktFVElOR19ESVJFQ1RPUiJ9.OlWWi7H9TE-PexwR75QjArLF-rZpajMa1W-6YQyUFDQunNiow3w5lPAugvQODWF12RduWJGs3IzEDcweR6wyz_9bIvlp49TX14A_QxcDflUeB8a68YpnsBjHF9kBl534euuaFyD_fahByuDF6VnFJz4n9opTbfNuDYzO6iLQTafLHdWO1rpfUxyasXrmUqarS_Op6nHGm0sV8RMmaOldX2pu4GI_N5ilWipmcb4tH70rzSYQkrFk4EPS-bl8zLPsjDHjzpq0ceBSkfEdodPauqrF-vlbEeNcUlyDK6t4TPtj-ujiTHvVGvijalLW3Zc9faBlyzK2ATD1V4Gux2e45PxuwbOQgAagWdkLQ4DPt1WI2VmZhw_rWIPFTrii1RHB1w5xL-LpP_QwU8zPv3Dj4ftV3qiZWMH-wl8KW_ZdN_2XTDMQ-MVk2H7_oIUs6QcR6tPec237q6_H-9OMi9NQdMtAfqIZjJLXugwqJQHHaSkziMrhYmxLIt2KQu7hE7xwml1YjfYovkA14iZ1xsMsEM_NjBunDggMJdVODdzOzVMTGv9I2iBqgkO27GRNs0vUkpUZZWCsMwapy6UYjHff07qjnPY2-xV8vGFQLytjXuue3zrY0jq9MOv8WgNh6uPdD8OLEogt1JJFAP8cAjMKTNAGVqt_F77TLiTz4_ucSR0</stringProp>
-              </elementProp>
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Content-Type</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>false</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\stress\json_post_plan_data.csv</stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-            <stringProp name="CounterConfig.start">1</stringProp>
-            <stringProp name="CounterConfig.end"></stringProp>
-            <stringProp name="CounterConfig.incr">1</stringProp>
-            <stringProp name="CounterConfig.name">counterPlan</stringProp>
-            <stringProp name="CounterConfig.format"></stringProp>
-            <boolProp name="CounterConfig.per_user">false</boolProp>
-          </CounterConfig>
-          <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
         <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
@@ -2005,7 +1073,7 @@
         </elementProp>
       </kg.apc.jmeter.threads.SteppingThreadGroup>
       <hashTree>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -2042,7 +1110,7 @@
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments">
             <elementProp name="subscriber" elementType="Argument">
               <stringProp name="Argument.name">subscriber</stringProp>
@@ -2052,7 +1120,7 @@
           </collectionProp>
         </Arguments>
         <hashTree/>
-        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments">
             <elementProp name="admin" elementType="Argument">
               <stringProp name="Argument.name">admin</stringProp>
@@ -2062,7 +1130,7 @@
           </collectionProp>
         </Arguments>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET All Plan">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET All Plan" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">1010</stringProp>
           <stringProp name="HTTPSampler.path">/api/plans/all</stringProp>
@@ -2075,7 +1143,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer">
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -2112,7 +1180,7 @@
             <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\resistance\json_get_plan_data.csv</stringProp>
           </ResultCollector>
           <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -2150,7 +1218,7 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Plan from User">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Plan from User" enabled="true">
           <stringProp name="TestPlan.comments">In order to retrieve 200 and the information, a user needs to be created before hand, so that the bearer token can be user in here</stringProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">1010</stringProp>
@@ -2164,7 +1232,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -2173,7 +1241,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer">
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -2210,7 +1278,7 @@
             <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\resistance\json_get_specific_plan_data.csv</stringProp>
           </ResultCollector>
           <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -2248,7 +1316,7 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Susbcriptions By Plan">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Susbcriptions By Plan" enabled="true">
           <stringProp name="TestPlan.comments">In order to retrieve 200 and the information, a user needs to be created before hand, so that the bearer token can be user in here</stringProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">1010</stringProp>
@@ -2262,7 +1330,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -2271,7 +1339,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer">
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -2308,7 +1376,7 @@
             <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\resistance\json_get_details.csv</stringProp>
           </ResultCollector>
           <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -2369,7 +1437,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer">
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -2406,7 +1474,7 @@
             <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\resistance\json_login.csv</stringProp>
           </ResultCollector>
           <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -2443,7 +1511,7 @@
             <stringProp name="filename"></stringProp>
           </ResultCollector>
           <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Content-Type</stringProp>

@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/component-diagram
+!theme toy
+
+skinparam backgroundColor Transparent
+skinparam componentBackgroundColor MOTIVATION
+component " " <<Subscription Management>> {
+    portin "REST HTTP API"  as apiP
+
+    component "Gateway" as gw #F8DE7E/00FFFF
+    component "Plan" as plans #F8DE7E/00FFFF
+    component "Subscription" as subscriptions #F8DE7E/00FFFF
+    component "User" as users #F8DE7E/00FFFF
+
+
+
+    interface " " as inter1
+    interface " " as inter2
+    interface " " as inter3
+
+    interface " " as gwInter
+}
+
+interface "HTTP Client" as HTTPa
+
+apiP -down- gw
+
+apiP -up- HTTPa
+
+plans  -down-( inter1
+
+gw -down[hidden]- plans
+users -left[hidden]- plans
+users -right[hidden]- subscriptions
+
+subscriptions --( inter2
+
+subscriptions -- inter1
+
+
+
+users -up-( inter3
+
+gw -down- gwInter
+
+plans -up-( gwInter
+subscriptions -up-( gwInter
+users -up-( gwInter
+
+gw -inter1
+gw -inter2
+gw -inter3
+
+
+@enduml

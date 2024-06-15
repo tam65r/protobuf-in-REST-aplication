@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6a06c21-9433-429a-94a1-61f567ae70e6" name="Changes" comment="" />
+    <list default="true" id="f6a06c21-9433-429a-94a1-61f567ae70e6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Data/python/functions/generate_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Data/python/functions/generate_graphs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Data/python/statistical_analysis_v2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Data/python/statistical_analysis_v2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Data/resistance/summary_protobuf_V2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JMeter/protobuf_in_rest_project_tests.jmx" beforeDir="false" afterPath="$PROJECT_DIR$/../JMeter/protobuf_in_rest_project_tests.jmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="UML Component" />
       </list>
     </option>
   </component>
@@ -36,39 +43,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.Gateway.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.Plans:1.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.Plans:2.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.Subscriptions:1.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.Subscriptions:2.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.Users:1.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.Users:2.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/3ANO2SEMESTRE/PESTA/protobuf-in-REST-applications/protobuf-project/Gateway/src/main/resources/proto&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultPlantUmlFileTemplate": "UML Component",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.Gateway.executor": "Run",
+    "Spring Boot.Plans:1.executor": "Run",
+    "Spring Boot.Plans:2.executor": "Run",
+    "Spring Boot.Subscriptions:1.executor": "Run",
+    "Spring Boot.Subscriptions:2.executor": "Run",
+    "Spring Boot.Users:1.executor": "Run",
+    "Spring Boot.Users:2.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/3ANO2SEMESTRE/PESTA/diagrams",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\protobuf-project\docs" />
       <recent name="C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\protobuf-project\Gateway\src\main\resources\proto" />
     </key>
   </component>
@@ -169,6 +178,8 @@
       <workItem from="1718041408081" duration="2652000" />
       <workItem from="1718101272625" duration="7820000" />
       <workItem from="1718116060992" duration="398000" />
+      <workItem from="1718274889815" duration="6364000" />
+      <workItem from="1718444487689" duration="2034000" />
     </task>
     <servers />
   </component>
