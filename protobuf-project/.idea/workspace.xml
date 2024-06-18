@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6a06c21-9433-429a-94a1-61f567ae70e6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Data/python/functions/generate_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Data/python/functions/generate_graphs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Data/python/statistical_analysis_v2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Data/python/statistical_analysis_v2.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Data/resistance/summary_protobuf_V2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JMeter/protobuf_in_rest_project_tests.jmx" beforeDir="false" afterPath="$PROJECT_DIR$/../JMeter/protobuf_in_rest_project_tests.jmx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CD-N2v3.puml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CD-N2v3.puml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +60,7 @@
     "Spring Boot.Users:2.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/3ANO2SEMESTRE/PESTA/diagrams",
+    "last_opened_file_path": "C:/3ANO2SEMESTRE/PESTA/diagrams/component_diagram_n2_v2.png",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -180,6 +178,8 @@
       <workItem from="1718116060992" duration="398000" />
       <workItem from="1718274889815" duration="6364000" />
       <workItem from="1718444487689" duration="2034000" />
+      <workItem from="1718473356736" duration="1006000" />
+      <workItem from="1718726877811" duration="3127000" />
     </task>
     <servers />
   </component>

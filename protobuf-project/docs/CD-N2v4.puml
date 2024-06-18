@@ -1,0 +1,95 @@
+@startuml
+
+skinparam component {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9EFF
+    BorderColor        black
+    ArrowColor         #222266
+}
+skinparam backgroundColor Transparent
+skinparam component {
+    backgroundColor<<Subscription Management>> MOTIVATION
+}
+
+skinparam componentStyle uml2
+
+interface "HTTP Client" as HTTPa
+interface "HTTP Client" as HTTPb
+interface "HTTP Client" as HTTPc
+
+interface "HTTP Client" as HTTPa2
+interface "HTTP Client" as HTTPb2
+interface "HTTP Client" as HTTPc2
+
+component <<Subscription Management>> {
+    port "REST API Plan"  as apiP
+    port "REST API Plan2"  as apiP2
+
+    port "REST API Subscription" as apiS
+    port "REST API Subscription2" as apiS2
+
+    port "REST API User" as apiU
+    port "REST API User2" as apiU2
+
+    interface " " as iu
+    interface " " as iu2
+
+    interface " " as is1
+    interface " " as is2
+
+    interface " " as ip
+    interface " " as ip2
+
+    HTTPa -down- apiP
+    HTTPb -down- apiS
+    HTTPc -down- apiU
+
+    HTTPa2 -down- apiP2
+    HTTPb2 -down- apiS2
+    HTTPc2 -down- apiU2
+
+
+    [U1:User] -up- apiU
+    [U2:User] -up- apiU2
+
+    [U1:User] -down- iu
+    [U2:User] -( iu
+
+    [U2:User] -left- iu2
+    [U1:User] -( iu2
+
+    [S1:Subscription] -up- apiS
+    [S2:Subscription] -up- apiS2
+
+    [S1:Subscription] -- is1
+    [S2:Subscription] -( is1
+
+    [S2:Subscription] -- is2
+    [S1:Subscription] -( is2
+
+    [U1:User]  -( is1
+    [U2:User] -( is2
+
+    [P1:Plan] -up- apiP
+    [P2:Plan] -up- apiP2
+
+    [P1:Plan] -- ip
+    [P2:Plan] -( ip
+
+    [P2:Plan] -left- ip2
+    [P1:Plan] -( ip2
+
+    [S1:Subscription]  -( ip
+    [S2:Subscription] -( ip2
+
+    [P1:Plan] -[hidden]up- [P2:Plan]
+
+    [S1:Subscription] -[hidden]down- [S2:Subscription]
+
+}
+
+@enduml

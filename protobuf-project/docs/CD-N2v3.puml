@@ -33,13 +33,13 @@ gw -down[hidden]- plans
 users -left[hidden]- plans
 users -right[hidden]- subscriptions
 
-subscriptions --( inter2
+subscriptions -right-( inter2
 
-subscriptions -- inter1
+subscriptions -left- inter1
 
 
 
-users -up-( inter3
+users -up- inter3
 
 gw -down- gwInter
 
@@ -47,9 +47,9 @@ plans -up-( gwInter
 subscriptions -up-( gwInter
 users -up-( gwInter
 
-gw -inter1
-gw -inter2
-gw -inter3
+gw -(inter1
+gw -(inter2
+gw -(inter3
 
 
 @enduml
