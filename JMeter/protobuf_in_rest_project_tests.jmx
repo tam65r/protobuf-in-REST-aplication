@@ -5,9 +5,11 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Create Data Test Thread">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Create Data Test Thread" enabled="true">
         <intProp name="ThreadGroup.num_threads">335</intProp>
         <intProp name="ThreadGroup.ramp_time">10</intProp>
         <longProp name="ThreadGroup.duration">180</longProp>
@@ -328,11 +330,11 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
           <collectionProp name="Arguments.arguments">
             <elementProp name="subscriber" elementType="Argument">
               <stringProp name="Argument.name">subscriber</stringProp>
-              <stringProp name="Argument.value">eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMyxwYXBpbGxvbkBtYWlsLmNvbSIsImV4cCI6MTcxODA4MTU1NiwiaWF0IjoxNzE4MDQ1NTU2LCJyb2xlcyI6IlNVQlNDUklCRVIifQ.cAqRv8Nre5IW0hchXn1qEQaKk84K7ax9tiCr4BHTkBGZ1yz2bU3T_jcdNT2lUV-R-pG7YAi1_33CRlgF9nTGIPW8YAbLGhK-pht1hd6Z8tW2wl-VgkXDsoqAuBBUMGjpSgERXyI3lZZWVXb-v8aGTb2RWvKITtGN-ZZ3vSrnqTPFGzZWqQWGfnUf7ArbdHlDHaqY9S5QQf4-FAozCtLYtCTtPWkaLdOmAV2vLSZhNn7JsRb097BxXKRNRneTbkmYMJLI9H8_WIME4wHmTEylp5FLt2h7KZWWMt0vXrz1MQ142Ve8sJaBd14qz8kHfTpXcWmJadNqQ-IlrAxtOPcN0WGI3kMwLUA7ENHxdENEyAnSSXVvlzsYFfumyB9MgN_BAeDxa_9VtOXhoyxSAfHUu6PEt29jPHhhDJihhSL6rlLnc6UFY37yisI9xSmMrL64tiqiQlJJQaRJz4uauCplFhjA-1aX91K39N48gTYq5cEOPZTqbh3VKb9bK8jA9UYPqxdGUa-s5D24QqIk7dcyDoP1IsxVTI_Fyf8GEw-25R_pCJGGadbeBKYO5XfJ9kK_a88SMGVTEii6n4fFMAwOuLbsdldD7vfkCdKc0_ig9u_IbML_c8m_c6PvkXO319eTocgQrDyfYFLG5blTwzynuK4oBab1GW-p8rqbyscyVFo</stringProp>
+              <stringProp name="Argument.value">eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMyxwYXBpbGxvbkBtYWlsLmNvbSIsImV4cCI6MTcxODg3NDQ0MSwiaWF0IjoxNzE4ODM4NDQxLCJyb2xlcyI6IlNVQlNDUklCRVIifQ.Yk3eHMuRlrd99rG2dX5EyL0X6rnTD9xvaI7md3k7u_EKp3A8IZ9SKx7626kbhRoIDnWz-a4XmplRdKLnfkmtACqinwxjdvrAilkp-UdFtlCKF3QO948-BIbGjtTmbCiiDVfa0ZXH9H0OYYdq4DDjwHgPtizqa00YBb9GSLvP92Xg1fHFPF61A9GnHzsLt_-1FiMCfEIoac1raEVpefuxBA48w0lCR5feLn4J7uYvFrjFH1Gyg0CdzFjxy85_OmEAq5cr_JZSW_HxaEDXlgkK8J9f60vFVGH-Rb6xxZsrnFkaj-lx0CbPAW2dfQ2XogUd0a0R2Jer_gG4MSx8RgcrfOhtyWxtxdi0OnYMWnzzJcqrDEu5G_iIVWf8uG9w_Q8E39LlvLOKPy5v38UPqeFZGWFe_ZNxdGiY-u7MK1SYGx99SwYTmxAv-arNxv8uaiRYNke6u4rIbwWC9RIRNGUUb7qneCmMhHC4L8aWPzaM7r-oRj-842jH0qymS0uFOrY8EEMUEa05H0q7dB8Bbwx1pFKkWaZJl-tGDV4l5WJrNNjhupfD5nWToncGxHDdJMGweluQY18SYOkNE6QqZ9WGo8aPk41vWr3KmWesVdioZXjV0ck84q893qgBQPVkXdclRhORXQFxlc4pPhPy4dlEC-SlsY32nBsU9JUaTdRANZ8</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
@@ -351,7 +353,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -385,10 +387,10 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\baseline\protobuf_get_plan_data_v3.csv</stringProp>
+            <stringProp name="filename"></stringProp>
           </ResultCollector>
           <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -426,7 +428,7 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Plan from User" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Plan from User">
           <stringProp name="TestPlan.comments">In order to retrieve 200 and the information, a user needs to be created before hand, so that the bearer token can be user in here</stringProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">1010</stringProp>
@@ -440,7 +442,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -449,7 +451,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -483,10 +485,10 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\3ANO2SEMESTRE\PESTA\protobuf-in-REST-applications\Data\baseline\protobuf_get_specific_plan_data_v3.csv</stringProp>
+            <stringProp name="filename"></stringProp>
           </ResultCollector>
           <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -524,7 +526,7 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -562,7 +564,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Load Test Thread">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Load Test Thread" enabled="true">
         <intProp name="ThreadGroup.num_threads">600</intProp>
         <intProp name="ThreadGroup.ramp_time">30</intProp>
         <longProp name="ThreadGroup.duration">360</longProp>
@@ -809,7 +811,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Test Thread">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Test Thread" enabled="true">
         <intProp name="ThreadGroup.num_threads">3000</intProp>
         <intProp name="ThreadGroup.ramp_time">100</intProp>
         <longProp name="ThreadGroup.duration">600</longProp>
@@ -1056,7 +1058,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <kg.apc.jmeter.threads.SteppingThreadGroup guiclass="kg.apc.jmeter.threads.SteppingThreadGroupGui" testclass="kg.apc.jmeter.threads.SteppingThreadGroup" testname="Resistance Test Thread">
+      <kg.apc.jmeter.threads.SteppingThreadGroup guiclass="kg.apc.jmeter.threads.SteppingThreadGroupGui" testclass="kg.apc.jmeter.threads.SteppingThreadGroup" testname="Resistance Test Thread" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">3750</stringProp>
         <stringProp name="Threads initial delay">10</stringProp>
@@ -1414,7 +1416,7 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Login">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Login" enabled="true">
           <stringProp name="TestPlan.comments">In order to retrieve 200 and the information, a user needs to be created before hand, so that the bearer token can be user in here</stringProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">1010</stringProp>

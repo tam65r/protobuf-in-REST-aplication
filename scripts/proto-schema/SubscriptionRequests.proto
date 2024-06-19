@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+message CreateSubscriptionRequest {
+  string username = 1;
+  string plan = 2;
+  string feeType = 3;
+  string paymentMethod = 4;
+  string initialDate = 5;
+}

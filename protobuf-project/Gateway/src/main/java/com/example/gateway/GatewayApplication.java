@@ -58,12 +58,12 @@ public class GatewayApplication {
 				.route("plan-service", r -> r.path("/api/plans/**")
 						.filters(f ->
 								f.addRequestHeader("Content-Type", "application/x-protobuf")
-										.filter(modifyResponseContentTypeFilter.apply(new ModifyResponseContentTypeFilter.Config()))
+										//.filter(modifyResponseContentTypeFilter.apply(new ModifyResponseContentTypeFilter.Config()))
 
 						)
 						.uri("http://localhost:8080")
 				)
-				.route(r -> r.path("/api/subscriptions/userPlanDetails")
+				/*.route(r -> r.path("/api/subscriptions/userPlanDetails")
 						.filters(f ->
 								f.addRequestHeader("Content-Type", "application/x-protobuf")
 										.modifyResponseBody(byte[].class, String.class, MediaType.APPLICATION_JSON_VALUE,
@@ -89,11 +89,11 @@ public class GatewayApplication {
 										)
 						)
 						.uri("http://localhost:8081")
-				)
+				)*/
 				.route(r -> r.path("/api/subscriptions/**")
 						.filters(f ->
 								f.addRequestHeader("Content-Type", "application/x-protobuf")
-										.filter(modifyResponseContentTypeFilter.apply(new ModifyResponseContentTypeFilter.Config()))
+										//.filter(modifyResponseContentTypeFilter.apply(new ModifyResponseContentTypeFilter.Config()))
 
 						)
 						.uri("http://localhost:8081")
@@ -101,7 +101,7 @@ public class GatewayApplication {
 				.route(r -> r.path("/api/public/**")
 						.filters(f ->
 								f.addRequestHeader("Content-Type", "application/x-protobuf")
-										.filter(modifyResponseContentTypeFilter.apply(new ModifyResponseContentTypeFilter.Config()))
+										//.filter(modifyResponseContentTypeFilter.apply(new ModifyResponseContentTypeFilter.Config()))
 
 						)
 						.uri("http://localhost:8083")
