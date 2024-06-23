@@ -5,21 +5,24 @@
 
 skinparam backgroundColor Transparent
 skinparam nodeBackgroundColor MOTIVATION
+
+skinparam componentFontStyle bold
+
 node "Personal Computer" as sisdi {
-    component "P1:Plan" as p1
-    component "P2:Plan" as p2
-    component "S1:Subscription" as s1
-    component "S2:Subscription" as s2
-    component "U1:User" as u1
-    component "U2:User" as u2
+    component "P1:Plan" as p1 #6A9EFF
+    component "P2:Plan" as p2 #6A9EFF
+    component "S1:Subscription" as s1 #6A9EFF
+    component "S2:Subscription" as s2 #6A9EFF
+    component "U1:User" as u1 #6A9EFF
+    component "U2:User" as u2 #6A9EFF
 
     rectangle "H2" as h2  {
-        component "db-plan" as dbp
-        component "db-plan2" as dbp2
-        component "db-subscription" as dbs
-        component "db-subscription2" as dbs2
-        component "db-user" as dbu
-        component "db-user2" as dbu2
+        component "db-plan" as dbp #b0f1f5
+        component "db-plan2" as dbp2 #b0f1f5
+        component "db-subscription" as dbs #b0f1f5
+        component "db-subscription2" as dbs2 #b0f1f5
+        component "db-user" as dbu #b0f1f5
+        component "db-user2" as dbu2 #b0f1f5
     }
 }
 

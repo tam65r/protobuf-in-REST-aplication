@@ -8,7 +8,14 @@ hide methods
 
 skinparam backgroundColor Transparent
 
-class Plan #F8DE7E/00FFFF{
+
+skinparam Class {
+Shadowing true
+backgroundColor #6A9EFF
+FontStyle bold
+}
+
+class Plan {
     id
     name
     description
@@ -21,7 +28,7 @@ class Plan #F8DE7E/00FFFF{
     isActive
 }
 
-class Subscription #F8DE7E/00FFFF{
+class Subscription{
     id
     initialDate
     isActive
@@ -35,11 +42,11 @@ class Subscription #F8DE7E/00FFFF{
 
 
 
-class AuthorityRole #F8DE7E/00FFFF{
+class AuthorityRole {
     authority
 }
 
-class User #F8DE7E/00FFFF{
+class User {
     username
     password
     id

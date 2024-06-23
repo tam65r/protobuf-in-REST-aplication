@@ -5,11 +5,14 @@
 left to right direction
 
 skinparam backgroundColor Transparent
+skinparam packageBackgroundColor #f0f6fa 
+skinparam usecaseBackgroundColor #6A9EFF
+skinparam usecaseFontColor MOTIVATION
 
-:Admin: as "Admin" #F8DE7E/00FFFF
-:Director: as "Marketing Director" #F8DE7E/00FFFF
-:User: as "User" #F8DE7E/00FFFF
-:Subscriber: as "Subscriber" #F8DE7E/00FFFF
+:Admin: as "Admin" #6A9EFF
+:Director: as "Marketing Director" #E0EEF6
+:User: as "User" #76ABAE
+:Subscriber: as "Subscriber" #31363F
 
 package Plans {
  usecase "UC9 - Change Plan Details" as UC8

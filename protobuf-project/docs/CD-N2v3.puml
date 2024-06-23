@@ -3,53 +3,53 @@
 !theme toy
 
 skinparam backgroundColor Transparent
-skinparam componentBackgroundColor MOTIVATION
+skinparam componentBackgroundColor #6A9EFF
+
+skinparam component {
+    backgroundColor<<Subscription Management>> MOTIVATION
+}
+
+
 component " " <<Subscription Management>> {
-    portin "REST HTTP API"  as apiP
+    port "REST HTTP API"  as apiP
 
-    component "Gateway" as gw #F8DE7E/00FFFF
-    component "Plan" as plans #F8DE7E/00FFFF
-    component "Subscription" as subscriptions #F8DE7E/00FFFF
-    component "User" as users #F8DE7E/00FFFF
+    component "Gateway" as gw 
+    component "Plan" as plans 
+    component "Subscription" as subscriptions 
+    component "User" as users
 
 
 
-    interface " " as inter1
-    interface " " as inter2
-    interface " " as inter3
+    interface " " as interP
+    interface " " as interU
+    interface " " as interS
 
-    interface " " as gwInter
+    
 }
 
 interface "HTTP Client" as HTTPa
 
-apiP -down- gw
-
 apiP -up- HTTPa
 
-plans  -down-( inter1
 
+gw -up- apiP
+
+plans -left- interP
+subscriptions -up- interS
+users-up- interU
+
+gw  -down-( interP
+gw  -down-( interU
+gw  -down-( interS
+
+subscriptions -right[hidden]- users
+subscriptions -right[hidden]- plans
+
+gw -down[hidden]- users
 gw -down[hidden]- plans
-users -left[hidden]- plans
-users -right[hidden]- subscriptions
+gw -down[hidden]- subscriptions
 
-subscriptions -right-( inter2
-
-subscriptions -left- inter1
-
-
-
-users -up- inter3
-
-gw -down- gwInter
-
-plans -up-( gwInter
-subscriptions -up-( gwInter
-users -up-( gwInter
-
-gw -(inter1
-gw -(inter2
-gw -(inter3
-
+users -( interS
+subscriptions -( interP
 
 @enduml
