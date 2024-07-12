@@ -5,8 +5,8 @@
 Protobuf is a mechanism to serialize/deserialize data developed by Google. It is commonly used with Google Remote Procedure Call (gRPC), but it can also be used in REST applications.  
 
 The objective of this project is to analyze the possible advantages of using Protobuf in REST applications instead of JSON.  
-To analyze these possible advantages, a project that used REST with JSON was migrated to Protobuf. Using a test software, in this case JMeter, both projects were subjected to performance tests.
-
+To analyze these possible advantages, a project that used REST with JSON was migrated to Protobuf. Using a test software, in this case JMeter, both projects were subjected to performance tests.  
+After an analysis of the data obtained, it was possible to conclude that Protocol Buffers provide better performance than JSON.
 
 ## Repository
 
